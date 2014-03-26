@@ -1,4 +1,5 @@
 Xp::Application.routes.draw do
+  root "lessons#index"
   resources :lessons
 
   # The priority is based upon order of creation: first created -> highest priority.
