@@ -6,10 +6,11 @@ class Lesson < ActiveRecord::Base
   has_many :users, :through => :user_lessons
 
   def students
-    UserLesson.where(:role => "student").map{|userlesson| userlesson.user}
+    user_lessons.where(:role => "student").map{|userlesson| userlesson.user}
   end
 
   def teachers
-    UserLesson.where(:role => "teacher").map{|userlesson| userlesson.user}
+    user_lessons.where(:role => "teacher").map{|userlesson| userlesson.user}
   end
+
 end
