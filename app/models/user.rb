@@ -3,11 +3,11 @@ class User < ActiveRecord::Base
   has_many :lessons, :through => :user_lessons
 
   def lessons_as_student
-    user_lessons.where(:role => "student").map{|userlesson| userlesson.lesson}
+    user_lessons.where(:role => "student").map(&:lesson)
   end
 
   def lessons_as_teacher
-    user_lessons.where(:role => "teacher").map{|userlesson| userlesson.lesson}
+    user_lessons.where(:role => "teacher").map(&:lesson)
   end
 
 end
