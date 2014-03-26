@@ -24,12 +24,12 @@ describe "Lesson" do
     expect(@css_lesson.users).to include(@tom)
   end
 
-  it "knows it's students" do 
+  it "knows its students" do 
     expect(@css_lesson.students).to include(@sam)
     expect(@css_lesson.students).to include(@steve)
   end
 
-  it "knows it's teachers" do
+  it "knows its teachers" do
     expect(@css_lesson.teachers).to include(@tom)
     expect(@css_lesson.teachers).to include(@ted)
   end
