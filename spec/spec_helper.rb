@@ -16,8 +16,11 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
 
+  config.include FactoryGirl::Syntax::Methods
+
   config.before(:each) do
     DatabaseCleaner.start
+    FactoryGirl.lint
   end
 
   config.after(:each) do
