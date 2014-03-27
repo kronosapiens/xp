@@ -27,11 +27,13 @@ describe "Lesson" do
   it "knows its students" do 
     expect(@css_lesson.students).to include(@sam)
     expect(@css_lesson.students).to include(@steve)
+    expect(@css_lesson.students.length).to eq(2)
   end
 
   it "knows its teachers" do
     expect(@css_lesson.teachers).to include(@tom)
     expect(@css_lesson.teachers).to include(@ted)
+    expect(@css_lesson.teachers.length).to eq(2)
   end
 
 end
