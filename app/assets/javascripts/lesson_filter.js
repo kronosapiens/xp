@@ -16,4 +16,24 @@ $(document).ready(function(){
     $("div[data-teachers='0']").show();
   });
 
+
+
+  $("a#on_campus").on("click", function(e){
+    e.preventDefault();
+    $('div.jumbotron').hide();
+    $("div[data-location='campus']").show();
+  });
+
+  $("a#remote").on("click", function(e){
+    e.preventDefault();
+    $('div.jumbotron').show();
+    $("div[data-location='campus']").hide();
+    $("div[data-location='virtual']").hide();
+  });
+
+  $("a#virtual").on("click", function(e){
+    e.preventDefault();
+    $('div.jumbotron').hide();
+    $("div[data-location='virtual']").show();
+  });
 });
