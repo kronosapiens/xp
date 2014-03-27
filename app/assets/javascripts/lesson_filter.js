@@ -36,4 +36,22 @@ $(document).ready(function(){
     $('div.jumbotron').hide();
     $("div[data-location='virtual']").show();
   });
+
+
+
+  $("ul#tags").on("click", "li a", function(e){
+    e.preventDefault();
+    var selected_tag = $(this).attr("data-tag");
+
+    $('div.jumbotron').hide();
+
+    $('div.jumbotron').each(function(){
+      // var tags_array = $(this).attr("data-tags").split(", "); 
+      if ($(this).attr("data-tags").toLowerCase().indexOf(selected_tag) >= 0){
+        $(this).show();
+      }
+
+    });
+  });
+
 });
