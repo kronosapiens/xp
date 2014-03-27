@@ -10,6 +10,7 @@
 @css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
 @jquery_lesson = Lesson.create(:title => "jQuery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
 @javascript_lesson = Lesson.create(:title => "Javascript Lesson", :description => "A lesson to talk about writing some great scripts", :references => "Ask Jeeves")
+@sql_lesson = Lesson.create(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "Yahoo Search")
 
 #Creating some users
 @sam = User.create(:name => "Sam")
@@ -22,6 +23,8 @@
 @css_lesson.user_lessons.create(:user_id => @daniel.id, :role => "teacher")
 @jquery_lesson.user_lessons.create(:user_id => @sam.id, :role => "teacher")
 @jquery_lesson.user_lessons.create(:user_id => @daniel.id, :role => "student")
+@sql_lesson.user_lessons.create(:user_ic => @sam.id, :role => "student")
+@sql_lesson.user_lessons.create(:user_ic => @john.id, :role => "student")
 
 #Creating some tags
 @css = Tag.create(:name => "CSS")

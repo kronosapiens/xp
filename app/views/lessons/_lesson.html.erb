@@ -1,9 +1,9 @@
 <div class="jumbotron" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tags_to_string %>">
-        <h1><%= link_to lesson.title, lesson_path(lesson) %></h1>
-        <p class="lead"><%= lesson.description %></p>
-        <p><%= lesson.references %></p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-        <p><%= link_to 'Show', lesson %> | 
-        <%= link_to 'Edit', edit_lesson_path(lesson) %> | 
-        <%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-      </div>
+  <h1><%= link_to lesson.title, lesson_path(lesson) %></h1>
+  <p class="lead"><%= lesson.description %></p>
+  <p><%= lesson.references %></p>
+  <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+  <p><%= link_to 'Show', lesson %> | 
+  <%= link_to 'Edit', edit_lesson_path(lesson) %> | 
+  <%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</div>
