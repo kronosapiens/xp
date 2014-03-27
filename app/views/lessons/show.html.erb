@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<%= render "lessons/sidebar" %>
+
+<div class="jumbotron">
 <p>
   <strong>Title:</strong>
   <%= @lesson.title %>
@@ -15,5 +18,5 @@
   <%= @lesson.references %>
 </p>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
+<%= link_to 'Edit', edit_lesson_path(@lesson) %>
+</div>
