@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  $("a#show_all").on("click", function(e){
+    e.preventDefault();
+    $('div.jumbotron').show();
+  });
 
   $("a#no_students").on("click", function(e){
     e.preventDefault();
@@ -12,8 +16,4 @@ $(document).ready(function(){
     $("div[data-teachers='0']").show();
   });
 
-  $("a#show_all").on("click", function(e){
-    e.preventDefault();
-    $('div.jumbotron').show();
-  });
 });
