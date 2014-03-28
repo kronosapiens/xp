@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= render "lessons/sidebar" %>
+<%= render "lessons/sidebar",
+locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topic_tags } %>
 
 <div class="jumbotron">
 <p>

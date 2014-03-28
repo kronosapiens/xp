@@ -19,6 +19,9 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @location_tags = Tag.all_locations
+    @time_tags = Tag.all_times
+    @topic_tags = Tag.all_topics
   end
 
   # GET /lessons/1/edit

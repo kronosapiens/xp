@@ -8,19 +8,21 @@
     </ul>
 
 <form id="filters">
-    <select data-placeholder="Select Locations" style="width:350px;" multiple class="chosen-select tag-select" tabindex="8">
+    <select data-placeholder="Select Locations" style="width:180px;" multiple class="chosen-select tag-select" tabindex="8">
       <% @location_tags.each do |tag| %>
       <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
     </select>
-
-    <select data-placeholder="Select Times" style="width:350px;" multiple class="chosen-select tag-select" tabindex="8">
+    <br>
+    <br>
+    <select data-placeholder="Select Times" style="width:180px;" multiple class="chosen-select tag-select" tabindex="8">
       <% @time_tags.each do |tag| %>
       <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
     </select>
-
-    <select data-placeholder="Select Topics" style="width:350px;" multiple class="chosen-select tag-select" tabindex="8">
+    <br>
+    <br>
+    <select data-placeholder="Select Topics" style="width:180px;" multiple class="chosen-select tag-select" tabindex="8">
       <% @topic_tags.each do |tag| %>
       <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
