@@ -38,8 +38,7 @@ $("a#show_all").on("click", function(e){
     var activeFilters = getActiveFilters();
     $("div.lesson").each(function(){
       var $lesson = $(this);
-      var lessonFilters = $lesson.data("filters");
-
+      var lessonFilters = $lesson.data("tags");
       if(lessonQualified(activeFilters, lessonFilters)){
         $lesson.show();
       }
@@ -48,10 +47,11 @@ $("a#show_all").on("click", function(e){
 
   function getActiveFilters(){
     var filterArray = [];
-    $("#tag-select > option:selected").each(function(){
+    $(".tag-select > option:selected").each(function(){
       filterArray.push(parseInt($(this).attr("id")));   
     });
     return filterArray;
+    console.log(filterArray);
   };
 
   function lessonQualified(filter, lesson){

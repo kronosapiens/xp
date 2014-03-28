@@ -1,4 +1,4 @@
-<div class="jumbotron lesson" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tags_to_string %>">
+<div class="jumbotron lesson" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
   <h1><%= link_to lesson.title, lesson_path(lesson) %></h1>
   <p class="lead"><%= lesson.description %></p>
   <p><%= lesson.references %></p>
