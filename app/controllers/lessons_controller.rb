@@ -5,6 +5,9 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
     @lessons = Lesson.all
+    @location_tags = Tag.all_locations
+    @time_tags = Tag.all_times
+    @topic_tags = Tag.all_topics
     # stuff for sending tag data to the index
   end
 
