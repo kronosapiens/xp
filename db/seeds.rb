@@ -10,6 +10,7 @@
 @css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
 @jquery_lesson = Lesson.create(:title => "jQuery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
 @javascript_lesson = Lesson.create(:title => "Javascript Lesson", :description => "A lesson to talk about writing some great scripts", :references => "Ask Jeeves")
+@sql_lesson = Lesson.create(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "Yahoo Search")
 
 #Creating some users
 @sam = User.create(:name => "Sam")
@@ -22,12 +23,15 @@
 @css_lesson.user_lessons.create(:user_id => @daniel.id, :role => "teacher")
 @jquery_lesson.user_lessons.create(:user_id => @sam.id, :role => "teacher")
 @jquery_lesson.user_lessons.create(:user_id => @daniel.id, :role => "student")
+@sql_lesson.user_lessons.create(:user_id => @sam.id, :role => "student")
+@sql_lesson.user_lessons.create(:user_id => @john.id, :role => "student")
 
 #Creating some tags
 @css = Tag.create(:name => "CSS")
 @frontend = Tag.create(:name => "Front End")
 @jquery = Tag.create(:name => "jQuery")
 @javascript = Tag.create(:name => "JavaScript")
+@sql = Tag.create(:name => "SQL")
 
 #Associating some lessons and tags
 @css.lesson_tags.create(:lesson_id => @css_lesson.id)
@@ -35,6 +39,7 @@
 @frontend.lesson_tags.create(:lesson_id => @jquery_lesson.id)
 @frontend.lesson_tags.create(:lesson_id => @javascript_lesson.id)
 @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-@jquery.lesson_tags.create(:lesson_id => @javascript_lesson.id)
+@sql.lesson_tags.create(:lesson_id => @sql_lesson.id)
+
 
 
