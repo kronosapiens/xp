@@ -9,12 +9,8 @@ class Lesson < ActiveRecord::Base
     user_lessons.where(:role => "student").map(&:user)
   end
 
-  def teachers_from_arel
-    user_lessons.where(:role => "teacher")
-  end
-
   def teachers
-    teachers_from_arel.map(&:user)
+    teachers_collection.map(&:user)
   end
 
   def all_tags
@@ -25,8 +21,17 @@ class Lesson < ActiveRecord::Base
     all_tags.inject(""){|tag_string, tag| tag_string << tag.name + ", "}.chop.chop
   end
 
+  def tag_ids_to_array
+    all_tags.inject([]){|tag_array, tag| tag_array << tag.id}
+  end
+
   def first_teacher
-    teachers_from_arel.limit(1).first.user
+    teachers_collection.limit(1).first.user
+  end
+
+  private
+  def teachers_collection
+    user_lessons.where(:role => "teacher")
   end
 
 end

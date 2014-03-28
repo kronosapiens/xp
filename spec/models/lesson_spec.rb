@@ -63,4 +63,9 @@ describe "Lesson" do
     expect(@jquery_lesson.tags_to_string).to eq("jQuery, Front End")
   end
 
+  it "can return its tag ids as an array" do
+    expect(@jquery_lesson.tag_ids_to_array).to be_a(Array)
+    expect(@jquery_lesson.tag_ids_to_array).to eq([2, 3])
+  end
+
 end
