@@ -27,11 +27,17 @@
 @sql_lesson.user_lessons.create(:user_id => @john.id, :role => "student")
 
 #Creating some tags
-@css = Tag.create(:name => "CSS")
-@frontend = Tag.create(:name => "Front End")
-@jquery = Tag.create(:name => "jQuery")
-@javascript = Tag.create(:name => "JavaScript")
-@sql = Tag.create(:name => "SQL")
+@css = Tag.create(:name => "CSS", :category => "topic")
+@frontend = Tag.create(:name => "Front End", :category => "topic")
+@jquery = Tag.create(:name => "jQuery", :category => "topic")
+@javascript = Tag.create(:name => "JavaScript", :category => "topic")
+@sql = Tag.create(:name => "SQL", :category => "topic")
+
+@evening = Tag.create(:name => "Evening", :category => "time")
+@afternoon = Tag.create(:name => "Afternoon", :category => "time")
+
+@on_campus = Tag.create(:name => "On Campus", :category => "location")
+@remote = Tag.create(:name => "Remote", :category => "location")
 
 #Associating some lessons and tags
 @css.lesson_tags.create(:lesson_id => @css_lesson.id)
@@ -40,6 +46,22 @@
 @frontend.lesson_tags.create(:lesson_id => @javascript_lesson.id)
 @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
 @sql.lesson_tags.create(:lesson_id => @sql_lesson.id)
+
+@evening.lesson_tags.create(:lesson_id => @sql_lesson.id)
+@evening.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@evening.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+@afternoon.lesson_tags.create(:lesson_id => @sql_lesson.id)
+@afternoon.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@afternoon.lesson_tags.create(:lesson_id => @css_lesson.id)
+
+@on_campus.lesson_tags.create(:lesson_id => @sql_lesson.id)
+@on_campus.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@on_campus.lesson_tags.create(:lesson_id => @css_lesson.id)
+@remote.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+@remote.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@remote.lesson_tags.create(:lesson_id => @css_lesson.id)
+
+
 
 
 

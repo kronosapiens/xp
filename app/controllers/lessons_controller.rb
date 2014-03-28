@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
     @lessons = Lesson.all
+    # stuff for sending tag data to the index
   end
 
   # GET /lessons/1

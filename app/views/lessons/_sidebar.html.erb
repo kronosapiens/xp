@@ -1,22 +1,21 @@
       
 <div class="col-sm-3 col-md-2 sidebar">
-    <li>Filters</li>
+    <h3>Filters</h3>
     <li><a href="#" id="show_all">Show All Lessons</a></li>
-    <ul class="nav nav-sidebar">
-      <li>Interest</li>
+    <ul class="nav nav-sidebar"><h4>Interests</h4>
       <li><a href="#" id="no_students">Students Needed</a></li>
       <li><a href="#" id="no_teachers">Teachers Needed</a></li>
     </ul>
-    <ul class="nav nav-sidebar">
-      <li>Location</li>
+    <ul class="nav nav-sidebar"><h4>Location</h4>
       <li><a href="#" id="on_campus">On Campus</a></li>
       <li><a href="#" id="remote">Remote</a></li>
       <li><a href="#" id="virtual">Virtual</a></li>
     </ul>
-    <ul class="nav nav-sidebar" id="tags">
-      <li>Topic</li>
+    <ul class="nav nav-sidebar" id="tags"><h4>Topic</h4>
       <li><a href="#" data-tag="css">CSS</a></li>
       <li><a href="#" data-tag="jquery">JQuery</a></li>
       <li><a href="#" data-tag="arel">Arel</a></li>
     </ul>
 </div>
+
+  <%#= render @tags %>
