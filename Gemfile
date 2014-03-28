@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Use Chosen to handle selection fields
+gem 'chosen-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 

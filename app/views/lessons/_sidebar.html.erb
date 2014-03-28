@@ -6,19 +6,25 @@
       <li><a href="#" id="no_students">Students Needed</a></li>
       <li><a href="#" id="no_teachers">Teachers Needed</a></li>
     </ul>
-    <ul class="nav nav-sidebar"><h4>Location</h4>
+
+<form id="filters">
+    <select data-placeholder="Select Locations" style="width:350px;" multiple class="chosen-select tag-select" tabindex="8">
       <% @location_tags.each do |tag| %>
-      <li><%= tag.name %></li>
+      <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
-    </ul>
-    <ul class="nav nav-sidebar"><h4>Time</h4>
+    </select>
+
+    <select data-placeholder="Select Times" style="width:350px;" multiple class="chosen-select tag-select" tabindex="8">
       <% @time_tags.each do |tag| %>
-      <li><%= tag.name %></li>
+      <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
-    </ul>
-    <ul class="nav nav-sidebar" id="tags"><h4>Topic</h4>
+    </select>
+
+    <select data-placeholder="Select Topics" style="width:350px;" multiple class="chosen-select tag-select" tabindex="8">
       <% @topic_tags.each do |tag| %>
-      <li><%= tag.name %></li>
+      <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
-    </ul>
+    </select>
+  </form>
+  
 </div>
