@@ -48,17 +48,17 @@
 @sql.lesson_tags.create(:lesson_id => @sql_lesson.id)
 
 @evening.lesson_tags.create(:lesson_id => @sql_lesson.id)
-@evening.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@evening.lesson_tags.create(:lesson_id => @javascript_lesson.id)
 @evening.lesson_tags.create(:lesson_id => @jquery_lesson.id)
 @afternoon.lesson_tags.create(:lesson_id => @sql_lesson.id)
-@afternoon.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@afternoon.lesson_tags.create(:lesson_id => @javascript_lesson.id)
 @afternoon.lesson_tags.create(:lesson_id => @css_lesson.id)
 
 @on_campus.lesson_tags.create(:lesson_id => @sql_lesson.id)
-@on_campus.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@on_campus.lesson_tags.create(:lesson_id => @javascript_lesson.id)
 @on_campus.lesson_tags.create(:lesson_id => @css_lesson.id)
 @remote.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-@remote.lesson_tags.create(:lesson_id => @javascriptlesson.id)
+@remote.lesson_tags.create(:lesson_id => @javascript_lesson.id)
 @remote.lesson_tags.create(:lesson_id => @css_lesson.id)
 
 
