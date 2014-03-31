@@ -50,6 +50,7 @@ group :test, :development do
   gem "database_cleaner"
   gem "sqlite3"
   gem "pry"
+  # gem "jasmine", git: "some github url"
 end
 
 group :production do

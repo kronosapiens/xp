@@ -1,12 +1,5 @@
 $(document).ready(function () {
 
-// Code for filtering by teacher/student status
-
-// $("a#show_all").on("click", function(e){
-//   e.preventDefault();
-//   $('li').show();
-// });
-
   // Configure Chosen 
 
   var config = {

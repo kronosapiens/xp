@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= render "lessons/lesson_nav",
-locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topic_tags } %>
-
 <div class="jumbotron">
 <p>
   <strong>Title:</strong>
@@ -12,6 +9,29 @@ locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topi
 <p>
   <strong>Description:</strong>
   <%= @lesson.description %>
+</p>
+
+<p>
+  <strong>Tags</strong>
+</p>
+
+<p>
+  <em>Topics:</em>
+  <% @topic_tags.each do |topic_tag| %>
+  <%= topic_tag.name %> 
+  <% end %>
+</p>
+<p>
+  <em>Locations:</em>
+  <% @location_tags.each do |location_tag| %>
+  <%= location_tag.name %> 
+  <% end %>
+</p>
+<p>
+  <em>Times:</em>
+  <% @time_tags.each do |time_tag| %>
+  <%= time_tag.name %> 
+  <% end %>
 </p>
 
 <p>

@@ -22,14 +22,13 @@ describe "Lesson" do
     @jquery = Tag.create(:name => "jQuery", :category => "topic")
     @frontend = Tag.create(:name => "Front End", :category => "topic")
 
-    @on_campus = Tag.create(:name => "on campus", :category => "location")
-
-    @evening = Tag.create(:name => "evening", :category => "time")
-
+    @on_campus = Tag.create(:name => "On Campus", :category => "location")
+    @evening = Tag.create(:name => "Evening", :category => "time")
 
     @css.lesson_tags.create(:lesson_id => @css_lesson.id)
     @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
     @frontend.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+
   end
 
   it "can have sam as a user" do
@@ -56,18 +55,13 @@ describe "Lesson" do
     expect(@css_lesson.first_teacher).to eq(@tom)
   end
 
-  it "can add tags to itself, given the tag(s) already exist" do 
-    tags_hash = {
-      :topics => ["CSS", "jQuery"],
-      :locations => ["on campus"],
-      :times => ["evening"]
-    }
-    @ruby_lesson.build_tags(tags_hash)
+  it "returns [] if it has no students" do
+    expect(@ruby_lesson.students).to eq([])
+  end
 
-    expect(@ruby_lesson.tags).to include(@css)
-    expect(@ruby_lesson.tags).to include(@on_campus)
-    expect(@ruby_lesson.tags).to include(@evening)
-  end 
+  it "returns [] if it has no teachers" do
+    expect(@ruby_lesson.teachers).to eq([])
+  end
 
   it "knows what tags it has" do
     expect(@css_lesson.tags).to include(@css)
@@ -87,6 +81,34 @@ describe "Lesson" do
   it "can return its tag ids as an array" do
     expect(@jquery_lesson.tag_ids_to_array).to be_a(Array)
     expect(@jquery_lesson.tag_ids_to_array).to eq([2, 3])
+  end
+
+  it "can add tags to itself, given a full hash of existing tags" do
+    tags_hash = {
+      :topics => ["CSS", "jQuery"],
+      :locations => ["On Campus"],
+      :times => ["Evening"]
+    } 
+    @ruby_lesson.build_tags(tags_hash)
+
+    expect(@ruby_lesson.tags).to include(@css)
+    expect(@ruby_lesson.tags).to include(@on_campus)
+    expect(@ruby_lesson.tags).to include(@evening)
+    expect(@ruby_lesson.tags.length).to eq(4)
+  end
+
+  it "can add tags to itself, given a partial hash of existing tags" do
+        tags_hash = {
+      :topics => ["CSS", "jQuery"],
+      :locations => nil,
+      :times => ["Evening"]
+    } 
+    @ruby_lesson.build_tags(tags_hash)
+
+    expect(@ruby_lesson.tags).to include(@jquery)
+    expect(@ruby_lesson.tags).to include(@evening)
+    expect(@ruby_lesson.tags).to_not include(@on_campus)
+    expect(@ruby_lesson.tags.length).to eq(3)
   end
 
 end
