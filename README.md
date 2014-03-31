@@ -16,8 +16,8 @@ We specifically hope to help admitted students find guidance as they progress th
 
 ## Features
 
-* Front-end JavaScript to filter views based on various criteria.
-* Use of "role" column in users and tags tables to enable efficient authorization and sorting.
+* Front-end JavaScript to filter views based on various criteria - see app/assets/javascripts.
+* Use of "role" column in users and tags tables to enable efficient authorization and sorting - see app/models.
 
 ## Usage
 
