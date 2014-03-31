@@ -1,6 +1,10 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+<<<<<<< HEAD
   before_action :get_tags, only: [:index, :new, :edit, :show]
+=======
+  before_action :get_tags, only: [:index, :new, :edit]
+>>>>>>> dc99010a6d6fbf22a1017214d49cd2fd824fc4c4
 
   # GET /lessons
   # GET /lessons.json
@@ -37,7 +41,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
       if @lesson.save
         @lesson.build_tags(tags_hash)
-        binding.pry
+
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lesson }
       else

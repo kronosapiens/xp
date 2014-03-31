@@ -26,6 +26,7 @@ describe "Lesson" do
 
     @evening = Tag.create(:name => "evening", :category => "time")
 
+
     @css.lesson_tags.create(:lesson_id => @css_lesson.id)
     @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
     @frontend.lesson_tags.create(:lesson_id => @jquery_lesson.id)

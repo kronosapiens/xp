@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 <%= form_for @lesson, html: {class: "form-horizontal", role: "form"} do |f| %>
+=======
+<%= form_for(@lesson) do |f| %>
+>>>>>>> dc99010a6d6fbf22a1017214d49cd2fd824fc4c4
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -11,6 +15,7 @@
       </ul>
     </div>
   <% end %>
+
 
 <div>Role: <%= @role %></div>
 
@@ -64,5 +69,6 @@
   </div>
   <div class="form-group">
     <%= f.submit 'Create Lesson', class: 'btn' %>
+
   </div>
 <% end %>

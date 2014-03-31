@@ -7,6 +7,7 @@ class Lesson < ActiveRecord::Base
   has_many :user_lessons, :dependent => :destroy
   has_many :users, :through => :user_lessons
 
+
   def build_tags(tags_hash)
     tags_hash.each do |category, tags|
       tags.each do |tag|
