@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-xp
-==
-
-XP: A skillshare platform for Flatiron students
-
-=======
-# Xp
+# xp
 
 ## Description
 
@@ -41,9 +34,9 @@ A reputation/gamification system to help encourage continual participation once 
 ## Author
 
 Sam Schlinkert: @sts10
+
 Daniel Kronovet: @kronosapiens
 
 ## License
 
 xp is GNU v2 Licensed. See LICENSE for details.
->>>>>>> dc99010a6d6fbf22a1017214d49cd2fd824fc4c4

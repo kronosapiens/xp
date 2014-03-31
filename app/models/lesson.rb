@@ -11,7 +11,6 @@ class Lesson < ActiveRecord::Base
   def build_tags(tags_hash)
     tags_hash.each do |category, tags|
       tags.each do |tag|
-      # make topic_tag a tag object
         @this_tag = Tag.find_by(:name=> tag, :category => category.to_s.singularize)
         @this_tag.lesson_tags.create(:lesson_id => self.id)
       end
