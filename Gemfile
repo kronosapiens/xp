@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Use Chosen to handle selection fields
 gem 'chosen-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc2'
 # Use SCSS for stylesheets
@@ -30,6 +31,7 @@ gem 'spring',        group: :development
 # gem 'unicorn'
 
 # Use Capistrano for deployment
+
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
@@ -56,3 +58,4 @@ group :production do
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
+

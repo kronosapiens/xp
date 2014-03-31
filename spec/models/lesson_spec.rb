@@ -5,6 +5,9 @@ describe "Lesson" do
   before(:each) do
     @css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
     @jquery_lesson = Lesson.create(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
+    @ruby_lesson = Lesson.create(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it")
+
+
     @steve = User.create(:name => "Steve")
     @sam = User.create(:name => "Sam")
     @tom = User.create(:name => "Tom")
@@ -15,9 +18,14 @@ describe "Lesson" do
     @css_lesson.user_lessons.create(:user_id => @tom.id, :role => "teacher")
     @css_lesson.user_lessons.create(:user_id => @ted.id, :role => "teacher")
 
-    @css = Tag.create(:name => "CSS")
-    @jquery = Tag.create(:name => "jQuery")
-    @frontend = Tag.create(:name => "Front End")
+    @css = Tag.create(:name => "CSS", :category => "topic")
+    @jquery = Tag.create(:name => "jQuery", :category => "topic")
+    @frontend = Tag.create(:name => "Front End", :category => "topic")
+
+    @on_campus = Tag.create(:name => "on campus", :category => "location")
+
+    @evening = Tag.create(:name => "evening", :category => "time")
+
 
     @css.lesson_tags.create(:lesson_id => @css_lesson.id)
     @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
@@ -47,6 +55,19 @@ describe "Lesson" do
   it "knows the first teacher" do
     expect(@css_lesson.first_teacher).to eq(@tom)
   end
+
+  it "can add tags to itself, given the tag(s) already exist" do 
+    tags_hash = {
+      :topics => ["CSS", "jQuery"],
+      :locations => ["on campus"],
+      :times => ["evening"]
+    }
+    @ruby_lesson.build_tags(tags_hash)
+
+    expect(@ruby_lesson.tags).to include(@css)
+    expect(@ruby_lesson.tags).to include(@on_campus)
+    expect(@ruby_lesson.tags).to include(@evening)
+  end 
 
   it "knows what tags it has" do
     expect(@css_lesson.tags).to include(@css)
