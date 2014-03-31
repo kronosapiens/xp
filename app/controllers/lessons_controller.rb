@@ -1,13 +1,11 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :get_tags, only: [:index, :new, :edit]
 
   # GET /lessons
   # GET /lessons.json
   def index
     @lessons = Lesson.all
-    @location_tags = Tag.all_locations
-    @time_tags = Tag.all_times
-    @topic_tags = Tag.all_topics
     # stuff for sending tag data to the index
   end
 
@@ -18,10 +16,8 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
+    @role = params[:role]
     @lesson = Lesson.new
-    @location_tags = Tag.all_locations
-    @time_tags = Tag.all_times
-    @topic_tags = Tag.all_topics
   end
 
   # GET /lessons/1/edit
@@ -77,5 +73,11 @@ class LessonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
       params.require(:lesson).permit(:title, :description, :references)
+    end
+
+    def get_tags
+      @location_tags = Tag.all_locations
+      @time_tags = Tag.all_times
+      @topic_tags = Tag.all_topics
     end
 end

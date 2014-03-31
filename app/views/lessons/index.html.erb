@@ -1,8 +1,6 @@
 
-<%= render "lessons/sidebar",
+<%= render "lessons/lesson_nav",
 locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topic_tags } %>
-
-<h1>Lessons</h1>
 
 <div class="container">
   <%= render @lessons %>
