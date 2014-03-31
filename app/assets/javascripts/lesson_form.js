@@ -1,15 +1,19 @@
 $(document).ready(function(){ 
 
+// $("ul[data-group='Companies'] li[data-company='Microsoft']")
+  $("div[data-status='teachers-only']").hide();
+  // $('div#hide-from-students').hide();
 
   $('input#student-role').on("change", function(){
-    console.log("clicked");
-    $('div#select-locations').hide();
-    $('div#select-times').hide();
+    console.log("student clicked");
+    $('div#hide-from-students').hide();
+    // $("div[data-status='teachers-only']").hide();
+    
   });
 
   $('input#teacher-role').on("change", function(){
-    // alert('ahahah');
-    $('div#select-locations').show(); // dispaly block isn't right 
-    $('div#select-times').show();
+    console.log("teacher clicked");
+    $('div#hide-from-students').show();
+    // $("div[data-status='teachers-only']").show();
   });
 });
