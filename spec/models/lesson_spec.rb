@@ -55,6 +55,14 @@ describe "Lesson" do
     expect(@css_lesson.first_teacher).to eq(@tom)
   end
 
+  it "returns [] if it has no students" do
+    expect(@ruby_lesson.students).to eq([])
+  end
+
+  it "returns [] if it has no teachers" do
+    expect(@ruby_lesson.teachers).to eq([])
+  end
+
   it "knows what tags it has" do
     expect(@css_lesson.tags).to include(@css)
     expect(@css_lesson.tags).to_not include(@jquery)

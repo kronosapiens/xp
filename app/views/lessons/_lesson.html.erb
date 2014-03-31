@@ -1,9 +1,28 @@
 <div class="jumbotron lesson" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
-  <h1><%= link_to lesson.title, lesson_path(lesson) %></h1>
+  <h1><%= link_to lesson.title, lesson %></h1>
   <p class="lead"><%= lesson.description %></p>
-  <p><%= lesson.references %></p>
-  <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-  <p><%= link_to 'Show', lesson %> | 
-  <%= link_to 'Edit', edit_lesson_path(lesson) %> | 
-  <%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+  <% if lesson.students != [] %>
+  <p><% lesson.students.each do |student| %> 
+    <%= student.name %>
+    <% end %>
+    have signed up to take this class. Join them?</p>
+    <% else %>
+    <p>No one has signed up to take this class yet!</p>
+  <% end %>  
+
+  <% if lesson.teachers != [] %>
+  <p><% lesson.teachers.each do |teacher| %> 
+    <%= teacher.name %>
+    <% end %>
+    have signed up to teach this class. Join them?</p>
+    <% else %>
+    <p>No one has signed up to teach this class yet!</p>
+  <% end %>  
+
+  <p><a class="btn btn-lg btn-success" href="#" role="button">Take This Class!</a>
+    <a class="btn btn-lg btn-success" href="#" role="button">Teach This Class!</a></p>
+    <%= link_to 'Edit', edit_lesson_path(lesson) %> | 
+    <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
 </div>

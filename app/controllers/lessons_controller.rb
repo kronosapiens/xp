@@ -83,8 +83,8 @@ class LessonsController < ApplicationController
     end
 
     def get_tags
+      @topic_tags = Tag.all_topics
       @location_tags = Tag.all_locations
       @time_tags = Tag.all_times
-      @topic_tags = Tag.all_topics
     end
 end
