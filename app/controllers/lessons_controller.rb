@@ -27,7 +27,6 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create 
-    binding.pry
     @lesson = Lesson.new(lesson_params)
     tags_hash = {
       :topics => params[:lesson][:topics],
