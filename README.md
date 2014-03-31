@@ -10,31 +10,32 @@ Add some spiffy screenshots of your app here.
 
 ## Background
 
-Why did you want to make this app? What was your development process
-like?
+Flatiron students are an eclectic and talented bunch. Our alumni and admitted students also are, doubly so. We wanted to create a platform to help connect those with things to teach to those with a desire to learn, and help promote the flow of knowlege with the Flatiron community.
+
+We specifically hope to help admitted students find guidance as they progress through the pre-work.
 
 ## Features
 
-Bullet point some of the key features of your app here.
+* Front-end JavaScript to filter views based on various criteria.
+* Use of "role" column in users and tags tables to enable efficient authorization and sorting.
 
 ## Usage
 
-How do users use your app?
+Users log on through github, and can immediately browse for available courses, request new courses, or volunteer to teach a course. Potential teachers can browse for requested courses and volunteer to teach them. Potential students can browse courses on offer and sign up to take them. Students may also request courses, and multiple students can sign on and show interest -- helping potential teachers identify and meet those needs.
 
 ## Development/Contribution
 
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
+Scheduling features! Once students and teachers have been connected, how can we make help them find a time to meet?
 
 ## Future
 
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
+A reputation/gamification system to help encourage continual participation once students graduate and become alumni. Drawing on github repos to calculate "expertise" based on the kinds of languages coded in.
 
 ## Author
 
-Link to your blog, twitter, etc!
+Sam Schlinkert: @sts10
+Daniel Kronovet: @kronosapiens
 
 ## License
 
-My Spiffy App is MIT Licensed. See LICENSE for details.
+xp is GNU v2 Licensed. See LICENSE for details.
