@@ -1,0 +1,7 @@
+
+<%= render "lessons/lesson_nav",
+locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topic_tags } %>
+
+<div class="container">
+  <%= render @lessons %>
+</div>
