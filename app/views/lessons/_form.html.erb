@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 
 
 <%= form_for @lesson, html: {class: "form-horizontal", role: "form"} do |f| %>
 
+=======
+
+<%= form_for @lesson, html: {class: "form-horizontal", role: "form"} do |f| %>
+>>>>>>> 81840ddceb74138c69bf898af180766720f1134a
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -52,11 +57,11 @@
 <!-- Need to figure out what "name" to give to these radio buttons and to the Chosen options so they go into params as we expect them to. -->
 
   <div class="btn-group form-group" data-toggle="buttons">
-    <label class="btn btn-primary">
-      <input type="radio" name="role" value="student">I am a Student
+    <label class="btn btn-primary <%= "active" if @role == "student" %>">
+      <input type="radio" name="role" value="student" <%= "checked" if @role == "student" %>>I am a Student
     </label>
-    <label class="btn btn-primary">
-      <input type="radio" name="role" value="teacher" <% if @role=="teacher" %>checked<% end %>>I am a Teacher
+    <label class="btn btn-primary <%= "active" if @role == "teacher" %>">
+      <input type="radio" name="role" value="teacher" <%= "checked" if @role == "teacher" %>>I am a Teacher
     </label>
   </div>
 
