@@ -1,6 +1,5 @@
 $(document).ready(function(){ 
 
-// $("ul[data-group='Companies'] li[data-company='Microsoft']")
   $("div[data-status='teachers-only']").hide();
   // $('div#hide-from-students').hide();
 
