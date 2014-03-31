@@ -1,4 +1,5 @@
-<%= form_for(@lesson) do |f| %>
+
+<%= form_for @lesson, html: {class: "form-horizontal", role: "form"} do |f| %>
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -11,27 +12,42 @@
     </div>
   <% end %>
 
+<div>Role: <%= @role %></div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
-  <div class="field">
-    <select data-placeholder="Select Topics" style="width:280px;" multiple class="chosen-select tag-select" tabindex="8">
+  <div class="form-group">
+    <select data-placeholder="Select Topics" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8">
       <% @topic_tags.each do |tag| %>
         <option id="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
     </select>
   </div>
-  <div class="field">
-    <%= f.label :references %><br>
-    <%= f.text_area :references %>
+
+
+<!-- Need to figure out what "name" to give to these radio buttons and to the Chosen options so they go into params as we expect them to. -->
+
+  <div class="btn-group form-group" data-toggle="buttons">
+    <label class="btn btn-primary">
+      <input type="radio" name="role" value="student">I am a Student
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="role" value="teacher" checked>I am a Teacher
+    </label>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+
+  <div class="form-group">
+    <%= f.label :references %><br>
+    <%= f.text_area :references, class: 'form-control'%>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Create Lesson', class: 'btn' %>
   </div>
 <% end %>

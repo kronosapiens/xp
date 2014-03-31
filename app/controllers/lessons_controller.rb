@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
-  before_action :get_tags, only: [:index, :new, :edit]
+  before_action :get_tags, only: [:index, :new, :edit, :show]
 
   # GET /lessons
   # GET /lessons.json
