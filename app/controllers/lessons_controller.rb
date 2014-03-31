@@ -26,11 +26,18 @@ class LessonsController < ApplicationController
 
   # POST /lessons
   # POST /lessons.json
-  def create
+  def create 
     @lesson = Lesson.new(lesson_params)
-
+    tags_hash = {
+      :topics => params[:lesson][:topics],
+      :locations => params[:lesson][:locations],
+      :times => params[:lesson][:times]
+    }
+    
     respond_to do |format|
       if @lesson.save
+        @lesson.build_tags(tags_hash)
+        binding.pry
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lesson }
       else
