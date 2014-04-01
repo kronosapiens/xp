@@ -1,43 +1,69 @@
 <p id="notice"><%= notice %></p>
 
 <div class="jumbotron">
-<p>
-  <strong>Title:</strong>
-  <%= @lesson.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @lesson.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @lesson.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @lesson.description %>
+  </p>
 
-<p>
-  <strong>Tags</strong>
-</p>
+  <p>
+    <strong>Tags</strong>
+  </p>
 
-<p>
-  <em>Topics:</em>
-  <% @topic_tags.each do |topic_tag| %>
-  <%= topic_tag.name %> 
-  <% end %>
-</p>
-<p>
-  <em>Locations:</em>
-  <% @location_tags.each do |location_tag| %>
-  <%= location_tag.name %> 
-  <% end %>
-</p>
-<p>
-  <em>Times:</em>
-  <% @time_tags.each do |time_tag| %>
-  <%= time_tag.name %> 
-  <% end %>
-</p>
+  <p>
+    <em>Topics:</em>
+    <% @topic_tags.each do |topic_tag| %>
+    <%= topic_tag.name %> 
+    <% end %>
+  </p>
+  <p>
+    <em>Locations:</em>
+    <% @location_tags.each do |location_tag| %>
+    <%= location_tag.name %> 
+    <% end %>
+  </p>
+  <p>
+    <em>Times:</em>
+    <% @time_tags.each do |time_tag| %>
+    <%= time_tag.name %> 
+    <% end %>
+  </p>
 
-<p>
-  <strong>References:</strong>
-  <%= @lesson.references %>
-</p>
+  <p>
+    <strong>Teachers:</strong>
+  </p>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %>
-</div>
+  <% if @lesson.teachers != [] %>
+  <p><% @lesson.teachers.each do |teacher| %> 
+    <%= teacher.name %>
+    <% end %>
+    have signed up to teach this class. Join them?</p>
+    <% else %>
+    <p>No one has signed up to teach this class yet!</p>
+    <% end %>  
+
+  <p>
+    <strong>Students:</strong>
+  </p>
+  <% if @lesson.students != [] %>
+  <p><% @lesson.students.each do |student| %> 
+    <%= student.name %>
+    <% end %>
+    have signed up to take this class. Join them?</p>
+    <% else %>
+    <p>No one has signed up to take this class yet!</p>
+    <% end %> 
+
+    <p>
+      <strong>References:</strong>
+      <%= @lesson.references %>
+    </p>
+
+    <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
+    <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
