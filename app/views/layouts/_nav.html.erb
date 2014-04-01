@@ -13,9 +13,9 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to 'Teach Lesson', new_lesson_path(role: 'teacher') %></li>
             <li><%= link_to 'Request Lesson', new_lesson_path(role: 'student') %></li>
-            <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
+            <li><%= link_to "Login with Github", "/auth/github" %>/li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

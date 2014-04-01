@@ -1,3 +1,6 @@
-use OmniAuth::Builder do
-  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user, repo, gist"
+github_client_id = Rails.application.secrets.github_client_id
+github_client_secret = Rails.application.secrets.github_client_secret
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :github, github_client_id, github_client_secret, scope: "user, repo, gist"
 end

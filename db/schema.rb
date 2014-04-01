@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328160728) do
+ActiveRecord::Schema.define(version: 20140401160021) do
 
   create_table "lesson_tags", force: true do |t|
     t.integer  "lesson_id"
@@ -53,6 +53,11 @@ ActiveRecord::Schema.define(version: 20140328160728) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "image_url"
   end
 
 end
