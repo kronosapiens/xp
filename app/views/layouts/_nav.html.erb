@@ -15,7 +15,12 @@
             <li><%= link_to 'Request Lesson', new_lesson_path(role: 'student') %></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
+            <% if logged_in? %>
+            <li><%= link_to current_user.name, user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
             <li><%= link_to "Login with Github", "/auth/github" %>/li>
+            <% end %>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

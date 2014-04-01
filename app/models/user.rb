@@ -12,9 +12,22 @@ class User < ActiveRecord::Base
     new.tap do |u|
       u.provider = auth_hash["provider"]
       u.uid = auth_hash["uid"]
+      u.name = auth_hash["info"]["name"]
+      u.nickname = auth_hash["info"]["nickname"]
+      u.email = auth_hash["info"]["email"]
+      u.image_url = auth_hash["info"]["image"]
       u.save
     end
   end
+
+    #   t.string   "name"
+    # t.datetime "created_at"
+    # t.datetime "updated_at"
+    # t.string   "provider"
+    # t.string   "uid"
+    # t.string   "nickname"
+    # t.string   "email"
+    # t.string   "image_url"
 
   def lessons_as_student
     user_lessons.where(:role => "student").map(&:lesson)

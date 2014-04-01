@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
   end
 
-  def logout
+  def destroy
     reset_session
     redirect_to root_path
   end

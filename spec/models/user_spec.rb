@@ -37,18 +37,29 @@ describe "User" do
 
   it 'can create a user from oauth' do
     auth_hash = {
-      "provider"=>"github",
-      "uid"=>"1874062"
-    }
-    User.create_by_oauth(auth_hash)
-    expect(User.last.uid).to eq("1874062")
+     "provider"=>"github",
+     "uid"=>"1874062",
+     "info"=>
+     {"nickname"=>"kronosapiens",
+       "email"=>"kronovet@gmail.com",
+       "name"=>"Daniel Kronovet",
+       "image"=>"https://avatars.githubusercontent.com/u/1874062?"}
+     }
+    user = User.create_by_oauth(auth_hash)
+    expect(user.uid).to eq("1874062")
+    expect(user.email).to eq("kronovet@gmail.com")
   end
 
   it 'can find a user from oauth' do
     auth_hash = {
-      "provider"=>"github",
-      "uid"=>"1874062"
-    }
+     "provider"=>"github",
+     "uid"=>"1874062",
+     "info"=>
+     {"nickname"=>"kronosapiens",
+       "email"=>"kronovet@gmail.com",
+       "name"=>"Daniel Kronovet",
+       "image"=>"https://avatars.githubusercontent.com/u/1874062?"}
+     }
     user = User.create_by_oauth(auth_hash)
     expect(User.find_or_create_by_oauth(auth_hash)).to eq(user)
   end
