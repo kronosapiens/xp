@@ -1,5 +1,7 @@
 $(document).ready(function(){ 
 
+  
+
   $("div[data-status='teachers-only']").hide();
   // $('div#hide-from-students').hide();
 
