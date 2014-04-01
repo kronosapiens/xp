@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   root "lessons#index"
   resources :lessons
 
+  get "/auth/github" => "auth#github", as: :login
   get "/auth/:provider/callback" => "sessions#oauth"
 
-  get "users/:id" => "users#show", as: :user
-  get "sessions/destroy" => "sessions#destroy", as: :logout
+  get "/users/:id" => "users#show", as: :user
+  get "/sessions/destroy" => "sessions#destroy", as: :logout
+
+  post "/user_lessons" => "user_lessons#create", as: :sign_up
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

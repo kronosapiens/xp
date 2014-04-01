@@ -33,10 +33,11 @@ class LessonsController < ApplicationController
       :locations => params[:lesson][:locations],
       :times => params[:lesson][:times]
     }
-    
     respond_to do |format|
       if @lesson.save
-        @lesson.build_tags(tags_hash)
+         @lesson.build_tags(tags_hash)
+         @lesson.user_lessons.create(:user_id => current_user.id, :role => params[:role])
+         binding.pry
 
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lesson }
@@ -87,4 +88,5 @@ class LessonsController < ApplicationController
       @location_tags = Tag.all_locations
       @time_tags = Tag.all_times
     end
+
 end

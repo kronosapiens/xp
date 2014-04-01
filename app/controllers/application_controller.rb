@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :logged_in?
 
+  def login_required
+    redirect_to login_path unless logged_in?
+  end
+
 end
