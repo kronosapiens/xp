@@ -1,68 +1,68 @@
 
 <%= form_for @lesson, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <% if @lesson.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+<% if @lesson.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-      <ul>
-      <% @lesson.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @lesson.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="form-group">
-    <%= f.label :title %><br>
-    <%= f.text_field :title, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, class: 'form-control' %>
-  </div>
+<div class="form-group">
+  <%= f.label :title %><br>
+  <%= f.text_field :title, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :description %><br>
+  <%= f.text_area :description, class: 'form-control' %>
+</div>
 
-  <div class="btn-group form-group" data-toggle="buttons">
-    <label class="btn btn-primary <%= "active" if @role == "student" %>">
-      <input type="radio" id="student-role" name="role" value="student" <%= "checked" if @role == "student" %>>I am a Student
-    </label>
-    <label class="btn btn-primary <%= "active" if @role == "teacher" %>">
-      <input type="radio" id="teacher-role" name="role" value="teacher" <%= "checked" if @role == "teacher" %>>I am a Teacher
-    </label>
-  </div>
+<div class="btn-group form-group" data-toggle="buttons">
+  <label class="btn btn-primary <%= "active" if @role == "student" %>">
+    <input type="radio" id="student-role" name="role" value="student" <%= "checked" if @role == "student" %>>I am a Student
+  </label>
+  <label class="btn btn-primary <%= "active" if @role == "teacher" %>">
+    <input type="radio" id="teacher-role" name="role" value="teacher" <%= "checked" if @role == "teacher" %>>I am a Teacher
+  </label>
+</div>
 
 
-  <div class="form-group" id="select-topics" style="width: 280px;">
-    <select data-placeholder="Select Topics" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[topics][]">
-      <% @topic_tags.each do |tag| %>
-        <option id="<%= tag.id %>" <%= "selected" if @lesson.tag_ids_to_array.include?(tag.id) %>><%= tag.name %></option>
+<div class="form-group" id="select-topics" style="width: 280px;">
+  <select data-placeholder="Select Topics" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[topics][]">
+    <% @topic_tags.each do |tag| %>
+    <option id="<%= tag.id %>" <%= prepopulate(@lesson, tag) %>><%= tag.name %></option>
+    <% end %>
+  </select>
+</div>
+
+<div id="options-for-teacher" data-role="<%=@role%>" style="width: 280px;">
+  <div class="form-group" id="select-locations" >
+    <select data-placeholder="Select Locations" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[locations][]">
+      <% @location_tags.each do |tag| %>
+      <option id="<%= tag.id %>" <%= prepopulate(@lesson, tag) %>><%= tag.name %></option>
       <% end %>
     </select>
   </div>
-
-  <div id="options-for-teacher" data-role="<%=@role%>" style="width: 280px;">
-    <div class="form-group" id="select-locations" >
-      <select data-placeholder="Select Locations" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[locations][]">
-        <% @location_tags.each do |tag| %>
-        <option id="<%= tag.id %>" <%= "selected" if @lesson.tag_ids_to_array.include?(tag.id) %>><%= tag.name %></option>
-        <% end %>
-      </select>
-    </div>
-    <div class="form-group" id="select-times">
-      <select data-placeholder="Select Times" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[times][]">
-        <% @time_tags.each do |tag| %>
-        <option id="<%= tag.id %>" <%= "selected" if @lesson.tag_ids_to_array.include?(tag.id) %>><%= tag.name %></option>
-        <% end %>
-      </select>
-    </div>
+  <div class="form-group" id="select-times">
+    <select data-placeholder="Select Times" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[times][]">
+      <% @time_tags.each do |tag| %>
+      <option id="<%= tag.id %>" <%= prepopulate(@lesson, tag) %>><%= tag.name %></option>
+      <% end %>
+    </select>
   </div>
+</div>
 
-  
-  <div class="form-group">
-    <%= f.label :references %><br>
-    <%= f.text_area :references, class: 'form-control'%>
-  </div>
-  <div class="form-group">
-    <%= f.submit 'Submit', class: 'btn' %>
 
-  </div>
+<div class="form-group">
+  <%= f.label :references %><br>
+  <%= f.text_area :references, class: 'form-control'%>
+</div>
+<div class="form-group">
+  <%= f.submit 'Submit', class: 'btn' %>
+
+</div>
 <% end %>
