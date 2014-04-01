@@ -33,12 +33,13 @@ $(document).ready(function () {
 
   function filterLessons(){
     $("div.lesson").hide();
+    var activeFilters = getActiveFilters();
     $("div.lesson").each(function(){
       var $lesson = $(this);
       var lessonFilters = $lesson.data("tags");
       var studentCount = $lesson.data("students");
       var teacherCount = $lesson.data("teachers");
-      if(filterCheck(lessonFilters) && interestCheck(studentCount, teacherCount)){
+      if(filterCheck(activeFilters, lessonFilters) && interestCheck(studentCount, teacherCount)){
         $lesson.show();
       }
     });
@@ -66,8 +67,7 @@ $(document).ready(function () {
     console.log(filterArray);
   };
 
-  function filterCheck(lesson){
-    var filters = getActiveFilters();
+  function filterCheck(filters, lesson){
     for(var i = 0; i < filters.length ; i++){
      if((lesson.indexOf(filters[i])) == -1){
        return false;
