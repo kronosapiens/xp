@@ -11,9 +11,9 @@ $(document).ready(function(){
     $('div#options-for-teacher').show();
   });
 
-  // console.log($("div#options-for-teacher").data("role"))
-  // if( $("div#options-for-teacher").data("role") != "teacher"){
-  //   $('div#options-for-teacher').hide();
-  // };
+  console.log($("div#options-for-teacher").data("role"))
+  if( $("div#options-for-teacher").data("role") != "teacher"){
+    $('div#options-for-teacher').hide();
+  };
 
 });
