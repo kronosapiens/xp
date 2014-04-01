@@ -19,7 +19,7 @@
             <li><%= link_to current_user.name, user_path(current_user) %></li>
             <li><%= link_to "Logout", logout_path %></li>
             <% else %>
-            <li><%= link_to "Login with Github", "/auth/github" %>/li>
+            <li><%= link_to "Login with Github", login_path %>/li>
             <% end %>
           </ul>
           <form class="navbar-form navbar-right">

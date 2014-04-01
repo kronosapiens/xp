@@ -42,11 +42,12 @@
   <p><% @lesson.teachers.each do |teacher| %> 
     <%= teacher.name %>
     <% end %>
-    have signed up to teach this class. Join them?</p>
+    have signed up to teach this class.</p>
     <% else %>
     <p>No one has signed up to teach this class yet!</p>
-    <% end %>  
-
+    <% end %>
+    <%= button_to "Teach This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]'=> "teacher", :'user_lesson[lesson_id]' => @lesson.id }, {:class => "btn btn-success"}  %>
+    <br>
   <p>
     <strong>Students:</strong>
   </p>
@@ -54,11 +55,12 @@
   <p><% @lesson.students.each do |student| %> 
     <%= student.name %>
     <% end %>
-    have signed up to take this class. Join them?</p>
+    have signed up to take this class.</p>
     <% else %>
     <p>No one has signed up to take this class yet!</p>
     <% end %> 
-
+    <%= button_to "Take This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]' => "student", :'user_lesson[lesson_id]' => @lesson.id }, {:class => "btn btn-warning"}   %>
+<br>
     <p>
       <strong>References:</strong>
       <%= @lesson.references %>
