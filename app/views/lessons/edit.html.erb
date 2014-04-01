@@ -1,10 +1,6 @@
 <h1>Editing lesson</h1>
 
-<%= render "lessons/lesson_nav",
-locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topic_tags } %>
-
 <div class="jumbotron">
 <%= render 'form' %>
+<%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
-
-<%= link_to 'Show', @lesson %>

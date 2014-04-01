@@ -2,27 +2,11 @@
   <h1><%= link_to lesson.title, lesson %></h1>
   <p class="lead"><%= lesson.description %></p>
 
-  <% if lesson.students != [] %>
-  <p><% lesson.students.each do |student| %> 
-    <%= student.name %>
-    <% end %>
-    have signed up to take this class. Join them?</p>
-    <% else %>
-    <p>No one has signed up to take this class yet!</p>
-  <% end %>  
+  <p><%= lesson.students.length %> people have signed up to take this class. Join them? 
+  <a class="btn btn-lg btn-success" href="#" role="button">Take This!</a></p>
+  <p><%= lesson.teachers.length %> people have signed up to teach this class. Join them? 
+  <a class="btn btn-lg btn-success" href="#" role="button">Teach This!</a></p></p>
 
-  <% if lesson.teachers != [] %>
-  <p><% lesson.teachers.each do |teacher| %> 
-    <%= teacher.name %>
-    <% end %>
-    have signed up to teach this class. Join them?</p>
-    <% else %>
-    <p>No one has signed up to teach this class yet!</p>
-  <% end %>  
-
-  <p><a class="btn btn-lg btn-success" href="#" role="button">Take This Class!</a>
-    <a class="btn btn-lg btn-success" href="#" role="button">Teach This Class!</a></p>
-    <%= link_to 'Edit', edit_lesson_path(lesson) %> | 
-    <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit', edit_lesson_path(lesson) %>
   </p>
 </div>
