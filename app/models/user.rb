@@ -4,14 +4,14 @@ class User < ActiveRecord::Base
 
 
   def self.find_or_create_by_oauth(auth_hash)
-    where(:provider => auth_hash[:provider], :uid => auth_hash[:uid]) ||
+    where(:provider => auth_hash["provider"], :uid => auth_hash["uid"]).first ||
     create_by_oauth(auth_hash)
   end
 
   def self.create_by_oauth(auth_hash)
     new.tap do |u|
-      u.provider = auth_hash[:provider]
-      u.uid = auth_hash[:uid]
+      u.provider = auth_hash["provider"]
+      u.uid = auth_hash["uid"]
       u.save
     end
   end

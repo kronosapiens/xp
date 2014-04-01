@@ -35,5 +35,34 @@ describe "User" do
     expect(@sam.lessons_as_teacher.length).to eq(1)
   end
 
+  it 'can create a user from oauth' do
+    auth_hash = {
+      "provider"=>"github",
+      "uid"=>"1874062"
+    }
+    User.create_by_oauth(auth_hash)
+    expect(User.last.uid).to eq("1874062")
+  end
+
+  it 'can find a user from oauth' do
+    auth_hash = {
+      "provider"=>"github",
+      "uid"=>"1874062"
+    }
+    user = User.create_by_oauth(auth_hash)
+    expect(User.find_or_create_by_oauth(auth_hash)).to eq(user)
+  end
+
 
 end
+
+
+
+
+
+
+
+
+
+
+
