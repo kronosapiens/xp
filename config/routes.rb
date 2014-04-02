@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
   root "lessons#index"
+
   resources :lessons
 
+# Routes for user authentication
   get "/auth/github" => "auth#github", as: :login
+  get "/logout" => "sessions#destroy", as: :logout
   get "/auth/:provider/callback" => "sessions#oauth"
 
-  get "/users/:id" => "users#show", as: :user
-  get "/sessions/destroy" => "sessions#destroy", as: :logout
+# Routes for user interactions
+  get "/users/:nickname" => "users#show", as: :user
 
   post "/user_lessons" => "user_lessons#create", as: :sign_up
 

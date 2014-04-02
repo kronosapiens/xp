@@ -6,7 +6,5 @@
     <%= button_to "Take This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]' => "student", :'user_lesson[lesson_id]' => lesson.id }, {:class => "btn btn-success"}  %></p>
     <p><%= lesson.teachers.length %> people have signed up to teach this class. Join them? 
       <%= button_to "Teach This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]' => "teacher", :'user_lesson[lesson_id]' => lesson.id }, {:class => "btn btn-warning"}  %></p>
-
-      <%= link_to 'Edit', edit_lesson_path(lesson) %>
     </p>
   </div>

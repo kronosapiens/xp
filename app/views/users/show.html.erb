@@ -1,2 +1,8 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<img src="<%= @user.image_url %>" alt="<%= @user.name %> thumbnail" class="img-responsive" style="width:250px; height:250px;">
+
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>, (<%= @user.nickname %>)
+  </p>
