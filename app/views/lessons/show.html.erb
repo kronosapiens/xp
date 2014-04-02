@@ -72,21 +72,25 @@
   </div>
 
 
+  <div class="jumbotron">
+    <p><strong>Comments:</strong></p>
+    <br>
+    <% @lesson.comments.each do |comment| %>
+    <p>Comment by <%= User.find(comment.user_id).name %></p>
+    <p><%= comment.content %></p>
+    <% end %>
+    <br><br>
 
-  <h4>Comments</h4>
-  <% @lesson.comments.each do |comment| %>
-  <h5>Comment by <%= User.find(comment.user_id).name %></h5>
-  <p><%= comment.content %></p>
-  <% end %>
+    <h4>Leave a New Comment</h4>
+    <form action="/lessons/<%= @lesson.id %>/comments" method="POST" role="form">
+      <%= token_tag %>
+
+      <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
+      <div class="form-group">
+        <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
+      </div>
+      <input type="submit" value="Post Comment" class="btn">
+    </form>
+  </div>  
 
 
-
-  <h4>Leave a New Comment</h4>
-  <form action="/lessons/<%= @lesson.id %>/comments" method="POST">
-    <%= token_tag %>
-
-    <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
-
-    <label>Your Comment: <textarea name="content"></textarea></label>
-    <input type="submit" value="submit">
-  </form>
