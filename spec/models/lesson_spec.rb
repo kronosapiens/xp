@@ -12,10 +12,11 @@ describe "Lesson" do
     @sam = User.create(:name => "Sam")
     @tom = User.create(:name => "Tom")
     @ted = User.create(:name => "Ted")
+    @jack = User.create(:name => "Jack")
 
-    @css_lesson.user_lessons.create(:user_id => @sam.id, :role => "student")
+    @css_lesson.user_lessons.create(:user_id => @sam.id, :role => "student", :admin => true)
     @css_lesson.user_lessons.create(:user_id => @steve.id, :role => "student")
-    @css_lesson.user_lessons.create(:user_id => @tom.id, :role => "teacher")
+    @css_lesson.user_lessons.create(:user_id => @tom.id, :role => "teacher", :admin => false)
     @css_lesson.user_lessons.create(:user_id => @ted.id, :role => "teacher")
 
     @css = Tag.create(:name => "CSS", :category => "topic")
@@ -117,5 +118,15 @@ describe "Lesson" do
     expect(@ruby_lesson.tags).to_not include(@on_campus)
     expect(@ruby_lesson.tags.length).to eq(3)
   end
+
+  it "knows its admin" do
+    expect(@css_lesson.admin).to eq(@sam)
+    expect(@css_lesson.admin).to_not eq(@tom)
+  end
+
+  it "it returns nil if theres no admin" do
+    expect(@jquery_lesson.admin).to eq(nil)
+  end
+
 
 end

@@ -64,7 +64,6 @@ describe "User" do
     expect(User.find_or_create_by_oauth(auth_hash)).to eq(user)
   end
 
-
 end
 
 
