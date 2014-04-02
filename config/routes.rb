@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root "lessons#index"
 
-  resources :lessons
+  resources :lessons do
+    resources :user_lessons, only: [:create, :update, :destroy]
+  end
 
 # Routes for user authentication
   get "/auth/github" => "auth#github", as: :login
@@ -11,9 +13,6 @@ Rails.application.routes.draw do
 
 # Routes for user interactions
   get "/users/:nickname" => "users#show", as: :user
-
-  post "/user_lessons" => "user_lessons#create", as: :sign_up
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

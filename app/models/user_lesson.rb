@@ -12,7 +12,7 @@ class UserLesson < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
 
-  validates_uniqueness_of :lesson, :scope => :user, :error => "Can't sign up for the same lesson twice!"
+  validates_uniqueness_of :user, :scope => :lesson, :error => "Can't sign up for the same lesson twice!"
   validates_with UserLessonValidator
 end
 

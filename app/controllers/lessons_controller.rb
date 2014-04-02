@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
-  before_action :get_tags #, only: [:index, :new, :edit, :show]
+  before_action :set_user_lesson, only: [:edit, :show]
+  before_action :get_tags, only: [:index, :new, :edit, :show]
 
   # GET /lessons
   # GET /lessons.json
@@ -12,6 +13,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    @is_admin = @lesson.admin == current_user
   end
 
   # GET /lessons/new
@@ -83,6 +85,10 @@ class LessonsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])
+    end
+
+    def set_user_lesson
+      @user_lesson = UserLesson.find_by(lesson_id: @lesson.id, user_id: current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -77,6 +77,10 @@ describe "Lesson" do
     expect(@jquery_lesson.topic_tags.length).to eq(2)
   end
 
+  it "returns [] if it has no tags of a particular category" do
+    (expect(@css_lesson.location_tags).to eq([]))
+  end
+
   it "can have multiple tags" do
     expect(@jquery_lesson.tags.length).to eq(3)
   end

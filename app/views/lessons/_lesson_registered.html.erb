@@ -1,0 +1,12 @@
+<div class="jumbotron lesson">
+
+<form action="/lessons/<%= @lesson.id %>/user_lessons/<%= @user_lesson.id %>" class="button_to" method="post">
+  <div>
+    <input name="_method" type="hidden" value="patch" />
+    <input class="btn btn-success" type="submit" value="Admin This Lesson!" />
+    <input type="hidden" name="user_lesson[admin]" value="true" />
+    <%= token_tag %>
+  </div>
+</form>
+
+</div>

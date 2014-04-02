@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<div class="jumbotron lesson">
 
-<div class="jumbotron">
   <p>
     <strong>Title:</strong>
     <%= @lesson.title %>
@@ -16,24 +16,32 @@
     <strong>Tags</strong>
   </p>
 
+    <% unless @lesson.topic_tags == [] %>
   <p>
     <em>Topics:</em>
     <% @lesson.topic_tags.each do |topic_tag| %>
     <%= topic_tag.name %> 
     <% end %>
   </p>
+  <% end %>
+
+    <% unless @lesson.location_tags == [] %>
   <p>
     <em>Locations:</em>
     <% @lesson.location_tags.each do |location_tag| %>
     <%= location_tag.name %> 
     <% end %>
   </p>
+  <% end %>
+
+    <% unless @lesson.time_tags == [] %>
   <p>
     <em>Times:</em>
     <% @lesson.time_tags.each do |time_tag| %>
     <%= time_tag.name %> 
     <% end %>
   </p>
+  <% end %>
 
   <p>
     <strong>Teachers:</strong>
@@ -47,7 +55,15 @@
     <% else %>
     <p>No one has signed up to teach this class yet!</p>
     <% end %>
-    <%= button_to "Teach This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]'=> "teacher", :'user_lesson[lesson_id]' => @lesson.id }, {:class => "btn btn-success"}  %>
+
+<form action="/lessons/<%= @lesson.id %>/user_lessons" class="button_to" method="post">
+  <div>
+    <input class="btn btn-warning" type="submit" value="Teach This!" />
+    <input type="hidden" name="user_lesson[role]" value="teacher" />
+    <input type="hidden" name="user_lesson[lesson_id]" value="<%= @lesson.id %>" />
+    <%= token_tag %>
+  </div>
+</form>
     <br>
   <p>
     <strong>Students:</strong>
@@ -60,7 +76,15 @@
     <% else %>
     <p>No one has signed up to take this class yet!</p>
     <% end %> 
-    <%= button_to "Take This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]' => "student", :'user_lesson[lesson_id]' => @lesson.id }, {:class => "btn btn-warning"}   %>
+
+<form action="/lessons/<%= @lesson.id %>/user_lessons" class="button_to" method="post">
+  <div>
+    <input class="btn btn-success" type="submit" value="Take This!" />
+    <input type="hidden" name="user_lesson[role]" value="student" />
+    <input type="hidden" name="user_lesson[lesson_id]" value="<%= @lesson.id %>" />
+    <%= token_tag %>
+  </div>
+</form>
 <br>
     <p>
       <strong>References:</strong>
@@ -70,3 +94,7 @@
     <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
     <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
+
+  <% if @user_lesson %>
+  <%= render "lessons/lesson_registered" %>
+  <% end %>
