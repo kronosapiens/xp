@@ -98,3 +98,41 @@
   <% if @user_lesson %>
   <%= render "lessons/lesson_registered" %>
   <% end %>
+
+  <div class="jumbotron">
+    <p><strong>Comments:</strong></p>
+    <br>
+    <% @lesson.comments.each do |comment| %>
+    <p><img src=<%= comment.user.image_url %> height="26px"> <%= comment.user.name %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
+    <p><%= comment.content %></p>
+
+
+    <%= link_to 'Delete', lesson_comment_path(@lesson.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <br><br>
+    <% end %>
+    
+
+    <h4>Leave a New Comment</h4>
+    <!-- <form action="/lessons/<%#= @lesson.id %>/comments" method="POST" role="form"> -->
+
+    <%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>
+
+    <%= form_for [@lesson, @comment], html: {role: "form"} do |f| %>
+
+      <% if @comment.errors.any? %>
+      <div class="alert alert-warning">
+        <% @comment.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+        <% end %>
+      </div>
+      <% end %>
+
+
+      <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
+      <div class="form-group">
+        <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
+      </div>
+      <input type="submit" value="Post Comment" class="btn">
+    <% end %>
+  </div>  

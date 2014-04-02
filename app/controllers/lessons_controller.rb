@@ -14,6 +14,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1.json
   def show
     @is_admin = @lesson.admin == current_user
+    @comment = Comment.new
   end
 
   # GET /lessons/new
