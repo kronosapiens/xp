@@ -20,15 +20,6 @@ class User < ActiveRecord::Base
     end
   end
 
-    #   t.string   "name"
-    # t.datetime "created_at"
-    # t.datetime "updated_at"
-    # t.string   "provider"
-    # t.string   "uid"
-    # t.string   "nickname"
-    # t.string   "email"
-    # t.string   "image_url"
-
   def lessons_as_student
     user_lessons.where(:role => "student").map(&:lesson)
   end
