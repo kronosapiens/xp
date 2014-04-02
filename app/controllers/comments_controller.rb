@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :login_required
+
   def create
     @lesson = Lesson.find(params[:lesson_id])
     # @lesson.comments.build(:user_id => params[:user_id], :content => params[:content])
