@@ -28,7 +28,7 @@ describe "Lesson" do
     @css.lesson_tags.create(:lesson_id => @css_lesson.id)
     @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
     @frontend.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-
+    @on_campus.lesson_tags.create(:lesson_id => @jquery_lesson.id)
   end
 
   it "can have sam as a user" do
@@ -69,18 +69,25 @@ describe "Lesson" do
     expect(@css_lesson.tags.length).to eq(1)
   end
 
+  it "can return tags of a particular category" do
+    expect(@jquery_lesson.location_tags).to include(@on_campus)
+    expect(@jquery_lesson.location_tags.length).to eq(1)
+    expect(@jquery_lesson.topic_tags).to include(@frontend)
+    expect(@jquery_lesson.topic_tags.length).to eq(2)
+  end
+
   it "can have multiple tags" do
-    expect(@jquery_lesson.tags.length).to eq(2)
+    expect(@jquery_lesson.tags.length).to eq(3)
   end
 
   it "can return its tags as a string" do
     expect(@jquery_lesson.tags_to_string).to be_a(String)
-    expect(@jquery_lesson.tags_to_string).to eq("jQuery, Front End")
+    expect(@jquery_lesson.tags_to_string).to eq("jQuery, Front End, On Campus")
   end
 
   it "can return its tag ids as an array" do
     expect(@jquery_lesson.tag_ids_to_array).to be_a(Array)
-    expect(@jquery_lesson.tag_ids_to_array).to eq([2, 3])
+    expect(@jquery_lesson.tag_ids_to_array).to eq([2, 3, 4])
   end
 
   it "can add tags to itself, given a full hash of existing tags" do

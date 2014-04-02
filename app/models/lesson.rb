@@ -6,11 +6,6 @@
 
 # end 
 
-
-
-
-
-
 class Lesson < ActiveRecord::Base
   include ActiveSupport::Inflector
 
@@ -46,21 +41,15 @@ class Lesson < ActiveRecord::Base
   end
 
   def topic_tags 
-    all_tags.select do |tag|
-      tag.category == "topic"
-    end
+    tags.where(category: "topic")
   end 
 
   def location_tags
-    all_tags.select do |tag|
-      tag.category == "location"
-    end
+    tags.where(category: "location")
   end
 
   def time_tags
-    all_tags.select do |tag|
-      tag.category == "time"
-    end
+    tags.where(category: "time")
   end
 
   def tags_to_string
