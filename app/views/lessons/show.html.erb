@@ -83,15 +83,27 @@
     
 
     <h4>Leave a New Comment</h4>
-    <form action="/lessons/<%= @lesson.id %>/comments" method="POST" role="form">
-      <%= token_tag %>
+    <!-- <form action="/lessons/<%#= @lesson.id %>/comments" method="POST" role="form"> -->
+
+    <%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>
+
+    <%= form_for [@lesson, @comment], html: {role: "form"} do |f| %>
+
+      <% if @comment.errors.any? %>
+      <div class="alert alert-warning">
+        <% @comment.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+        <% end %>
+      </div>
+      <% end %>
+
 
       <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
       <div class="form-group">
         <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
       </div>
       <input type="submit" value="Post Comment" class="btn">
-    </form>
+    <% end %>
   </div>  
 
 
