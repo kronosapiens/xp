@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root "lessons#index"
 
-  resources :lessons
+  resources :lessons do 
+    resources :comments
+  end
 
 # Routes for user authentication
   get "/auth/github" => "auth#github", as: :login

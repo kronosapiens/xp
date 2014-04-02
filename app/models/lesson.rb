@@ -15,6 +15,8 @@ class Lesson < ActiveRecord::Base
   has_many :user_lessons, :dependent => :destroy
   has_many :users, :through => :user_lessons
 
+  has_many :comments
+
   # validates_with LessonValidator
 
   def build_tags(tags_hash)
