@@ -1,10 +1,10 @@
-<div class="jumbotron lesson" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
+<div class="jumbotron lesson col-md-5" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
   <h1><%= link_to lesson.title, lesson %></h1>
   <p class="lead"><%= lesson.description %></p>
 
-  <p><%= lesson.students.length %> people have signed up to take this class. Join them? 
+  <p><%= lesson.students.length %> people have signed up to take this class. 
     <%= button_to "Take This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]' => "student", :'user_lesson[lesson_id]' => lesson.id }, {:class => "btn btn-success"}  %></p>
-    <p><%= lesson.teachers.length %> people have signed up to teach this class. Join them? 
+    <p><%= lesson.teachers.length %> people have signed up to teach this class.
       <%= button_to "Teach This!", {:controller => "user_lessons", :action => "create", :'user_lesson[role]' => "teacher", :'user_lesson[lesson_id]' => lesson.id }, {:class => "btn btn-warning"}  %></p>
     </p>
   </div>
