@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401160021) do
+ActiveRecord::Schema.define(version: 20140402132245) do
 
   create_table "lesson_tags", force: true do |t|
     t.integer  "lesson_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140401160021) do
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",      default: false
   end
 
   add_index "user_lessons", ["lesson_id"], name: "index_user_lessons_on_lesson_id"

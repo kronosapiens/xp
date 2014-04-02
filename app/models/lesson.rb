@@ -64,6 +64,11 @@ class Lesson < ActiveRecord::Base
     teachers_collection.limit(1).first.user
   end
 
+  def admin
+    user_lesson = user_lessons.where(:admin => true).first
+    user_lesson ? user_lesson.user : nil
+  end
+
   private
   def teachers_collection
     user_lessons.where(:role => "teacher")

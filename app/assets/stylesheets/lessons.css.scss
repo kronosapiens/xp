@@ -13,12 +13,14 @@
   p {
     font-size: 14px;
   }
-
 }
 
 .form-control {
   max-width: 700px;
+}
 
+.chosen-container-multi .chosen-choices li.search-field input[type="text"]{
+  height: auto;
 }
 
 // .chosen-container {
