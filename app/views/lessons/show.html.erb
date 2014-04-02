@@ -78,6 +78,10 @@
     <% @lesson.comments.each do |comment| %>
     <p><img src=<%= comment.user.image_url %> height="26px"> <%= comment.user.name %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
     <p><%= comment.content %></p>
+
+
+    <%= link_to 'Delete', lesson_comment_path(@lesson.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
     <br><br>
     <% end %>
     

@@ -15,4 +15,14 @@ class CommentsController < ApplicationController
     end
   end 
 
+  def destroy
+    # @lesson = Lesson.find(params[:lesson_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to :back, :notice => "Commented deleted successfully" }
+      format.json { head :no_content }
+    end
+  end
+
 end
