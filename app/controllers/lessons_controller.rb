@@ -1,6 +1,5 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_lesson, only: [:edit, :show]
   before_action :get_tags, only: [:index, :new, :edit, :show]
 
   # GET /lessons
@@ -13,8 +12,13 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
-    @is_admin = @lesson.admin == current_user
     @comment = Comment.new
+    @is_admin = @lesson.admin == current_user
+    if current_user
+      set_user_lesson
+    else
+      @user_lesson = nil
+    end
   end
 
   # GET /lessons/new
@@ -43,20 +47,20 @@ class LessonsController < ApplicationController
     else
       respond_to do |format|
         if @lesson.save
-           @lesson.build_tags(tags_hash)
-           @lesson.user_lessons.create(:user_id => current_user.id, :role => params[:role])
-          
+         @lesson.build_tags(tags_hash)
+         @lesson.user_lessons.create(:user_id => current_user.id, :role => params[:role])
+         
 
-          format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @lesson }
-        else
-          format.html { render action: 'new' }
-          format.json { render json: @lesson.errors, status: :unprocessable_entity }
-        end
+         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+         format.json { render action: 'show', status: :created, location: @lesson }
+       else
+        format.html { render action: 'new' }
+        format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
-
     end
+
   end
+end
 
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
@@ -89,7 +93,7 @@ class LessonsController < ApplicationController
     end
 
     def set_user_lesson
-      @user_lesson = UserLesson.find_by(lesson_id: @lesson.id, user_id: current_user.id)
+      @user_lesson = UserLesson.find_by(user_id: current_user.id, lesson_id: @lesson.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -103,4 +107,4 @@ class LessonsController < ApplicationController
       @time_tags = Tag.all_times
     end
 
-end
+  end

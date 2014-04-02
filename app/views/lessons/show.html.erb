@@ -1,138 +1,146 @@
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron lesson">
+<div class="container">
+  <div class="row">
+    <div class="jumbotron lesson col-md-5">
 
-  <p>
-    <strong>Title:</strong>
-    <%= @lesson.title %>
-  </p>
+      <p>
+        <strong>Title:</strong>
+        <%= @lesson.title %>
+      </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @lesson.description %>
-  </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @lesson.description %>
+      </p>
 
-  <p>
-    <strong>Tags</strong>
-  </p>
+      <p>
+        <strong>Tags</strong>
+      </p>
 
-    <% unless @lesson.topic_tags == [] %>
-  <p>
-    <em>Topics:</em>
-    <% @lesson.topic_tags.each do |topic_tag| %>
-    <%= topic_tag.name %> 
-    <% end %>
-  </p>
-  <% end %>
-
-    <% unless @lesson.location_tags == [] %>
-  <p>
-    <em>Locations:</em>
-    <% @lesson.location_tags.each do |location_tag| %>
-    <%= location_tag.name %> 
-    <% end %>
-  </p>
-  <% end %>
-
-    <% unless @lesson.time_tags == [] %>
-  <p>
-    <em>Times:</em>
-    <% @lesson.time_tags.each do |time_tag| %>
-    <%= time_tag.name %> 
-    <% end %>
-  </p>
-  <% end %>
-
-  <p>
-    <strong>Teachers:</strong>
-  </p>
-
-  <% if @lesson.teachers != [] %>
-  <p><% @lesson.teachers.each do |teacher| %> 
-    <%= teacher.name %>
-    <% end %>
-    have signed up to teach this class.</p>
-    <% else %>
-    <p>No one has signed up to teach this class yet!</p>
-    <% end %>
-
-<form action="/lessons/<%= @lesson.id %>/user_lessons" class="button_to" method="post">
-  <div>
-    <input class="btn btn-warning" type="submit" value="Teach This!" />
-    <input type="hidden" name="user_lesson[role]" value="teacher" />
-    <input type="hidden" name="user_lesson[lesson_id]" value="<%= @lesson.id %>" />
-    <%= token_tag %>
-  </div>
-</form>
-    <br>
-  <p>
-    <strong>Students:</strong>
-  </p>
-  <% if @lesson.students != [] %>
-  <p><% @lesson.students.each do |student| %> 
-    <%= student.name %>
-    <% end %>
-    have signed up to take this class.</p>
-    <% else %>
-    <p>No one has signed up to take this class yet!</p>
-    <% end %> 
-
-<form action="/lessons/<%= @lesson.id %>/user_lessons" class="button_to" method="post">
-  <div>
-    <input class="btn btn-success" type="submit" value="Take This!" />
-    <input type="hidden" name="user_lesson[role]" value="student" />
-    <input type="hidden" name="user_lesson[lesson_id]" value="<%= @lesson.id %>" />
-    <%= token_tag %>
-  </div>
-</form>
-<br>
-    <p>
-      <strong>References:</strong>
-      <%= @lesson.references %>
-    </p>
-
-    <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
-    <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-
-  <% if @user_lesson %>
-  <%= render "lessons/lesson_registered" %>
-  <% end %>
-
-  <div class="jumbotron">
-    <p><strong>Comments:</strong></p>
-    <br>
-    <% @lesson.comments.each do |comment| %>
-    <p><img src=<%= comment.user.image_url %> height="26px"> <%= comment.user.name %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
-    <p><%= comment.content %></p>
-
-
-    <%= link_to 'Delete', lesson_comment_path(@lesson.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-
-    <br><br>
-    <% end %>
-    
-
-    <h4>Leave a New Comment</h4>
-    <!-- <form action="/lessons/<%#= @lesson.id %>/comments" method="POST" role="form"> -->
-
-    <%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>
-
-    <%= form_for [@lesson, @comment], html: {role: "form"} do |f| %>
-
-      <% if @comment.errors.any? %>
-      <div class="alert alert-warning">
-        <% @comment.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
+        <% unless @lesson.topic_tags == [] %>
+      <p>
+        <em>Topics:</em>
+        <% @lesson.topic_tags.each do |topic_tag| %>
+        <%= topic_tag.name %> 
         <% end %>
-      </div>
+      </p>
       <% end %>
 
+        <% unless @lesson.location_tags == [] %>
+      <p>
+        <em>Locations:</em>
+        <% @lesson.location_tags.each do |location_tag| %>
+        <%= location_tag.name %> 
+        <% end %>
+      </p>
+      <% end %>
 
-      <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
-      <div class="form-group">
-        <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
+        <% unless @lesson.time_tags == [] %>
+      <p>
+        <em>Times:</em>
+        <% @lesson.time_tags.each do |time_tag| %>
+        <%= time_tag.name %> 
+        <% end %>
+      </p>
+      <% end %>
+
+      <p>
+        <strong>Teachers:</strong>
+      </p>
+
+      <% if @lesson.teachers != [] %>
+      <p><% @lesson.teachers.each do |teacher| %> 
+        <%= teacher.name %>
+        <% end %>
+        have signed up to teach this class.</p>
+        <% else %>
+        <p>No one has signed up to teach this class yet!</p>
+        <% end %>
+
+    <form action="/lessons/<%= @lesson.id %>/user_lessons" class="button_to" method="post">
+      <div>
+        <input class="btn btn-warning" type="submit" value="Teach This!" />
+        <input type="hidden" name="user_lesson[role]" value="teacher" />
+        <input type="hidden" name="user_lesson[lesson_id]" value="<%= @lesson.id %>" />
+        <%= token_tag %>
       </div>
-      <input type="submit" value="Post Comment" class="btn">
-    <% end %>
-  </div>  
+    </form>
+        <br>
+      <p>
+        <strong>Students:</strong>
+      </p>
+      <% if @lesson.students != [] %>
+      <p><% @lesson.students.each do |student| %> 
+        <%= student.name %>
+        <% end %>
+        have signed up to take this class.</p>
+        <% else %>
+        <p>No one has signed up to take this class yet!</p>
+        <% end %> 
+
+    <form action="/lessons/<%= @lesson.id %>/user_lessons" class="button_to" method="post">
+      <div>
+        <input class="btn btn-success" type="submit" value="Take This!" />
+        <input type="hidden" name="user_lesson[role]" value="student" />
+        <input type="hidden" name="user_lesson[lesson_id]" value="<%= @lesson.id %>" />
+        <%= token_tag %>
+      </div>
+    </form>
+    <br>
+        <p>
+          <strong>References:</strong>
+          <%= @lesson.references %>
+        </p>
+
+        <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
+        <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+
+      <% if @user_lesson %>
+      <%= render "lessons/lesson_registered" %>
+      <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="jumbotron">
+      <p><strong>Comments:</strong></p>
+      <br>
+      <% @lesson.comments.each do |comment| %>
+      <p><img src=<%= comment.user.image_url %> height="26px"> <%= comment.user.name %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
+      <p><%= comment.content %></p>
+
+
+      <%= link_to 'Delete', lesson_comment_path(@lesson.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+      <br><br>
+      <% end %>
+      
+
+      <h4>Leave a New Comment</h4>
+      <!-- <form action="/lessons/<%#= @lesson.id %>/comments" method="POST" role="form"> -->
+
+      <%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>
+
+      <%= form_for [@lesson, @comment], html: {role: "form"} do |f| %>
+
+        <% if @comment.errors.any? %>
+        <div class="alert alert-warning">
+          <% @comment.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+          <% end %>
+        </div>
+        <% end %>
+
+
+        <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
+        <div class="form-group">
+          <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
+        </div>
+        <input type="submit" value="Post Comment" class="btn">
+      <% end %>
+    </div>  
+  </div> 
+</div> 

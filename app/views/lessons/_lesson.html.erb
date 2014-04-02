@@ -4,7 +4,8 @@
 
   <p><%= lesson.students.length %> people have signed up to take this class. 
     <%= button_to "Take This!", lesson_user_lessons_path(lesson), {:'user_lesson[role]' => "student", :class => "btn btn-success"} %></p>
+
     <p><%= lesson.teachers.length %> people have signed up to teach this class.
-      <%= button_to "Teach This!", lesson_user_lessons_path(lesson), {:'user_lesson[role]' => "teacher", :class => "btn btn-warning"} %></p>
+      <%= button_to "Teach This!", lesson_user_lessons_path(lesson), {:form => {'user_lesson[role]' => "teacher"}, :class => "btn btn-warning"} %></p>
     </p>
   </div>
