@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="jumbotron">
   <p>
     <strong>Title:</strong>
@@ -17,19 +18,19 @@
 
   <p>
     <em>Topics:</em>
-    <% @topic_tags.each do |topic_tag| %>
+    <% @lesson.topic_tags.each do |topic_tag| %>
     <%= topic_tag.name %> 
     <% end %>
   </p>
   <p>
     <em>Locations:</em>
-    <% @location_tags.each do |location_tag| %>
+    <% @lesson.location_tags.each do |location_tag| %>
     <%= location_tag.name %> 
     <% end %>
   </p>
   <p>
     <em>Times:</em>
-    <% @time_tags.each do |time_tag| %>
+    <% @lesson.time_tags.each do |time_tag| %>
     <%= time_tag.name %> 
     <% end %>
   </p>

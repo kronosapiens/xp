@@ -1,3 +1,16 @@
+# class LessonValidator < ActiveModel::Validator 
+#   # params[:role] == "student" && (params[:lesson][:locations] != nil || params[:lesson][:times] != nil) 
+#   def validate(lesson)
+#     if lesson.
+#   end
+
+# end 
+
+
+
+
+
+
 class Lesson < ActiveRecord::Base
   include ActiveSupport::Inflector
 
@@ -7,6 +20,7 @@ class Lesson < ActiveRecord::Base
   has_many :user_lessons, :dependent => :destroy
   has_many :users, :through => :user_lessons
 
+  # validates_with LessonValidator
 
   def build_tags(tags_hash)
     tags_hash.each do |category, tags|
@@ -29,6 +43,24 @@ class Lesson < ActiveRecord::Base
 
   def all_tags
     lesson_tags.map(&:tag)
+  end
+
+  def topic_tags 
+    all_tags.select do |tag|
+      tag.category == "topic"
+    end
+  end 
+
+  def location_tags
+    all_tags.select do |tag|
+      tag.category == "location"
+    end
+  end
+
+  def time_tags
+    all_tags.select do |tag|
+      tag.category == "time"
+    end
   end
 
   def tags_to_string

@@ -1,5 +1,6 @@
 $(document).ready(function(){ 
 
+
   $('input#student-role').on("change", function(){
     console.log("student clicked");
     $('div#options-for-teacher').hide();
