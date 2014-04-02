@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :user_lessons, :dependent => :destroy
   has_many :lessons, :through => :user_lessons
 
+  has_many :comments
+
 
   def self.find_or_create_by_oauth(auth_hash)
     where(:provider => auth_hash["provider"], :uid => auth_hash["uid"]).first ||

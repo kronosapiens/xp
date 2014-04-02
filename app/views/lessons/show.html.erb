@@ -76,10 +76,11 @@
     <p><strong>Comments:</strong></p>
     <br>
     <% @lesson.comments.each do |comment| %>
-    <p>Comment by <%= User.find(comment.user_id).name %></p>
+    <p><img src=<%= comment.user.image_url %> height="26px"> <%= comment.user.name %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
     <p><%= comment.content %></p>
-    <% end %>
     <br><br>
+    <% end %>
+    
 
     <h4>Leave a New Comment</h4>
     <form action="/lessons/<%= @lesson.id %>/comments" method="POST" role="form">
