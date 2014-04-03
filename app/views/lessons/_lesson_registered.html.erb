@@ -1,12 +1,5 @@
 <div class="jumbotron lesson col-md-5">
 
-<form action="/lessons/<%= @lesson.id %>/user_lessons/<%= @user_lesson.id %>" class="button_to" method="post">
-  <div>
-    <input name="_method" type="hidden" value="patch" />
-    <input class="btn btn-success" type="submit" value="Admin This Lesson!" />
-    <input type="hidden" name="user_lesson[admin]" value="true" />
-    <%= token_tag %>
-  </div>
-</form>
+ <%= button_to "Admin This!", {:controller => "user_lessons", :action => "update", :lesson_id => @lesson.id, :id => @user_lesson.id, :'user_lesson[admin]' => "true"}, {:method => :patch, :class => "btn btn-success"} %>
 
 </div>

@@ -5,6 +5,7 @@ class UserLessonsController < ApplicationController
 
   def create
     @user_lesson = UserLesson.new(user_lesson_params)
+    @user_lesson.lesson_id = params[:lesson_id]
     @user_lesson.user_id = current_user.id
     @lesson = Lesson.find(@user_lesson.lesson_id)
 
@@ -27,7 +28,7 @@ class UserLessonsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to @lesson, notice: 'You cannot update your registration right now.' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
