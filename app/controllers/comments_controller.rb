@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :login_required
+  # before_action :permission_check, only: :destroy
 
   def create
     @lesson = Lesson.find(params[:lesson_id])
@@ -17,13 +18,20 @@ class CommentsController < ApplicationController
   def destroy
     # @lesson = Lesson.find(params[:lesson_id])
     @comment = Comment.find(params[:id])
-    if current_user == @comment.user  # THIS IS UNTESTED
-      @comment.destroy
+  
+    if permitted && @comment.destroy
       respond_to do |format|
         format.html { redirect_to :back, :notice => "Commented deleted successfully" }
         format.json { head :no_content }
       end
+    else
+      flash[:notice] = "Can't delete someone else's comment!"
+      redirect_to :back
     end
+  end
+
+  def permitted
+    current_user == @comment.user 
   end
 
 end

@@ -5,7 +5,7 @@
   <h3><%= "Teach a " if @role == "teacher" %><%= "Request a " if @role == "student" %>New Lesson</h3>
   <br>
 
-    <%= render 'form' %>
+    <%= render 'lessons/form' %>
 
     <%= form_for @tag, html: {class: 
     "form-inline", role: "form"} do |f| %>
