@@ -14,7 +14,7 @@ class LessonsController < ApplicationController
   def show
     @registration = (current_user ? get_registration : nil)
     @admin = @lesson.admin
-    @is_admin = current_user && @admin == current_user
+    @is_admin = is_user_admin?
     @comment = Comment.new
   end
 
@@ -27,6 +27,12 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1/edit
   def edit
+    if is_user_admin?
+      render :edit
+    else
+      flash[:notice] = "Can't edit unless admin!"
+      redirect_to @lesson
+    end
   end
 
   # POST /lessons
@@ -57,13 +63,14 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-        @lesson.lesson_tags.clear
-        tags_hash = {
-          :topics => params[:lesson][:topics],
-          :locations => params[:lesson][:locations],
-          :times => params[:lesson][:times]
-        }
-        @lesson.build_tags(tags_hash)
+
+    @lesson.lesson_tags.clear
+    tags_hash = {
+      :topics => params[:lesson][:topics],
+      :locations => params[:lesson][:locations],
+      :times => params[:lesson][:times]
+    }
+    @lesson.build_tags(tags_hash)
         
     respond_to do |format|
       if @lesson.update(lesson_params)
@@ -79,10 +86,15 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   # DELETE /lessons/1.json
   def destroy
-    @lesson.destroy
-    respond_to do |format|
-      format.html { redirect_to lessons_url }
-      format.json { head :no_content }
+    if is_user_admin?
+      @lesson.destroy
+      respond_to do |format|
+        format.html { redirect_to lessons_url }
+        format.json { head :no_content }
+      end
+    else
+      flash[:notice] = "Can't delete unless admin!"
+      redirect_to @lesson
     end
   end
 
@@ -105,6 +117,10 @@ class LessonsController < ApplicationController
       @topic_tags = Tag.all_topics
       @location_tags = Tag.all_locations
       @time_tags = Tag.all_times
+    end
+
+    def is_user_admin?
+      current_user && @lesson.admin == current_user
     end
 
   end

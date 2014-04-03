@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "lessons#index"
 
   resources :lessons do
-    resources :comments, only: [:create, :update, :destroy]
+    resources :comments, only: [:create, :destroy]
     resources :registrations, only: [:create, :update, :destroy]
   end
 
