@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(:user_id => current_user.id, :content => params[:content])
     @comment.lesson_id = params[:lesson_id]
+    @lesson = Lesson.find(params[:lesson_id])
 
     if @comment.save
-      @lesson = Lesson.find(params[:lesson_id])
       redirect_to @lesson #:back
     else
       render "lessons/show"
