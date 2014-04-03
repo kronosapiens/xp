@@ -12,13 +12,10 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    @registration = (current_user ? get_registration : nil)
+    @admin = @lesson.admin
+    @is_admin = current_user && @admin == current_user
     @comment = Comment.new
-    @is_admin = @lesson.admin == current_user
-    if current_user
-      set_registration
-    else
-      @registration = nil
-    end
   end
 
   # GET /lessons/new
@@ -92,8 +89,8 @@ end
       @lesson = Lesson.find(params[:id])
     end
 
-    def set_registration
-      @registration = Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
+    def get_registration
+      Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

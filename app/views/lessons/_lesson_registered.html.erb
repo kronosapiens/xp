@@ -1,5 +1,37 @@
 <div class="jumbotron lesson col-md-5">
 
+  <% if @is_admin %>
+
+ <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-danger"} %>
+
+  <% elsif @admin %>
+
+  <%= link_to @admin %>
+
+  <% else %>
+
  <%= button_to "Admin This!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "true"}, {:method => :patch, :class => "btn btn-success"} %>
+
+ <% end %>
+
+
+ <h4>Logistics</h4>
+     <% unless @lesson.location_tags == [] %>
+  <p>
+    Locations: 
+    <% @lesson.location_tags.each do |location_tag| %>
+    <%= location_tag.name %> 
+    <% end %>
+  </p>
+  <% end %>
+
+    <% unless @lesson.time_tags == [] %>
+  <p>
+    Times: 
+    <% @lesson.time_tags.each do |time_tag| %>
+    <%= time_tag.name %> 
+    <% end %>
+  </p>
+  <% end %>
 
 </div>
