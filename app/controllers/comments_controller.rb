@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   
     if permitted && @comment.destroy
       respond_to do |format|
-        format.html { redirect_to :back, :notice => "Commented deleted successfully" }
+        format.html { redirect_to :back, :notice => "Commented successfully deleted" }
         format.json { head :no_content }
       end
     else
