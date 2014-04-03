@@ -5,8 +5,9 @@ class TagsController < ApplicationController
     if @tag.save
       redirect_to :back
     else
-      # redirect_to :back
-      render "lessons/new"
+      redirect_to :back
+      # render :controller => "lessons", :action => "new" 
+      # render "lessons/new", :locals => {:lesson => @lesson}
     end
   end
   def new 

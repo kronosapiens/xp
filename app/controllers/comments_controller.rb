@@ -8,9 +8,8 @@ class CommentsController < ApplicationController
     @comment.lesson_id = params[:lesson_id]
 
     if @comment.save
-      redirect_to :back
+      redirect_to @lesson #:back
     else
-      # redirect_to :back
       render "lessons/show"
     end
   end 
