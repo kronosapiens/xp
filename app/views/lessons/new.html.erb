@@ -4,3 +4,13 @@
 <div class="jumbotron">
 <%= render 'form' %>
 </div>
+
+
+<%= form_for @tag, html: {class: 
+  "form-inline", role: "form"} do |f| %>
+  <div class="form-group">
+    <input type="text" name="name">
+  </div>
+  <input type="submit" value="Add Tag" class="btn">
+
+<% end %>

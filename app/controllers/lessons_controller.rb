@@ -25,6 +25,7 @@ class LessonsController < ApplicationController
   def new
     @role = params[:role]
     @lesson = Lesson.new
+    @tag = Tag.new
   end
 
   # GET /lessons/1/edit

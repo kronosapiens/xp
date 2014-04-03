@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :user_lessons, only: [:create, :update, :destroy]
   end
 
+  resources :tags
+
 # Routes for user authentication
   get "/auth/github" => "auth#github", as: :login
   get "/auth/:provider/callback" => "sessions#oauth"
