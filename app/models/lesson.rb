@@ -17,7 +17,7 @@ class Lesson < ActiveRecord::Base
 
   has_many :comments
 
-  validates :title, presence: true 
+  validates :title, presence: true, uniqueness: true 
   validates :description, presence: true
   validate :has_tags
 
