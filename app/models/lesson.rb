@@ -1,11 +1,3 @@
-# class LessonValidator < ActiveModel::Validator 
-#   # params[:role] == "student" && (params[:lesson][:locations] != nil || params[:lesson][:times] != nil) 
-#   def validate(lesson)
-#     if lesson.
-#   end
-
-# end 
-
 class Lesson < ActiveRecord::Base
   include ActiveSupport::Inflector
 

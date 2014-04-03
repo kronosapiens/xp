@@ -39,32 +39,32 @@ class LessonsController < ApplicationController
       :times => params[:lesson][:times]
     }
     @lesson.build_tags(tags_hash)
-    # binding.pry
 
-    if params[:role] == "student" && (params[:lesson][:locations] != nil || params[:lesson][:times] != nil) 
-      render action: 'new', notice: "Students may not specify location or time."
-      # render action: 'new', errors.add(:my_error, "students tryn be tricky")
-    else
-      respond_to do |format|
-        if @lesson.save
-         @lesson.registrations.create(:user => current_user, :role => params[:role])
-
-         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
-         format.json { render action: 'show', status: :created, location: @lesson }
-       else
-        get_tags
-        @tag = Tag.new
-        format.html { render action: 'new' }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+    respond_to do |format|
+     if @lesson.save
+       @lesson.registrations.create(:user => current_user, :role => params[:role])
+       format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+       format.json { render action: 'show', status: :created, location: @lesson }
+     else
+      get_tags
+      @tag = Tag.new
+      format.html { render action: 'new' }
+      format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
-
   end
-end
 
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
+        @lesson.lesson_tags.clear
+        tags_hash = {
+          :topics => params[:lesson][:topics],
+          :locations => params[:lesson][:locations],
+          :times => params[:lesson][:times]
+        }
+        @lesson.build_tags(tags_hash)
+        
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }

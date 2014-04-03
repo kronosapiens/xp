@@ -9,7 +9,7 @@
 
   <% elsif @admin %>
 
-  <h4>This lesson's admin is: <%= link_to @admin.name, user_path(@admin.nickname) %> <%= image_tag(@admin.image_url, size: "50", alt: @admin.name ) %></h4>
+  <h4>This lesson's admin is: <%= image_tag(@admin.image_url, size: "30", alt: @admin.name ) %> <%= link_to @admin.name, user_path(@admin.nickname) %></h4>
   
   <% else %>
 
@@ -37,9 +37,24 @@
   <% end %>
 
   <div id="current_teachers">
+    <h4>Current Teachers:</h4>
+    <% if @lesson.teachers %>
+      <% @lesson.teachers.each do |teacher| %>
+        <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
+      <% end %>
+    <% else %>
+    <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
+    <% end %>
   </div>
   <div id="current_students">
-    
+    <% if @lesson.students %>
+      <h4>Current Students:</h4>
+      <% @lesson.students.each do |student| %>
+        <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
+      <% end %>
+    <% else %>
+    <p>No one signed up for this lesson yet! Tell your friends!</p>
+    <% end %>
   </div>
 
 </div>
