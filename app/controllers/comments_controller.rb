@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   end 
 
   def destroy
-    # @lesson = Lesson.find(params[:lesson_id])
+    @lesson = Lesson.find(params[:lesson_id])
     @comment = Comment.find(params[:id])
   
     if permitted && @comment.destroy
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
   private 
     def permitted
-      current_user == @comment.user 
+      current_user == @comment.user || current_user == @lesson.admin
     end
 
 end
