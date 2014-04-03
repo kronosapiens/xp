@@ -2,7 +2,7 @@
 
   <% if @is_admin %>
 
- <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-danger"} %>
+ <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
 
   <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
   <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -38,23 +38,25 @@
 
   <div id="current_teachers">
     <h4>Current Teachers:</h4>
-    <% if @lesson.teachers %>
+    <% unless @lesson.teachers == [] %>
       <% @lesson.teachers.each do |teacher| %>
         <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
       <% end %>
     <% else %>
-    <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
+     <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
     <% end %>
   </div>
   <div id="current_students">
-    <% if @lesson.students %>
       <h4>Current Students:</h4>
+    <% unless @lesson.students == [] %>
       <% @lesson.students.each do |student| %>
         <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
       <% end %>
     <% else %>
-    <p>No one signed up for this lesson yet! Tell your friends!</p>
+      <p>No one signed up for this lesson yet! Tell your friends!</p>
     <% end %>
   </div>
+
+   <%= button_to "Leave Lesson!", {:controller => "registrations", :action => "destroy", :lesson_id => @lesson.id, :id => @registration.id }, {:method => :delete, :class => "btn btn-danger"} %>
 
 </div>

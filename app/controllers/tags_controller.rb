@@ -11,6 +11,7 @@ class TagsController < ApplicationController
       # render :controller => "lessons", :action => "new" 
     end
   end
+  
   def new 
     @tag = Tag.new
   end

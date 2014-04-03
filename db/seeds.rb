@@ -49,7 +49,7 @@
 
 #Creating some users
 @sam = User.create(:name => "Sam", :uid => "12345", :nickname => "sts10", :image_url => "http://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/250px-133Eevee.png")
-@daniel = User.create(:name => "Daniel", :uid => "98765", :nickname => "kronosapiens", :image_url => "http://fc01.deviantart.net/fs70/f/2013/061/1/e/pikachu_digital_art___pokemon_by_dark_omni-d5wotdb.png")
+@daniel = User.create(:name => "Daniel", :uid => "98765", :nickname => "izk.harper", :image_url => "http://fc01.deviantart.net/fs70/f/2013/061/1/e/pikachu_digital_art___pokemon_by_dark_omni-d5wotdb.png")
 @john = User.create(:name => "John", :uid => "14894", :nickname => "krauss", :image_url => "http://images1.wikia.nocookie.net/__cb20120906010245/es.pokemon/images/8/8b/Dratini_(anime_SO)_2.png")
 
 #Associating some lessons and users
