@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :registrations, only: [:create, :update, :destroy]
   end
 
-  resources :tags
+  resources :tags, only: [:new, :create]
 
 # Routes for user authentication
   get "/auth/github" => "auth#github", as: :login

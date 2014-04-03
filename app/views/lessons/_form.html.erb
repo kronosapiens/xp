@@ -12,6 +12,8 @@
 </div>
 <% end %>
 
+<input type="hidden" id="user_role" name="role" value="<%= @role %>" />
+
 <div class="form-group">
   <%= f.label :title %><br>
   <%= f.text_field :title, class: 'form-control' %>

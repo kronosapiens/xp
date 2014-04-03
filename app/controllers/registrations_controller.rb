@@ -34,6 +34,14 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def destroy
+    @registration.destroy
+    respond_to do |format|
+      format.html { redirect_to lessons_url }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
