@@ -1,30 +1,11 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Creating some lessons
-@css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-@jquery_lesson = Lesson.create(:title => "jQuery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
-@javascript_lesson = Lesson.create(:title => "Javascript Lesson", :description => "A lesson to talk about writing some great scripts", :references => "Ask Jeeves")
-@sql_lesson = Lesson.create(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "Yahoo Search")
-
-#Creating some users
-@sam = User.create(:name => "Sam")
-@daniel = User.create(:name => "Daniel")
-@john = User.create(:name => "John")
-
-#Associating some lessons and users
-@css_lesson.registrations.create(:user_id => @sam.id, :role => "student")
-@css_lesson.registrations.create(:user_id => @john.id, :role => "student")
-@css_lesson.registrations.create(:user_id => @daniel.id, :role => "teacher")
-@jquery_lesson.registrations.create(:user_id => @sam.id, :role => "teacher")
-@jquery_lesson.registrations.create(:user_id => @daniel.id, :role => "student")
-@sql_lesson.registrations.create(:user_id => @sam.id, :role => "student")
-@sql_lesson.registrations.create(:user_id => @john.id, :role => "student")
+@css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
+@jquery_lesson = Lesson.new(:title => "jQuery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
+@javascript_lesson = Lesson.new(:title => "Javascript Lesson", :description => "A lesson to talk about writing some great scripts", :references => "Ask Jeeves")
+@sql_lesson = Lesson.new(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "Yahoo Search")
 
 #Creating some tags
 @css = Tag.create(:name => "CSS", :category => "topic")
@@ -40,28 +21,43 @@
 @remote = Tag.create(:name => "Remote", :category => "location")
 
 #Associating some lessons and tags
-@css.lesson_tags.create(:lesson_id => @css_lesson.id)
-@frontend.lesson_tags.create(:lesson_id => @css_lesson.id)
-@frontend.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-@frontend.lesson_tags.create(:lesson_id => @javascript_lesson.id)
-@jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-@sql.lesson_tags.create(:lesson_id => @sql_lesson.id)
+@css_lesson.lesson_tags.build(:tag => @css)
+@css_lesson.lesson_tags.build(:tag => @frontend)
+@jquery_lesson.lesson_tags.build(:tag => @frontend)
+@javascript_lesson.lesson_tags.build(:tag => @frontend)
+@jquery_lesson.lesson_tags.build(:tag => @jquery)
+@sql_lesson.lesson_tags.build(:tag => @sql)
 
-@evening.lesson_tags.create(:lesson_id => @sql_lesson.id)
-@evening.lesson_tags.create(:lesson_id => @javascript_lesson.id)
-@evening.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-@afternoon.lesson_tags.create(:lesson_id => @sql_lesson.id)
-@afternoon.lesson_tags.create(:lesson_id => @javascript_lesson.id)
-@afternoon.lesson_tags.create(:lesson_id => @css_lesson.id)
+@sql_lesson.lesson_tags.build(:tag => @evening)
+@javascript_lesson.lesson_tags.build(:tag => @evening)
+@jquery_lesson.lesson_tags.build(:tag => @evening)
+@sql_lesson.lesson_tags.build(:tag => @afternoon)
+@javascript_lesson.lesson_tags.build(:tag => @afternoon)
+@css_lesson.lesson_tags.build(:tag => @afternoon)
 
-@on_campus.lesson_tags.create(:lesson_id => @sql_lesson.id)
-@on_campus.lesson_tags.create(:lesson_id => @javascript_lesson.id)
-@on_campus.lesson_tags.create(:lesson_id => @css_lesson.id)
-@remote.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-@remote.lesson_tags.create(:lesson_id => @javascript_lesson.id)
-@remote.lesson_tags.create(:lesson_id => @css_lesson.id)
+@sql_lesson.lesson_tags.build(:tag => @on_campus)
+@javascript_lesson.lesson_tags.build(:tag => @on_campus)
+@css_lesson.lesson_tags.build(:tag => @on_campus)
+@jquery_lesson.lesson_tags.build(:tag => @remote)
+@javascript_lesson.lesson_tags.build(:tag => @remote)
+@css_lesson.lesson_tags.build(:tag => @remote)
 
+@css_lesson.save
+@jquery_lesson.save
+@javascript_lesson.save
+@sql_lesson.save
 
+#Creating some users
+@sam = User.create(:name => "Sam", :uid => "12345", :nickname => "sts10", :image_url => "http://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/250px-133Eevee.png")
+@daniel = User.create(:name => "Daniel", :uid => "98765", :nickname => "kronosapiens", :image_url => "http://fc01.deviantart.net/fs70/f/2013/061/1/e/pikachu_digital_art___pokemon_by_dark_omni-d5wotdb.png")
+@john = User.create(:name => "John", :uid => "14894", :nickname => "krauss", :image_url => "http://images1.wikia.nocookie.net/__cb20120906010245/es.pokemon/images/8/8b/Dratini_(anime_SO)_2.png")
 
-
+#Associating some lessons and users
+@css_lesson.registrations.create(:user => @sam, :role => "student", :admin => true)
+@css_lesson.registrations.create(:user => @john, :role => "student")
+@css_lesson.registrations.create(:user => @daniel, :role => "teacher")
+@jquery_lesson.registrations.create(:user => @sam, :role => "teacher", :admin => true)
+@jquery_lesson.registrations.create(:user => @daniel, :role => "student")
+@sql_lesson.registrations.create(:user => @sam, :role => "student")
+@sql_lesson.registrations.create(:user => @john, :role => "student", :admin => true)
 
