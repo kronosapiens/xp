@@ -5,8 +5,8 @@ class TagsController < ApplicationController
     if @tag.save
       redirect_to :back
     else
-      redirect_to :back
-      # render "lessons/new"
+      # redirect_to :back
+      render "lessons/new"
     end
   end
   def new 
