@@ -42,6 +42,7 @@ class LessonsController < ApplicationController
       :times => params[:lesson][:times]
     }
     @lesson.build_tags(tags_hash)
+    # binding.pry
 
     if params[:role] == "student" && (params[:lesson][:locations] != nil || params[:lesson][:times] != nil) 
       render action: 'new', notice: "Students may not specify location or time."
