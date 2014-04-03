@@ -17,14 +17,17 @@ class Lesson < ActiveRecord::Base
 
   has_many :comments
 
+  # validates :title, presence: true 
+  validates :description, presence: true
+
   # validates_with LessonValidator
 
   def build_tags(tags_hash)
     tags_hash.each do |category, tags|
       if tags
         tags.each do |tag|
-          @this_tag = Tag.find_by(:name=> tag, :category => category.to_s.singularize)
-          @this_tag.lesson_tags.create(:lesson_id => self.id)
+          @this_tag = Tag.where(:name=> tag, :category => category.to_s.singularize).first_or_create
+          self.lesson_tags.build(:tag => @this_tag)
         end
       end
     end   

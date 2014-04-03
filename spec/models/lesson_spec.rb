@@ -102,6 +102,7 @@ describe "Lesson" do
       :times => ["Evening"]
     } 
     @ruby_lesson.build_tags(tags_hash)
+    @ruby_lesson.save
 
     expect(@ruby_lesson.tags).to include(@css)
     expect(@ruby_lesson.tags).to include(@on_campus)
@@ -116,6 +117,7 @@ describe "Lesson" do
       :times => ["Evening"]
     } 
     @ruby_lesson.build_tags(tags_hash)
+    @ruby_lesson.save
 
     expect(@ruby_lesson.tags).to include(@jquery)
     expect(@ruby_lesson.tags).to include(@evening)

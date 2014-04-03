@@ -41,6 +41,7 @@ class LessonsController < ApplicationController
       :locations => params[:lesson][:locations],
       :times => params[:lesson][:times]
     }
+    @lesson.build_tags(tags_hash)
 
     if params[:role] == "student" && (params[:lesson][:locations] != nil || params[:lesson][:times] != nil) 
       render action: 'new', notice: "Students may not specify location or time."
@@ -48,13 +49,13 @@ class LessonsController < ApplicationController
     else
       respond_to do |format|
         if @lesson.save
-         @lesson.build_tags(tags_hash)
-         @lesson.registrations.create(:user_id => current_user.id, :role => params[:role])
-         
+         @lesson.registrations.create(:user => current_user, :role => params[:role])
 
          format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
          format.json { render action: 'show', status: :created, location: @lesson }
        else
+        get_tags
+        @tag = Tag.new
         format.html { render action: 'new' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end

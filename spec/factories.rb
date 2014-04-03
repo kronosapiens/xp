@@ -6,6 +6,7 @@ FactoryGirl.define do
 
   factory :lesson do
     sequence(:title) {|n| "Web Dev - #{n}"}
+    sequence(:description) {|n| "Description - #{n}"}
   end
 
   factory :tag do
