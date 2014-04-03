@@ -1,16 +1,20 @@
 <p id="notice"><%= notice %></p>
-<h1>New lesson as <%= @role %></h1>
+<div class="container">
 
-<div class="jumbotron">
-<%= render 'form' %>
-</div>
+  <h1>Create a New Lesson<!--  as <%#= @role %> --></h1>
 
-
-<%= form_for @tag, html: {class: 
-  "form-inline", role: "form"} do |f| %>
-  <div class="form-group">
-    <input type="text" name="name">
+  <div class="jumbotron">
+  <%= render 'form' %>
   </div>
-  <input type="submit" value="Add Tag" class="btn">
 
-<% end %>
+
+  <%= form_for @tag, html: {class: 
+  "form-inline", role: "form"} do |f| %>
+    <div class="form-group">
+      <input type="text" name="name">
+    </div>
+    <input type="submit" value="Create a New Tag" class="btn btn-sm">
+
+  <% end %>
+</div>
+<br><br><br>
