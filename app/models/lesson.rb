@@ -17,8 +17,17 @@ class Lesson < ActiveRecord::Base
 
   has_many :comments
 
-  # validates :title, presence: true 
+  validates :title, presence: true 
   validates :description, presence: true
+
+  validate :has_tags, 
+
+  def has_tags
+    if self.tags.count == 0
+      errors.add(:tags, "Lesson must have at least one tag.")
+    end
+  end
+   
 
   # validates_with LessonValidator
 
