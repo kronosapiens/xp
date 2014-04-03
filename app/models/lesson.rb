@@ -22,11 +22,9 @@ class Lesson < ActiveRecord::Base
   validate :has_tags
 
   def has_tags
-    # binding.pry
     if self.all_tags.count == 0
       errors.add(:tags, "Lesson must have at least one tag.")
     end
-
   end
    
 

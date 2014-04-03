@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-
-  <h1>Create a New Lesson<!--  as <%#= @role %> --></h1>
-
   <div class="jumbotron">
+
+  <h3><%= "Teach a " if @role == "teacher" %><%= "Request a " if @role == "student" %>New Lesson</h3>
+  <br>
+
     <%= render 'form' %>
-    
+
     <%= form_for @tag, html: {class: 
     "form-inline", role: "form"} do |f| %>
       <div class="form-group">
         <input type="text" name="name">
       </div>
       <input type="submit" value="Create a New Tag" class="btn btn-sm">
-
     <% end %>
+
   </div>
 </div>
-
-<br><br><br>

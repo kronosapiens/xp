@@ -3,6 +3,9 @@ require 'spec_helper'
 describe "Tag" do
 
   before(:each) do
+    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
+    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
+    
     @css = Tag.create(:name => "CSS", :category => "topic")
     @jquery = Tag.create(:name => "jQuery", :category => "topic")
 
@@ -12,17 +15,17 @@ describe "Tag" do
     @on_campus = Tag.create(:name => "On Campus", :category => "location")
     @remote = Tag.create(:name => "Remote", :category => "location")
 
-    @css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-    @jquery_lesson = Lesson.create(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
+    @css_lesson.lesson_tags.build(:tag => @css)
+    @jquery_lesson.lesson_tags.build(:tag => @jquery)
 
-    @css.lesson_tags.create(:lesson_id => @css_lesson.id)
-    @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+    @css_lesson.lesson_tags.build(:tag => @afternoon)
+    @jquery_lesson.lesson_tags.build(:tag => @evening)
 
-    @afternoon.lesson_tags.create(:lesson_id => @css_lesson.id)
-    @evening.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+    @css_lesson.lesson_tags.build(:tag => @remote)
+    @jquery_lesson.lesson_tags.build(:tag => @on_campus)
 
-    @remote.lesson_tags.create(:lesson_id => @css_lesson.id)
-    @on_campus.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+    @css_lesson.save
+    @jquery_lesson.save
   end
 
   it "can have css_lesson as a lesson" do

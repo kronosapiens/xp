@@ -3,17 +3,22 @@ require 'spec_helper'
 describe "User" do
 
   before(:each) do
-    @css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-    @jquery_lesson = Lesson.create(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
-    @steve = User.create(:name => "Steve")
+    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
+    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
+  
+    @css = Tag.create(:name => "CSS", :category => "topic")
+  
+    @css_lesson.lesson_tags.build(:tag => @css)
+    @jquery_lesson.lesson_tags.build(:tag => @jquery)
+
+    @css_lesson.save
+    @jquery_lesson.save
+  
     @sam = User.create(:name => "Sam")
     @tom = User.create(:name => "Tom")
-    @ted = User.create(:name => "Ted")
-
-    @css_lesson.registrations.create(:user_id => @sam.id, :role => "student")
-    @css_lesson.registrations.create(:user_id => @steve.id, :role => "student")
-    @css_lesson.registrations.create(:user_id => @tom.id, :role => "teacher")
-    @css_lesson.registrations.create(:user_id => @ted.id, :role => "teacher")
+   
+    @css_lesson.registrations.create(:user => @sam, :role => "student")
+    @css_lesson.registrations.create(:user => @tom, :role => "teacher")
   end
 
   it 'knows what lessons it has' do

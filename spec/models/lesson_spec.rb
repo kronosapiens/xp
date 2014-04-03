@@ -3,21 +3,9 @@ require 'spec_helper'
 describe "Lesson" do
 
   before(:each) do
-    @css_lesson = Lesson.create(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-    @jquery_lesson = Lesson.create(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
-    @ruby_lesson = Lesson.create(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it")
-
-
-    @steve = User.create(:name => "Steve")
-    @sam = User.create(:name => "Sam")
-    @tom = User.create(:name => "Tom")
-    @ted = User.create(:name => "Ted")
-    @jack = User.create(:name => "Jack")
-
-    @css_lesson.registrations.create(:user_id => @sam.id, :role => "student", :admin => true)
-    @css_lesson.registrations.create(:user_id => @steve.id, :role => "student")
-    @css_lesson.registrations.create(:user_id => @tom.id, :role => "teacher", :admin => false)
-    @css_lesson.registrations.create(:user_id => @ted.id, :role => "teacher")
+    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
+    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
+    @ruby_lesson = Lesson.new(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it")
 
     @css = Tag.create(:name => "CSS", :category => "topic")
     @jquery = Tag.create(:name => "jQuery", :category => "topic")
@@ -26,10 +14,25 @@ describe "Lesson" do
     @on_campus = Tag.create(:name => "On Campus", :category => "location")
     @evening = Tag.create(:name => "Evening", :category => "time")
 
-    @css.lesson_tags.create(:lesson_id => @css_lesson.id)
-    @jquery.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-    @frontend.lesson_tags.create(:lesson_id => @jquery_lesson.id)
-    @on_campus.lesson_tags.create(:lesson_id => @jquery_lesson.id)
+    @css_lesson.lesson_tags.build(:tag => @css)
+    @jquery_lesson.lesson_tags.build(:tag => @jquery)
+    @jquery_lesson.lesson_tags.build(:tag => @frontend)
+    @jquery_lesson.lesson_tags.build(:tag => @on_campus)
+
+    @css_lesson.save
+    @jquery_lesson.save
+    @ruby_lesson.save
+
+    @steve = User.create(:name => "Steve")
+    @sam = User.create(:name => "Sam")
+    @tom = User.create(:name => "Tom")
+    @ted = User.create(:name => "Ted")
+    @jack = User.create(:name => "Jack")
+
+    @css_lesson.registrations.create(:user => @sam, :role => "student", :admin => true)
+    @css_lesson.registrations.create(:user => @steve, :role => "student")
+    @css_lesson.registrations.create(:user => @tom, :role => "teacher", :admin => false)
+    @css_lesson.registrations.create(:user => @ted, :role => "teacher")
   end
 
   it "can have sam as a user" do

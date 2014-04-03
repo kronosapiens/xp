@@ -1,16 +1,16 @@
-FactoryGirl.define do
+# FactoryGirl.define do
   
-  factory :user do
-    sequence(:name) {|n| "Johnny User - #{n}"}
-  end
+#   factory :user do
+#     sequence(:name) {|n| "Johnny User - #{n}"}
+#   end
 
-  factory :lesson do
-    sequence(:title) {|n| "Web Dev - #{n}"}
-    sequence(:description) {|n| "Description - #{n}"}
-  end
+#   factory :lesson do
+#     sequence(:title) {|n| "Web Dev - #{n}"}
+#     sequence(:description) {|n| "Description - #{n}"}
+#   end
 
-  factory :tag do
-    sequence(:name) {|n| "Tag #{n}"}
-  end
+#   factory :tag do
+#     sequence(:name) {|n| "Tag #{n}"}
+#   end
 
-end
+# end
