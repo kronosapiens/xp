@@ -58,7 +58,7 @@
         <p>No one has signed up to teach this class yet!</p>
         <% end %>
 
-      <%= button_to "Teach This!", {:controller => "user_lessons", :action => "create", :lesson_id => @lesson.id, :'user_lesson[role]' => "teacher"}, {:class => "btn btn-warning"} %>
+      <%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-warning"} %>
         <br>
       <p>
         <strong>Students:</strong>
@@ -72,7 +72,7 @@
         <p>No one has signed up to take this class yet!</p>
         <% end %> 
 
-    <%= button_to "Take This!", {:controller => "user_lessons", :action => "create", :lesson_id => @lesson.id, :'user_lesson[role]' => "student"}, {:class => "btn btn-success"} %>
+    <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success"} %>
     <br>
         <p>
           <strong>References:</strong>
@@ -83,7 +83,7 @@
         <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
 
-      <% if @user_lesson %>
+      <% if @registration %>
       <%= render "lessons/lesson_registered" %>
       <% end %>
   </div>

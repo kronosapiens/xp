@@ -14,10 +14,10 @@ describe "Lesson" do
     @ted = User.create(:name => "Ted")
     @jack = User.create(:name => "Jack")
 
-    @css_lesson.user_lessons.create(:user_id => @sam.id, :role => "student", :admin => true)
-    @css_lesson.user_lessons.create(:user_id => @steve.id, :role => "student")
-    @css_lesson.user_lessons.create(:user_id => @tom.id, :role => "teacher", :admin => false)
-    @css_lesson.user_lessons.create(:user_id => @ted.id, :role => "teacher")
+    @css_lesson.registrations.create(:user_id => @sam.id, :role => "student", :admin => true)
+    @css_lesson.registrations.create(:user_id => @steve.id, :role => "student")
+    @css_lesson.registrations.create(:user_id => @tom.id, :role => "teacher", :admin => false)
+    @css_lesson.registrations.create(:user_id => @ted.id, :role => "teacher")
 
     @css = Tag.create(:name => "CSS", :category => "topic")
     @jquery = Tag.create(:name => "jQuery", :category => "topic")

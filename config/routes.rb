@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :lessons do
     resources :comments, only: [:create, :update, :destroy]
-    resources :user_lessons, only: [:create, :update, :destroy]
+    resources :registrations, only: [:create, :update, :destroy]
   end
 
   resources :tags

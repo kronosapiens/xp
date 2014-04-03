@@ -15,9 +15,9 @@ class LessonsController < ApplicationController
     @comment = Comment.new
     @is_admin = @lesson.admin == current_user
     if current_user
-      set_user_lesson
+      set_registration
     else
-      @user_lesson = nil
+      @registration = nil
     end
   end
 
@@ -49,7 +49,7 @@ class LessonsController < ApplicationController
       respond_to do |format|
         if @lesson.save
          @lesson.build_tags(tags_hash)
-         @lesson.user_lessons.create(:user_id => current_user.id, :role => params[:role])
+         @lesson.registrations.create(:user_id => current_user.id, :role => params[:role])
          
 
          format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
@@ -93,8 +93,8 @@ end
       @lesson = Lesson.find(params[:id])
     end
 
-    def set_user_lesson
-      @user_lesson = UserLesson.find_by(user_id: current_user.id, lesson_id: @lesson.id)
+    def set_registration
+      @registration = Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

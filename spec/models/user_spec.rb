@@ -10,10 +10,10 @@ describe "User" do
     @tom = User.create(:name => "Tom")
     @ted = User.create(:name => "Ted")
 
-    @css_lesson.user_lessons.create(:user_id => @sam.id, :role => "student")
-    @css_lesson.user_lessons.create(:user_id => @steve.id, :role => "student")
-    @css_lesson.user_lessons.create(:user_id => @tom.id, :role => "teacher")
-    @css_lesson.user_lessons.create(:user_id => @ted.id, :role => "teacher")
+    @css_lesson.registrations.create(:user_id => @sam.id, :role => "student")
+    @css_lesson.registrations.create(:user_id => @steve.id, :role => "student")
+    @css_lesson.registrations.create(:user_id => @tom.id, :role => "teacher")
+    @css_lesson.registrations.create(:user_id => @ted.id, :role => "teacher")
   end
 
   it 'knows what lessons it has' do
@@ -30,7 +30,7 @@ describe "User" do
   end
 
   it 'can be both a student and a teacher' do
-    @jquery_lesson.user_lessons.create(:user_id => @sam.id, :role => "teacher")
+    @jquery_lesson.registrations.create(:user_id => @sam.id, :role => "teacher")
     expect(@sam.lessons_as_teacher).to include(@jquery_lesson)
     expect(@sam.lessons_as_teacher.length).to eq(1)
   end

@@ -18,13 +18,13 @@
 @john = User.create(:name => "John")
 
 #Associating some lessons and users
-@css_lesson.user_lessons.create(:user_id => @sam.id, :role => "student")
-@css_lesson.user_lessons.create(:user_id => @john.id, :role => "student")
-@css_lesson.user_lessons.create(:user_id => @daniel.id, :role => "teacher")
-@jquery_lesson.user_lessons.create(:user_id => @sam.id, :role => "teacher")
-@jquery_lesson.user_lessons.create(:user_id => @daniel.id, :role => "student")
-@sql_lesson.user_lessons.create(:user_id => @sam.id, :role => "student")
-@sql_lesson.user_lessons.create(:user_id => @john.id, :role => "student")
+@css_lesson.registrations.create(:user_id => @sam.id, :role => "student")
+@css_lesson.registrations.create(:user_id => @john.id, :role => "student")
+@css_lesson.registrations.create(:user_id => @daniel.id, :role => "teacher")
+@jquery_lesson.registrations.create(:user_id => @sam.id, :role => "teacher")
+@jquery_lesson.registrations.create(:user_id => @daniel.id, :role => "student")
+@sql_lesson.registrations.create(:user_id => @sam.id, :role => "student")
+@sql_lesson.registrations.create(:user_id => @john.id, :role => "student")
 
 #Creating some tags
 @css = Tag.create(:name => "CSS", :category => "topic")
