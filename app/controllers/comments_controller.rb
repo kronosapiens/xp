@@ -30,8 +30,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  def permitted
-    current_user == @comment.user 
-  end
+  private 
+    def permitted
+      current_user == @comment.user 
+    end
 
 end
