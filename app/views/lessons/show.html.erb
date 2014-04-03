@@ -8,10 +8,7 @@
   <div class="row">
     <div class="jumbotron lesson col-md-5">
 
-      <p>
-        <strong>Title:</strong>
-        <%= @lesson.title %>
-      </p>
+      <h3><%= @lesson.title %></h3>
 
       <p>
         <strong>Description:</strong>
@@ -19,7 +16,7 @@
       </p>
 
       <p>
-        <strong>Tags</strong>
+        <strong>Tags:</strong>
       </p>
 
         <% unless @lesson.topic_tags == [] %>
@@ -29,6 +26,11 @@
         <% end %>
       </p>
       <% end %>
+
+      <p>
+        <strong>References:</strong>
+        <%= @lesson.references %>
+      </p>
 
       <p>
         <strong>Teachers:</strong>
@@ -59,13 +61,6 @@
 
     <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success"} %>
     <br>
-        <p>
-          <strong>References:</strong>
-          <%= @lesson.references %>
-        </p>
-
-        <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
-        <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
 
       <% if @registration %>

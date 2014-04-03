@@ -27,9 +27,6 @@ class Lesson < ActiveRecord::Base
     end
   end
    
-
-  # validates_with LessonValidator
-
   def build_tags(tags_hash)
     tags_hash.each do |category, tags|
       if tags
