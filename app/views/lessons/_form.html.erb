@@ -12,15 +12,6 @@
 </div>
 <% end %>
 
-<div class="btn-group form-group" data-toggle="buttons">
-  <label class="btn btn-primary <%= "active" if @role == "student" %>">
-    <input type="radio" id="student-role" name="role" value="student" <%= "checked" if @role == "student" %>>I am a Student
-  </label>
-  <label class="btn btn-primary <%= "active" if @role == "teacher" %>">
-    <input type="radio" id="teacher-role" name="role" value="teacher" <%= "checked" if @role == "teacher" %>>I am a Teacher
-  </label>
-</div>
-
 <div class="form-group">
   <%= f.label :title %><br>
   <%= f.text_field :title, class: 'form-control' %>
@@ -38,7 +29,7 @@
   </select>
 </div>
 
-<%= render '/lessons/admin_settings' if @lesson.admin == current_user %>
+<%= render '/lessons/admin_settings' if admin?(@lesson, current_user) %>
 
 <div class="form-group">
   <%= f.label :references %><br>

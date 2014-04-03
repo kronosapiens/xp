@@ -1,0 +1,10 @@
+<!-- Student/Teacher Buttons -->
+
+<div class="btn-group form-group" data-toggle="buttons">
+  <label class="btn btn-primary <%= "active" if @role == "student" %>">
+    <input type="radio" id="student-role" name="role" value="student" <%= "checked" if @role == "student" %>>I am a Student
+  </label>
+  <label class="btn btn-primary <%= "active" if @role == "teacher" %>">
+    <input type="radio" id="teacher-role" name="role" value="teacher" <%= "checked" if @role == "teacher" %>>I am a Teacher
+  </label>
+</div>

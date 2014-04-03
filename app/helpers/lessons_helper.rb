@@ -8,4 +8,8 @@ module LessonsHelper
     "<option id='#{tag.id}'>#{tag.name}</option>"
   end
 
+  def admin?(lesson, user)
+    user && (lesson.admin == user)
+  end
+
 end
