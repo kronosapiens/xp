@@ -1,16 +1,16 @@
-class UserLessonsController < ApplicationController
+class RegistrationsController < ApplicationController
   before_action :login_required
-  before_action :set_user_lesson, only: [:edit, :update, :destroy]
+  before_action :set_registration, only: [:edit, :update, :destroy]
 
 
   def create
-    @user_lesson = UserLesson.new(user_lesson_params)
-    @user_lesson.lesson_id = params[:lesson_id]
-    @user_lesson.user_id = current_user.id
-    @lesson = Lesson.find(@user_lesson.lesson_id)
+    @registration = Registration.new(registration_params)
+    @registration.lesson_id = params[:lesson_id]
+    @registration.user_id = current_user.id
+    @lesson = Lesson.find(@registration.lesson_id)
 
     respond_to do |format|
-      if @user_lesson.save
+      if @registration.save
         format.html { redirect_to @lesson, notice: 'Sign Up Successful!' }
         format.json { render action: 'show', status: :created, location: @lesson }
       else
@@ -21,10 +21,10 @@ class UserLessonsController < ApplicationController
   end
 
   def update
-    @lesson = Lesson.find(@user_lesson.lesson_id)
+    @lesson = Lesson.find(@registration.lesson_id)
 
     respond_to do |format|
-      if @user_lesson.update(user_lesson_params)
+      if @registration.update(registration_params)
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }
         format.json { head :no_content }
       else
@@ -36,13 +36,13 @@ class UserLessonsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user_lesson
-      @user_lesson = UserLesson.find(params[:id])
+    def set_registration
+      @registration = Registration.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def user_lesson_params
-      params.require(:user_lesson).permit(:lesson_id, :user_id, :role, :admin)
+    def registration_params
+      params.require(:registration).permit(:lesson_id, :user_id, :role, :admin)
     end
 
   end

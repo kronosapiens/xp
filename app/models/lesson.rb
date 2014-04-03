@@ -12,8 +12,8 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_tags, :dependent => :destroy
   has_many :tags, :through => :lesson_tags
 
-  has_many :user_lessons, :dependent => :destroy
-  has_many :users, :through => :user_lessons
+  has_many :registrations, :dependent => :destroy
+  has_many :users, :through => :registrations
 
   has_many :comments
 
@@ -31,7 +31,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def students
-    user_lessons.where(:role => "student").map(&:user)
+    registrations.where(:role => "student").map(&:user)
   end
 
   def teachers
@@ -67,13 +67,13 @@ class Lesson < ActiveRecord::Base
   end
 
   def admin
-    user_lesson = user_lessons.where(:admin => true).first
-    user_lesson ? user_lesson.user : nil
+    registration = registrations.where(:admin => true).first
+    registration ? registration.user : nil
   end
 
   private
   def teachers_collection
-    user_lessons.where(:role => "teacher")
+    registrations.where(:role => "teacher")
   end
 
 end

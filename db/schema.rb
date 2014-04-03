@@ -39,14 +39,7 @@ ActiveRecord::Schema.define(version: 20140402153545) do
     t.datetime "updated_at"
   end
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "category"
-  end
-
-  create_table "user_lessons", force: true do |t|
+  create_table "registrations", force: true do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
     t.string   "role"
@@ -55,8 +48,15 @@ ActiveRecord::Schema.define(version: 20140402153545) do
     t.boolean  "admin",      default: false
   end
 
-  add_index "user_lessons", ["lesson_id"], name: "index_user_lessons_on_lesson_id"
-  add_index "user_lessons", ["user_id"], name: "index_user_lessons_on_user_id"
+  add_index "registrations", ["lesson_id"], name: "index_registrations_on_lesson_id"
+  add_index "registrations", ["user_id"], name: "index_registrations_on_user_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "category"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

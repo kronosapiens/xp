@@ -1,6 +1,6 @@
-class CreateUserLessons < ActiveRecord::Migration
+class CreateRegistrations < ActiveRecord::Migration
   def change
-    create_table :user_lessons do |t|
+    create_table :registrations do |t|
       t.references :user, index: true
       t.references :lesson, index: true
       t.string :role
