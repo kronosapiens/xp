@@ -4,21 +4,23 @@
 
  <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-danger"} %>
 
+  <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
+  <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+
   <% elsif @admin %>
 
-  <%= link_to @admin %>
-
+  <h4>This lesson's admin is: <%= link_to @admin.name, user_path(@admin.nickname) %> <%= image_tag(@admin.image_url, size: "50", alt: @admin.name ) %></h4>
+  
   <% else %>
 
  <%= button_to "Admin This!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "true"}, {:method => :patch, :class => "btn btn-success"} %>
 
  <% end %>
 
-
  <h4>Logistics</h4>
      <% unless @lesson.location_tags == [] %>
   <p>
-    Locations: 
+    Possible Locations: 
     <% @lesson.location_tags.each do |location_tag| %>
     <%= location_tag.name %> 
     <% end %>
@@ -27,14 +29,18 @@
 
     <% unless @lesson.time_tags == [] %>
   <p>
-    Times: 
+    Possible Times: 
     <% @lesson.time_tags.each do |time_tag| %>
     <%= time_tag.name %> 
     <% end %>
   </p>
   <% end %>
 
-  <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
-  <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div id="current_teachers">
+    <% if @lesson.students %>
+  </div>
+  <div id="current_students">
+    
+  </div>
 
 </div>
