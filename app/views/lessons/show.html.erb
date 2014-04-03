@@ -1,6 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
+  <% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice %></p>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="jumbotron lesson col-md-5">
 

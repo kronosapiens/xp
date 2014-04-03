@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Sign Up Successful!' }
         format.json { render action: 'show', status: :created, location: @lesson }
       else
-        format.html { redirect_to @lesson, notice: 'Sign Up Failed. Keep trying! :(' }
+        format.html { redirect_to @lesson, notice: 'Sign Up Failed :(' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
