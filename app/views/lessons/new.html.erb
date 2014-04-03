@@ -5,10 +5,19 @@
   <h3><%= "Teach a " if @role == "teacher" %><%= "Request a " if @role == "student" %>New Lesson</h3>
   <br>
 
-    <%= render 'form' %>
+    <%= render 'lessons/form' %>
 
     <%= form_for @tag, html: {class: 
     "form-inline", role: "form"} do |f| %>
+
+      <% if @tag.errors.any? %>
+      <div class="alert alert-warning">
+        <% @tag.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+        <% end %>
+      </div>
+      <% end %>
+
       <div class="form-group">
         <input type="text" name="name">
       </div>

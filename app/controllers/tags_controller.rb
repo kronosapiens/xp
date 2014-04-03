@@ -7,6 +7,8 @@ class TagsController < ApplicationController
     else
       redirect_to :back
       # render "lessons/new"
+      # render "lessons/new", :locals => {:lesson => @lesson}
+      # render :controller => "lessons", :action => "new" 
     end
   end
   def new 

@@ -61,3 +61,9 @@
 @sql_lesson.registrations.create(:user => @sam, :role => "student")
 @sql_lesson.registrations.create(:user => @john, :role => "student", :admin => true)
 
+
+# Creating some comments
+@comment1 = Comment.create(:user_id => @sam.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from Sam to CSS Lesson")
+@comment2 = Comment.create(:user_id => @daniel.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from Daniel to CSS Lesson")
+@comment3 = Comment.create(:user_id => @john.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from John to CSS Lesson")
+ 
