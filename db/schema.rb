@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404143800) do
+ActiveRecord::Schema.define(version: 20140404173229) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140404143800) do
     t.text     "references"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "specific_time"
+    t.datetime "specific_time",     limit: 255
     t.string   "specific_location"
   end
 

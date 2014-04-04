@@ -39,6 +39,7 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create 
     @lesson = Lesson.new(lesson_params)
+
     tags_hash = {
       :topics => params[:lesson][:topics],
       :locations => params[:lesson][:locations],
@@ -72,6 +73,8 @@ class LessonsController < ApplicationController
     }
     @lesson.build_tags(tags_hash)
         
+    params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
+
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }

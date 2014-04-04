@@ -7,6 +7,9 @@ gem 'chosen-rails'
 # Use Omniauth for Github
 gem 'omniauth-github'
 
+# Use Chronic for parsing lesson's specific_time input from admin user
+gem 'chronic'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc2'
 # Use SCSS for stylesheets
