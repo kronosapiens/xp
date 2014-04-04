@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   def login_required
     unless logged_in?
       flash[:notice] = "You must be logged in to take this action. Please log In."
-      redirect_to root_path
+      # redirect_to root_path
+      redirect_to :back
     end
   end
 
