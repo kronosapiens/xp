@@ -28,12 +28,4 @@ module LessonsHelper
     end
   end
 
-  def chronic_parse(string)
-    Chronic.parse(string)
-
-   #  def create
-   # 15      @project = Project.new(project_params)
-   # 16:     @project.end_date = Chronic.parse(params[:project][:end_date])
-  end
-
 end

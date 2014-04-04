@@ -71,6 +71,7 @@ class Lesson < ActiveRecord::Base
     registration ? registration.user : nil
   end
 
+
   private
   def teachers_collection
     registrations.where(:role => "teacher")
