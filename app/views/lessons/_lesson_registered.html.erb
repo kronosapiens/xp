@@ -1,61 +1,60 @@
-<div class="jumbotron lesson col-md-5">
+<div class="jumbotron lesson">
 
   <% if @is_admin %>
 
- <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
-
-  <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
-  <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
+    <%= link_to 'Edit', edit_lesson_path(@lesson) %> | 
+    <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
 
   <% elsif @admin %>
 
-  <h4>This lesson's admin is: <%= image_tag(@admin.image_url, size: "30", alt: @admin.name ) %> <%= link_to @admin.name, user_path(@admin.nickname) %></h4>
+    <h4>This lesson's admin is: <%= image_tag(@admin.image_url, size: "30", alt: @admin.name ) %> <%= link_to @admin.name, user_path(@admin.nickname) %></h4>
   
   <% else %>
 
- <%= button_to "Admin This!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "true"}, {:method => :patch, :class => "btn btn-success"} %>
+    <%= button_to "Admin This!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "true"}, {:method => :patch, :class => "btn btn-success"} %>
 
  <% end %>
 
- <h4>Logistics</h4>
+  <h4>Logistics:</h4>
      <% unless @lesson.location_tags == [] %>
-  <p>
-    Possible Locations: 
-    <% @lesson.location_tags.each do |location_tag| %>
-    <%= location_tag.name %> 
-    <% end %>
-  </p>
-  <% end %>
+      <p>
+        Possible Locations: 
+        <% @lesson.location_tags.each do |location_tag| %>
+          <%= location_tag.name %> 
+        <% end %>
+      </p>
+     <% end %>
 
     <% unless @lesson.time_tags == [] %>
-  <p>
-    Possible Times: 
-    <% @lesson.time_tags.each do |time_tag| %>
-    <%= time_tag.name %> 
+      <p>
+        Possible Times: 
+        <% @lesson.time_tags.each do |time_tag| %>
+          <%= time_tag.name %> 
+        <% end %>
+      </p>
     <% end %>
-  </p>
-  <% end %>
 
-  <div id="current_teachers">
-    <h4>Current Teachers:</h4>
-    <% unless @lesson.teachers == [] %>
-      <% @lesson.teachers.each do |teacher| %>
-        <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
-      <% end %>
-    <% else %>
-     <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
-    <% end %>
-  </div>
-  <div id="current_students">
+    <div id="current_teachers col-sm-4">
+      <h4>Current Teachers:</h4>
+         <% unless @lesson.teachers == [] %>
+           <% @lesson.teachers.each do |teacher| %>
+             <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
+           <% end %>
+         <% else %>
+           <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
+         <% end %>
+    </div>
+    <div id="current_students col-sm-4">
       <h4>Current Students:</h4>
-    <% unless @lesson.students == [] %>
-      <% @lesson.students.each do |student| %>
-        <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
-      <% end %>
-    <% else %>
-      <p>No one signed up for this lesson yet! Tell your friends!</p>
-    <% end %>
-  </div>
+        <% unless @lesson.students == [] %>
+          <% @lesson.students.each do |student| %>
+            <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
+          <% end %>
+        <% else %>
+          <p>No one signed up for this lesson yet! Tell your friends!</p>
+        <% end %>
+    </div>
 
    <%= button_to "Leave Lesson!", {:controller => "registrations", :action => "destroy", :lesson_id => @lesson.id, :id => @registration.id }, {:method => :delete, :class => "btn btn-danger"} %>
 

@@ -1,4 +1,7 @@
-<div class="container">
+<div class="container lesson-container">
+  <div class="floater">
+  </div>
+
   <% if notice %>
     <div class="alert alert-info">
       <p id="notice"><%= notice %></p>
@@ -6,46 +9,41 @@
   <% end %>
 
   <div class="row">
-    <div class="jumbotron lesson col-md-5">
-
-      <h3><%= @lesson.title %></h3>
-      <br>
-
-      <p><strong>Description:</strong> <%= @lesson.description %></p>
-
-      <p><strong>References:</strong> <%= @lesson.references %></p>
-
-      <p><strong>Tags:</strong>
-        <% @lesson.topic_tags.each do |topic_tag| %>
-        <%= topic_tag.name %> 
-        <% end %>
-      </p>
-
-
+    <div class="col-md-6">
+      <div class="jumbotron lesson">
+        <h3><%= @lesson.title %></h3>
+        <br>
+        <p><strong>Description:</strong> <%= @lesson.description %></p>
+        <p><strong>References:</strong> <%= @lesson.references %></p>
+        <p><strong>Tags:</strong>
+          <% @lesson.topic_tags.each do |topic_tag| %>
+            <%= topic_tag.name %> 
+          <% end %>
+        </p>
+      </div>
     </div>
 
+      <div class="col-md-6">
       <% if @registration %>
        <%= render "lessons/lesson_registered" %>
-       <% else %>
+      <% else %>
        <%= render "lessons/lesson_unregistered" %>
       <% end %>
-
+     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="jumbotron">
+  <div class="col-md-12">
+    <div class="jumbotron lesson">
       <p><strong>Comments:</strong></p>
       <br>
       <% @lesson.comments.each do |comment| %>
-      <p><img src=<%= comment.user.image_url %> height="26px"> <%= comment.user.name %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
-      <p><%= comment.content %></p>
+        <p><%= image_tag(comment.user.image_url, size: "26", alt: comment.user.name) %> <%= link_to comment.user.name, user_path(comment.user.nickname) %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
+        <p><%= comment.content %></p>
 
+        <%= button_to 'Delete', lesson_comment_path(@lesson.id, comment.id), :class => "btn btn-danger btn-xs",  method: :delete %>
 
-      <%= link_to 'Delete', lesson_comment_path(@lesson.id, comment.id), :class => "btn btn-danger btn-xs",  method: :delete %>
-
-      <br><br>
+        <br>
+        <br>
       <% end %>
       
 
@@ -57,13 +55,12 @@
       <%= form_for [@lesson, @comment], html: {role: "form"} do |f| %>
 
         <% if @comment.errors.any? %>
-        <div class="alert alert-warning">
-          <% @comment.errors.full_messages.each do |msg| %>
-          <p><%= msg %></p>
-          <% end %>
-        </div>
+          <div class="alert alert-warning">
+            <% @comment.errors.full_messages.each do |msg| %>
+              <p><%= msg %></p>
+            <% end %>
+          </div>
         <% end %>
-
 
         <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
         <div class="form-group">
@@ -71,7 +68,6 @@
         </div>
         <input type="submit" value="Post Comment" class="btn">
       <% end %>
-    </div>  
-  </div> 
-  
+    </div>
+  </div>
 </div> 

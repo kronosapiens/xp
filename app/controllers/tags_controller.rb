@@ -1,4 +1,9 @@
 class TagsController < ApplicationController
+  
+  def new 
+    @tag = Tag.new
+  end
+
   def create
     @tag = Tag.new(:name => params[:name], :category => "topic")
 
@@ -11,8 +16,5 @@ class TagsController < ApplicationController
       # render :controller => "lessons", :action => "new" 
     end
   end
-  
-  def new 
-    @tag = Tag.new
-  end
+
 end

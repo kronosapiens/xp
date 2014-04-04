@@ -1,28 +1,12 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="jumbotron">
+  <div class="container">
+    <div class="jumbotron lesson">
 
-  <h3><%= "Teach a " if @role == "teacher" %><%= "Request a " if @role == "student" %>New Lesson</h3>
-  <br>
+      <h3><%= "Teach a " if @role == "teacher" %><%= "Request a " if @role == "student" %>New Lesson</h3>
 
-    <%= render 'lessons/form' %>
+      <%= render 'lessons/form' %>
 
-    <%= form_for @tag, html: {class: 
-    "form-inline", role: "form"} do |f| %>
+      <%= render 'tags/form' %>
 
-      <% if @tag.errors.any? %>
-      <div class="alert alert-warning">
-        <% @tag.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
-        <% end %>
-      </div>
-      <% end %>
-
-      <div class="form-group">
-        <input type="text" name="name">
-      </div>
-      <input type="submit" value="Create a New Tag" class="btn btn-sm">
-    <% end %>
-
+    </div>
   </div>
-</div>

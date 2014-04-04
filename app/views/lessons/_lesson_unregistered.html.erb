@@ -1,32 +1,30 @@
- <div class="jumbotron lesson col-md-5">
+<div class="jumbotron lesson">
 
-  <p>
-    <strong>Teachers:</strong>
-  </p>
+  <p><strong>Teachers:</strong></p>
 
   <% if @lesson.teachers != [] %>
-  <p><% @lesson.teachers.each do |teacher| %> 
-    <%= teacher.name %>
+    <p><% @lesson.teachers.each do |teacher| %> 
+      <%= teacher.name %>
     <% end %>
     have signed up to teach this class.</p>
-    <% else %>
+  <% else %>
     <p>No one has signed up to teach this class yet!</p>
-    <% end %>
+  <% end %>
 
   <%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-warning"} %>
     <br>
-  <p>
-    <strong>Students:</strong>
-  </p>
+
+  <p><strong>Students:</strong></p>
+
   <% if @lesson.students != [] %>
-  <p><% @lesson.students.each do |student| %> 
-    <%= student.name %>
+    <p><% @lesson.students.each do |student| %> 
+      <%= student.name %>
     <% end %>
     have signed up to take this class.</p>
-    <% else %>
+  <% else %>
     <p>No one has signed up to take this class yet!</p>
-    <% end %> 
+  <% end %> 
 
-<%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success"} %>
+  <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success"} %>
 
-</end>
+</div>
