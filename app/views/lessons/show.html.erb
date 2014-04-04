@@ -20,6 +20,12 @@
             <%= topic_tag.name %> 
           <% end %>
         </p>
+        <% if @lesson.specific_location %>
+          <p><strong>Location:</strong> <%= @lesson.specific_location %></p>
+        <% end %>
+        <% if @lesson.specific_time %>
+          <p><strong>Time:</strong> <%= @lesson.specific_time %></p>
+        <% end %>
       </div>
     </div>
 
