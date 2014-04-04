@@ -4,11 +4,11 @@
 </div>
 
 <div class="form-group">
-  When is this lesson going to be held? <input type="text" name="lesson[specific_time]" value="<%= @lesson.specific_time.to_formatted_s(:long_ordinal) %>">
+  When is this lesson going to be held? <input type="text" name="lesson[specific_time]" value="<%= prepopulate_time(@lesson) %>">
 </div>
 
 <div class="form-group" id="select-locations" >
-  What tags best decribe the location of this lesson?
+  What tags best describe possbile locations of this lesson?
   <select data-placeholder="Select Locations" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[locations][]">
     <% @location_tags.each do |tag| %>
       <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %>><%= tag.name %></option>
@@ -17,7 +17,7 @@
 </div>
 
 <div class="form-group" id="select-times">
-  What tags best decribe the time of this lesson?
+  What tags best describe possible times of this lesson?
   <select data-placeholder="Select Times" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[times][]">
     <% @time_tags.each do |tag| %>
       <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %>><%= tag.name %></option>

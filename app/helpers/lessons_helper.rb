@@ -28,6 +28,14 @@ module LessonsHelper
     end
   end
 
+  def prepopulate_time(lesson)
+    if lesson.specific_time != nil && lesson.specific_time != ""
+      return lesson.specific_time.to_formatted_s(:long_ordinal)
+    else
+      return ""
+    end
+  end
+
   def one_user?(lesson)
     lesson.registrations.length == 1
   end
