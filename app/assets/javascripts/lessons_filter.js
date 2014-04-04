@@ -1,4 +1,17 @@
-$(".lessons .index").ready(function () {
+$(document).ready(function () {
+
+  // Configure Chosen 
+
+  var config = {
+    '.chosen-select'           : {},
+    '.chosen-select-deselect'  : {allow_single_deselect:true},
+    '.chosen-select-no-single' : {disable_search_threshold:10},
+    '.chosen-select-no-results': {no_results_text:'No tags found'},
+    '.chosen-select-width'     : {width:"95%"}
+  }
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
 
   // Our filter logic
 
@@ -14,7 +27,7 @@ $(".lessons .index").ready(function () {
     filterLessons();
   });
 
-  $('.tag-select').on('change', function() {
+  $('.chosen-index').on('change', function() {
     filterLessons();
   });
 
@@ -47,7 +60,7 @@ $(".lessons .index").ready(function () {
 
   function getActiveFilters(){
     var filterArray = [];
-    $(".tag-select :checked").each(function(){
+    $(".chosen-index :checked").each(function(){
       filterArray.push(parseInt($(this).attr("id")));   
     });
     return filterArray;
