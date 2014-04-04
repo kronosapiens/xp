@@ -64,6 +64,7 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
+    unless params[:lesson][:status]
       @lesson.lesson_tags.clear
       tags_hash = {
         :topics => params[:lesson][:topics],
@@ -73,6 +74,7 @@ class LessonsController < ApplicationController
       @lesson.build_tags(tags_hash)
           
       params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
+    end
 
     respond_to do |format|
       if @lesson.update(lesson_params)

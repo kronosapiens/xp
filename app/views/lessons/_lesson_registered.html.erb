@@ -12,9 +12,4 @@
       <%= render "lessons/admin_panel" %>
     <% end %>
 
-    <br>
-    <br>
-
-    <div>
       <%= button_to "Leave Lesson!", {:controller => "registrations", :action => "destroy", :lesson_id => @lesson.id, :id => @registration.id }, {:method => :delete, :class => "btn btn-danger"} %>
-    </div>
