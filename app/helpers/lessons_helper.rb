@@ -12,4 +12,8 @@ module LessonsHelper
     user && (lesson.admin == user)
   end
 
+  def one_user?(lesson)
+    lesson.registrations.length == 1
+  end
+
 end

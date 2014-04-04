@@ -13,6 +13,10 @@ class Lesson < ActiveRecord::Base
   validates :description, presence: true
   validate :has_tags
 
+  def ok_to_delete?
+    registrations.length > 1
+  end
+
   def has_tags
     if self.all_tags.count == 0
       errors.add(:tags, "Lesson must have at least one tag.")

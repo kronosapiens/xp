@@ -6,6 +6,7 @@ describe "Lesson" do
     @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
     @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
     @ruby_lesson = Lesson.new(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it")
+    @html_lesson = Lesson.new(:title => "HTML Lesson", :description => "A lesson to talk about writing some great HTML", :references => "Bing it")
 
     @css = Tag.create(:name => "CSS", :category => "topic")
     @jquery = Tag.create(:name => "jQuery", :category => "topic")
@@ -18,10 +19,12 @@ describe "Lesson" do
     @jquery_lesson.lesson_tags.build(:tag => @jquery)
     @jquery_lesson.lesson_tags.build(:tag => @frontend)
     @jquery_lesson.lesson_tags.build(:tag => @on_campus)
+    @html_lesson.lesson_tags.build(:tag => @on_campus)
 
     @css_lesson.save
     @jquery_lesson.save
     @ruby_lesson.save
+    @html_lesson.save
 
     @steve = User.create(:name => "Steve")
     @sam = User.create(:name => "Sam")
@@ -33,6 +36,7 @@ describe "Lesson" do
     @css_lesson.registrations.create(:user => @steve, :role => "student")
     @css_lesson.registrations.create(:user => @tom, :role => "teacher", :admin => false)
     @css_lesson.registrations.create(:user => @ted, :role => "teacher")
+    @html_lesson.registrations.create(:user => @ted, :role => "student")
   end
 
   it "can have sam as a user" do
@@ -137,5 +141,9 @@ describe "Lesson" do
     expect(@jquery_lesson.admin).to eq(nil)
   end
 
+  it "verifies user count before deletion" do
+    expect(@html_lesson.ok_to_delete?).to eq(false)
+    expect(@css_lesson.ok_to_delete?).to eq(true)
+  end
 
 end

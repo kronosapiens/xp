@@ -60,7 +60,8 @@
 @jquery_lesson.registrations.create(:user => @daniel, :role => "student")
 @sql_lesson.registrations.create(:user => @sam, :role => "student")
 @sql_lesson.registrations.create(:user => @john, :role => "student", :admin => true)
-
+@javascript_lesson.registrations.create(:user => @sam, :role => "teacher")
+@javascript_lesson.registrations.create(:user => @daniel, :role => "student")
 
 # Creating some comments
 @comment1 = Comment.create(:user_id => @sam.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from Sam to CSS Lesson")
