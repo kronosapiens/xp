@@ -1,0 +1,12 @@
+  <h4>Admin Settings:</h4>
+
+  <%= button_to "Close Lesson!", {:controller => "lessons", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
+
+  <%= button_to "Mark Lesson Held", {:controller => "lessons", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning" confirm: 'This will permamently archive the lesson. Are you sure?'} %>
+
+  <%= link_to 'Edit Lesson', edit_lesson_path(@lesson), { class: "btn btn-info" } %>
+  <% if one_user?(@lesson) %>
+   | <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?', class: "btn btn-warning" } %>
+  <% end %>
+
+  <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>

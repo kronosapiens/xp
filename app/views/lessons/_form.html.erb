@@ -31,7 +31,7 @@
     </select>
   </div>
 
-  <%= render '/lessons/admin_settings' if admin?(@lesson, current_user) %>
+  <%= render '/lessons/admin_edit_settings' if admin?(@lesson, current_user) %>
 
   <div class="form-group">
     <%= f.label :references %><br>

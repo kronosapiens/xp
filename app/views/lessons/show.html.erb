@@ -30,13 +30,58 @@
       </div>
     </div>
 
-      <div class="col-md-6">
-      <% if @registration %>
-       <%= render "lessons/lesson_registered" %>
-      <% else %>
-       <%= render "lessons/lesson_unregistered" %>
-      <% end %>
-     </div>
+    <div class="col-md-6">
+      <div class="jumbotron lesson">
+
+        <h4>Logistics:</h4>
+        <% unless @lesson.location_tags == [] %>
+          <p>
+            Possible Locations: 
+            <% @lesson.location_tags.each do |location_tag| %>
+              <%= location_tag.name %> 
+            <% end %>
+          </p>
+        <% end %>
+
+        <% unless @lesson.time_tags == [] %>
+          <p>
+            Possible Times: 
+            <% @lesson.time_tags.each do |time_tag| %>
+              <%= time_tag.name %> 
+            <% end %>
+          </p>
+        <% end %>
+
+        <div id="current_teachers col-sm-4">
+          <h4>Current Teachers:</h4>
+            <% unless @lesson.teachers == [] %>
+              <% @lesson.teachers.each do |teacher| %>
+                <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
+              <% end %>
+            <% else %>
+              <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
+            <% end %>
+        </div>
+
+        <div id="current_students col-sm-4">
+          <h4>Current Students:</h4>
+            <% unless @lesson.students == [] %>
+              <% @lesson.students.each do |student| %>
+                <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
+              <% end %>
+            <% else %>
+              <p>No one signed up for this lesson yet! Tell your friends!</p>
+            <% end %>
+        </div>
+        <br>
+
+        <% if @registration %>
+          <%= render "lessons/lesson_registered" %>
+        <% else %>
+          <%= render "lessons/lesson_unregistered" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-12">

@@ -1,5 +1,3 @@
-<div class="jumbotron lesson">
-
   <% if @admin %>
 
     <h4>This lesson's admin is: <%= image_tag(@admin.image_url, size: "30", alt: @admin.name ) %> <%= link_to @admin.name, user_path(@admin.nickname) %></h4>
@@ -10,62 +8,13 @@
 
   <% end %>
 
-  <h4>Logistics:</h4>
-     <% unless @lesson.location_tags == [] %>
-      <p>
-        Possible Locations: 
-        <% @lesson.location_tags.each do |location_tag| %>
-          <%= location_tag.name %> 
-        <% end %>
-      </p>
-     <% end %>
-
-    <% unless @lesson.time_tags == [] %>
-      <p>
-        Possible Times: 
-        <% @lesson.time_tags.each do |time_tag| %>
-          <%= time_tag.name %> 
-        <% end %>
-      </p>
+    <% if @is_admin %>
+      <%= render "lessons/admin_panel" %>
     <% end %>
 
-    <div id="current_teachers col-sm-4">
-      <h4>Current Teachers:</h4>
-         <% unless @lesson.teachers == [] %>
-           <% @lesson.teachers.each do |teacher| %>
-             <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
-           <% end %>
-         <% else %>
-           <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
-         <% end %>
-    </div>
-
-    <div id="current_students col-sm-4">
-      <h4>Current Students:</h4>
-        <% unless @lesson.students == [] %>
-          <% @lesson.students.each do |student| %>
-            <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
-          <% end %>
-        <% else %>
-          <p>No one signed up for this lesson yet! Tell your friends!</p>
-        <% end %>
-    </div>
-
+    <br>
     <br>
 
     <div>
       <%= button_to "Leave Lesson!", {:controller => "registrations", :action => "destroy", :lesson_id => @lesson.id, :id => @registration.id }, {:method => :delete, :class => "btn btn-danger"} %>
     </div>
-
-    <br>
-
-      <% if @is_admin %>
-        <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
-        <br>
-        <%= link_to 'Edit Lesson', edit_lesson_path(@lesson) %>
-        <% if one_user?(@lesson) %>
-         | <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      <% end %>
-
-</div>

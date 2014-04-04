@@ -64,7 +64,7 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-
+    binding.pry
     @lesson.lesson_tags.clear
     tags_hash = {
       :topics => params[:lesson][:topics],
