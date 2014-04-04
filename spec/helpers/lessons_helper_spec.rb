@@ -24,11 +24,11 @@ describe LessonsHelper do
   end
 
   it "returns 'selected' if it has the tag" do
-    expect(prepopulate(@css_lesson, @css)).to eq("selected")
+    expect(prepopulate_tags(@css_lesson, @css)).to eq("selected")
   end
 
   it "returns nothing if it doesn't have the tag" do
-    expect(prepopulate(@css_lesson, @jquery)).to eq(nil)
+    expect(prepopulate_tags(@css_lesson, @jquery)).to eq(nil)
   end
   
   it "knows when the lesson has only one user" do
