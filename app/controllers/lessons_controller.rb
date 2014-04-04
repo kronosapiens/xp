@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
   before_action :get_tags, only: [:index, :new, :edit, :show]
 
   # GET /lessons
@@ -82,6 +82,18 @@ class LessonsController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
+        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_status
+    respond_to do |format|
+      if @lesson.update(lesson_params)
+        format.html { redirect_to @lesson, notice: "Lesson status successfully updated to #{params[:lesson][:status]}." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @lesson, notice: "Unable to change lesson status" }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end

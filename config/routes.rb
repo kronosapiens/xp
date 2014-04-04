@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :registrations, only: [:create, :update, :destroy]
   end
 
+  patch "/lessons/:id/status" => "lessons#update_status", as: :update_status
+
   resources :tags, only: [:new, :create]
 
 # Routes for user authentication
