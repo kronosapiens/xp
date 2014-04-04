@@ -64,16 +64,15 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-    binding.pry
-    @lesson.lesson_tags.clear
-    tags_hash = {
-      :topics => params[:lesson][:topics],
-      :locations => params[:lesson][:locations],
-      :times => params[:lesson][:times]
-    }
-    @lesson.build_tags(tags_hash)
-        
-    params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
+      @lesson.lesson_tags.clear
+      tags_hash = {
+        :topics => params[:lesson][:topics],
+        :locations => params[:lesson][:locations],
+        :times => params[:lesson][:times]
+      }
+      @lesson.build_tags(tags_hash)
+          
+      params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
 
     respond_to do |format|
       if @lesson.update(lesson_params)
@@ -118,7 +117,7 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time)
+      params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time, :status)
     end
 
     def get_tags
