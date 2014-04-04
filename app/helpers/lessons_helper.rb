@@ -12,4 +12,5 @@ module LessonsHelper
     user && (lesson.admin == user)
   end
 
+ 
 end
