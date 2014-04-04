@@ -146,4 +146,14 @@ describe "Lesson" do
     expect(@css_lesson.ok_to_delete?).to eq(true)
   end
 
+  it "can close its status" do
+    @css_lesson.close
+    expect(@css_lesson.status).to eq("closed")
+  end
+
+  it "can mark itself held" do
+    @css_lesson.mark_completed
+    expect(@css_lesson.status).to eq("completed")
+  end
+
 end

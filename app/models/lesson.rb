@@ -75,6 +75,18 @@ class Lesson < ActiveRecord::Base
     registration ? registration.user : nil
   end
 
+  def close
+    self.status = "closed"
+  end
+
+  def open
+    self.status = "open"
+  end
+
+  def mark_completed
+    self.status = "completed"
+  end
+
   private
   def teachers_collection
     registrations.where(:role => "teacher")
