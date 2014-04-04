@@ -36,8 +36,9 @@ class RegistrationsController < ApplicationController
 
   def destroy
     @registration.destroy
+    
     respond_to do |format|
-      format.html { redirect_to lessons_url }
+      format.html { redirect_to @registration.lesson, notice: 'You are no longer registered for this lesson.' }
       format.json { head :no_content }
     end
   end
