@@ -26,6 +26,9 @@ module LessonsHelper
     else
       "TDB"
     end
+
+  def one_user?(lesson)
+    lesson.registrations.length == 1
   end
 
 end

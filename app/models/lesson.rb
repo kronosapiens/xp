@@ -13,6 +13,10 @@ class Lesson < ActiveRecord::Base
   validates :description, presence: true
   validate :has_tags
 
+  def ok_to_delete?
+    registrations.length > 1
+  end
+
   def has_tags
     if self.all_tags.count == 0
       errors.add(:tags, "Lesson must have at least one tag.")
@@ -71,6 +75,17 @@ class Lesson < ActiveRecord::Base
     registration ? registration.user : nil
   end
 
+  def close
+    self.status = "closed"
+  end
+
+  def open
+    self.status = "open"
+  end
+
+  def mark_completed
+    self.status = "completed"
+  end
 
   private
   def teachers_collection
