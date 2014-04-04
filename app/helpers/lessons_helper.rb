@@ -1,6 +1,6 @@
 module LessonsHelper
 
-  def prepopulate(lesson, tag)
+  def prepopulate_tags(lesson, tag)
     "selected" if lesson.tag_ids_to_array.include?(tag.id)
   end
 

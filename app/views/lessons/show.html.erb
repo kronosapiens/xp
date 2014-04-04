@@ -20,12 +20,21 @@
             <%= topic_tag.name %> 
           <% end %>
         </p>
-        <% if @lesson.specific_location %>
-          <p><strong>Location:</strong> <%= @lesson.specific_location %></p>
+        <p><strong>Location:</strong> 
+        <% if @lesson.specific_location && @lesson.specific_location != "" %>
+          <%= @lesson.specific_location %>
+        <% else %>
+          TDB
         <% end %>
-        <% if @lesson.specific_time %>
-          <p><strong>Time:</strong> <%= @lesson.specific_time %></p>
-        <% end %>
+        </p>
+        <p>
+          <strong>Time:</strong> 
+          <% if @lesson.specific_time && @lesson.specific_time != "" %>
+            <%= @lesson.specific_time %></p>
+          <% else %>
+            TDB
+          <% end %>
+        <p>
       </div>
     </div>
 
