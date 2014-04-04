@@ -1,9 +1,9 @@
    
 <div class="navbar navbar-default navbar-static-top">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" style="width:100%">
 
-      <div class="btn-group" data-toggle="buttons">
+      <div class="btn-group" style="display:inline-block; float:left;" data-toggle="buttons">
         <label class="btn btn-primary navbar-btn btn-success">
           <input type="checkbox" class="interest-filter" id="student-button"> Students Needed
         </label>
@@ -12,34 +12,32 @@
         </label>
       </div>
 
-    </div>
-    <div class="navbar-collapse collapse">
-      <div class="row">
-        <form id="filters">
-          <div class="chosen-box">
-            <select data-placeholder="Select Topics" style="width:300px;" multiple class="chosen-index chosen-select tag-select" tabindex="8">
-              <% @topic_tags.each do |tag| %>
-              <option id="<%= tag.id %>"><%= tag.name %></option>
-              <% end %>
-            </select>
-          </div>
-          <div class="chosen-box">
-            <select data-placeholder="Select Locations" style="width:220px;" multiple class="chosen-index chosen-select tag-select" tabindex="8">
-              <% @location_tags.each do |tag| %>
-              <option id="<%= tag.id %>"><%= tag.name %></option>
-              <% end %>
-            </select>
-          </div>
-          <div class="chosen-box">
-            <select data-placeholder="Select Times" style="width:220px;" multiple class="chosen-index chosen-select tag-select" tabindex="8">
-              <% @time_tags.each do |tag| %>
-              <option id="<%= tag.id %>"><%= tag.name %></option>
-              <% end %>
-            </select>
-          </div>
-        </form>
-      </div>
+  
+      <form id="filters">
+        <div class="chosen-box">
+          <select data-placeholder="Select Topics" style="width:300px;" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+            <% @topic_tags.each do |tag| %>
+            <option id="<%= tag.id %>"><%= tag.name %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="chosen-box">
+          <select data-placeholder="Select Locations" style="width:220px;" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+            <% @location_tags.each do |tag| %>
+            <option id="<%= tag.id %>"><%= tag.name %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="chosen-box">
+          <select data-placeholder="Select Times" style="width:220px;" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+            <% @time_tags.each do |tag| %>
+            <option id="<%= tag.id %>"><%= tag.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </form>
+    <!--   </div>
+    </div> -->
     </div>
   </div>
-</div>
 </div>
