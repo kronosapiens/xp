@@ -21,19 +21,11 @@
           <% end %>
         </p>
         <p><strong>Location:</strong> 
-        <% if @lesson.specific_location && @lesson.specific_location != "" %>
-          <%= @lesson.specific_location %>
-        <% else %>
-          TDB
-        <% end %>
+          <%= display_location(@lesson) %>
         </p>
         <p>
           <strong>Time:</strong> 
-          <% if @lesson.specific_time && @lesson.specific_time != "" %>
-            <%= @lesson.specific_time %></p>
-          <% else %>
-            TDB
-          <% end %>
+          <%= display_time(@lesson) %>
         <p>
       </div>
     </div>

@@ -3,6 +3,9 @@
     <h1><%= link_to lesson.title, lesson %></h1>
     <p class="lead"><%= lesson.description %></p>
 
+    <p>Location: <%= display_location(lesson) %></p>
+    <p>Time: <%= display_time(lesson) %></p>
+
     <p><%= lesson.students.length %> people have signed up to take this class. 
       <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success"} %></p>
 

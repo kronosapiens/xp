@@ -12,5 +12,20 @@ module LessonsHelper
     user && (lesson.admin == user)
   end
 
- 
+  def display_location(lesson) 
+    if lesson.specific_location && lesson.specific_location != ""
+      lesson.specific_location
+    else
+      "TDB"
+    end
+  end
+
+  def display_time(lesson) 
+    if lesson.specific_time && lesson.specific_time != ""
+      lesson.specific_time
+    else
+      "TDB"
+    end
+  end
+
 end
