@@ -36,6 +36,36 @@ module LessonsHelper
     end
   end
 
+  def lesson_has_a_specific_time(lesson)
+    lesson.specific_time != nil && lesson.specific_time != ""
+  end
+
+  def lesson_has_a_specific_location(lesson)
+    lesson.specific_location != nil && lesson.specific_location != ""
+  end
+
+  def display_google_calendar_link(lesson)
+    if lesson_has_a_specific_time(lesson) && lesson_has_a_specific_location(lesson)
+      event_title = lesson.title.gsub(" ", "+")
+
+
+      adjusted_lesson_time = lesson.specific_time# - 8.hours # crappy timezone/daylight savings time work-around
+
+      start_date = adjusted_lesson_time.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
+      end_date = (adjusted_lesson_time + 2.hours).to_datetime.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
+      dates = "#{start_date}/#{end_date}Z"
+      details = lesson.description.gsub(" ", "+")
+      location = lesson.specific_location.gsub(" ", "+")
+
+      href = "https://www.google.com/calendar/render?action=TEMPLATE&text=#{event_title}&dates=#{dates}&details=#{details}&location=#{location}&sf=true&output=xml"
+
+      html = "<a href='#{href}' target='_blank' rel='nofollow'>Add this lesson to my Google calendar</a>".html_safe
+      return html
+    else
+      return ""
+    end
+  end
+
   def one_user?(lesson)
     lesson.registrations.length == 1
   end
