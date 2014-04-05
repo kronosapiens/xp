@@ -12,8 +12,22 @@ module LessonsHelper
     user && (lesson.admin == user)
   end
 
+
+  def lesson_has_a_specific_location(lesson)
+    lesson.specific_location != nil && lesson.specific_location != ""
+  end
+
+  def lesson_has_a_specific_time(lesson)
+    lesson.specific_time != nil && lesson.specific_time != ""
+  end
+
+  def adjusted_time(lesson)
+    lesson.specific_time - 4.hours
+  end
+
+
   def display_location(lesson) 
-    if lesson.specific_location && lesson.specific_location != ""
+    if lesson_has_a_specific_location(lesson)
       lesson.specific_location
     else
       "TDB"
@@ -21,38 +35,27 @@ module LessonsHelper
   end
 
   def display_time(lesson) 
-    if lesson.specific_time && lesson.specific_time != ""
-      lesson.specific_time.to_formatted_s(:long_ordinal)
+    if lesson_has_a_specific_time(lesson)
+      adjusted_time(lesson).to_formatted_s(:long_ordinal)
     else
       "TDB"
     end
   end
 
   def prepopulate_time(lesson)
-    if lesson.specific_time != nil && lesson.specific_time != ""
-      return lesson.specific_time.to_formatted_s(:long_ordinal)
+    if lesson_has_a_specific_time(lesson)
+      return adjusted_time(lesson).to_formatted_s(:long_ordinal)
     else
       return ""
     end
   end
 
-  def lesson_has_a_specific_time(lesson)
-    lesson.specific_time != nil && lesson.specific_time != ""
-  end
-
-  def lesson_has_a_specific_location(lesson)
-    lesson.specific_location != nil && lesson.specific_location != ""
-  end
 
   def display_google_calendar_link(lesson)
     if lesson_has_a_specific_time(lesson) && lesson_has_a_specific_location(lesson)
       event_title = lesson.title.gsub(" ", "+")
-
-
-      adjusted_lesson_time = lesson.specific_time# - 8.hours # crappy timezone/daylight savings time work-around
-
-      start_date = adjusted_lesson_time.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
-      end_date = (adjusted_lesson_time + 2.hours).to_datetime.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
+      start_date = lesson.specific_time.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
+      end_date = (lesson.specific_time + 2.hours).to_datetime.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
       dates = "#{start_date}/#{end_date}Z"
       details = lesson.description.gsub(" ", "+")
       location = lesson.specific_location.gsub(" ", "+")
