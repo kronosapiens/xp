@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Sign Up Successful!' }
         format.json { render action: 'show', status: :created, location: @lesson }
       else
-        format.html { redirect_to @lesson, notice: 'Sign Up Failed :(' }
+        format.html { redirect_to @lesson, alert: 'Sign Up Failed :(' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
@@ -28,7 +28,7 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @lesson, notice: 'You cannot update your registration right now.' }
+        format.html { redirect_to @lesson, alert: 'You cannot update your registration right now.' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
