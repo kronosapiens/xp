@@ -30,4 +30,10 @@ class User < ActiveRecord::Base
     registrations.where(:role => "teacher").map(&:lesson)
   end
 
+  def open_lessons_as_student
+    self.lessons.where(:status => "open").select do |lesson|
+      lesson.registrations.where(:role => "student", :user_id => self.id)
+    end
+  end
+
 end
