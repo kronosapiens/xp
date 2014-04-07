@@ -22,4 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :logged_in?
+
+  if Rails.env.test?
+    prepend_before_filter :stub_session_user_id
+    def stub_session_user_id
+      session[:user_id] = $rspec_user_id if $rspec_user_id
+    end
+  end
 end
