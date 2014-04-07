@@ -6,7 +6,6 @@
 
   <p>
     <strong><%= @user.name %></strong> (<%= @user.nickname %>)
-    
   </p>
   <br>
 
@@ -16,6 +15,9 @@
       <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
         <li><%= lesson.title %></li>
       <% end %>
+      <% @user.lessons_by_role_and_status("student", "closed").each do |lesson| %>
+        <li><%= lesson.title %></li>
+      <% end %>
     </ul>
   </p>
 
@@ -23,6 +25,9 @@
     <strong>Upcoming Lessons as Teacher</strong>
     <ul>
       <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
+        <li><%= lesson.title %></li>
+      <% end %>
+      <% @user.lessons_by_role_and_status("teacher", "closed").each do |lesson| %>
         <li><%= lesson.title %></li>
       <% end %>
     </ul>
