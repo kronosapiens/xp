@@ -6,3 +6,41 @@
   <strong>Name:</strong>
   <%= @user.name %>, (<%= @user.nickname %>)
 </p>
+
+<%# if @user.lessons_by_role_and_status("student", "open").count > 0 %>
+<p>
+  <strong>Upcoming Lessons as Student</strong>
+  <ul>
+    <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
+      <li><%= lesson.title %></li>
+    <% end %>
+  </ul>
+</p>
+<%# end %>
+
+<p>
+  <strong>Upcoming Lessons as Teacher</strong>
+  <ul>
+    <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
+      <li><%= lesson.title %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Past Lessons as Student</strong>
+  <ul>
+    <% @user.lessons_by_role_and_status("student", "completed").each do |lesson| %>
+      <li><%= lesson.title %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Past Lessons as Teacher</strong>
+  <ul>
+    <% @user.lessons_by_role_and_status("teacher", "completed").each do |lesson| %>
+      <li><%= lesson.title %></li>
+    <% end %>
+  </ul>
+</p>
