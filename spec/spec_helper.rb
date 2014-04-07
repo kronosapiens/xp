@@ -30,6 +30,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    $rspec_user_id = nil
   end
 
   #Capybara.default_host = 'localhost:3000'
