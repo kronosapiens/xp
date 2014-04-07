@@ -96,8 +96,15 @@ describe "User" do
     expect(desired_lessons).to_not include(@arel_lesson) 
   end
 
+  it 'knows its open lessons as a teacher' do 
+    desired_lessons = @sam.lessons_by_role_and_status("teacher", "open")
+
+    expect(desired_lessons).to include(@arel_lesson)
+    expect(desired_lessons).to_not include(@css_lesson) 
+  end
+
   it 'knows its upcoming lessons as a teacher' do 
-    desired_lessons = (@sam.lessons_by_role_and_status("teacher", "open")) # + @sam.lessons_by_role_and_status("student", "closed"))
+    desired_lessons = (@sam.lessons_by_role_and_status("teacher", "open") + @sam.lessons_by_role_and_status("student", "closed"))
 
     expect(desired_lessons).to include(@arel_lesson)
     expect(desired_lessons).to_not include(@css_lesson) 
