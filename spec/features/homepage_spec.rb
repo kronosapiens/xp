@@ -1,17 +1,25 @@
 require_relative '../feature_helper'
+ 
 
 describe "Homepage" do
+  before(:each) do
+    @user = FactoryGirl.create(:user) 
+    @lesson = FactoryGirl.create(:lesson)
+  end
+  
   it 'returns a 200' do
     visit '/'
     expect(page.status_code).to eq(200)
   end
 
-  its 'able to sign up for a course' do
-    user = FactoryGirl.create(:user) 
-    lesson = FactoryGirl.create(:lesson)
-    #tag = create(:tag)
-
-    post lesson_registrations_path
+  it 'able to sign up for a course' do
+    # user = FactoryGirl.create(:user) 
+    # lesson = FactoryGirl.create(:lesson)
+    # #tag = create(:tag)
+    visit('/')
+    within "#lesson_#{@lesson.id}" do
+      click_button "Take This!"
+    end
     expect(page.status_code).to eq(300)
   end
 
