@@ -1,7 +1,7 @@
 FactoryGirl.define do 
 
   sequence :name do |l|
-    "Guitar #{l}"
+    "Bass #{l}"
   end
 
   factory :tag do 
