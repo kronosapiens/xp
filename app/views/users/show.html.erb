@@ -1,8 +1,51 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="jumbotron">
+  <p id="notice"><%= notice %></p>
 
-<img src="<%= @user.image_url %>" alt="<%= @user.name %> thumbnail" class="img-responsive" style="width:250px; height:250px;">
+  <img src="<%= @user.image_url %>" alt="<%= @user.name %> thumbnail" class="img-responsive" style=" height:280px; float:right">
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>, (<%= @user.nickname %>)
-</p>
+  <p>
+    <strong><%= @user.name %></strong> (<%= @user.nickname %>)
+    
+  </p>
+  <br>
+
+  <p>
+    <strong>Upcoming Lessons as Student</strong>
+    <ul>
+      <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
+        <li><%= lesson.title %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <p>
+    <strong>Upcoming Lessons as Teacher</strong>
+    <ul>
+      <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
+        <li><%= lesson.title %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <p>
+    <strong>Past Lessons as Student</strong>
+    <ul>
+      <% @user.lessons_by_role_and_status("student", "completed").each do |lesson| %>
+        <li><%= lesson.title %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <p>
+    <strong>Past Lessons as Teacher</strong>
+    <ul>
+      <% @user.lessons_by_role_and_status("teacher", "completed").each do |lesson| %>
+        <li><%= lesson.title %></li>
+      <% end %>
+    </ul>
+  </p>
+
+</div>
+</div>
+
