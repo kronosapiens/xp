@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 # Creating some lessons
-@css_lesson = Lesson.new(:title => "CSS Lesson", :description => "Can someone help me understand the CSS portion of the prework?", :references => "http://www.skillshare.com/Build-a-HTML-and-CSS-Website-From-Scratch/1216366887")
+@css_lesson = Lesson.new(:title => "CSS Lesson", :description => "Can someone help me understand the CSS prework?", :references => "http://www.skillshare.com/Build-a-HTML-and-CSS-Website-From-Scratch/1216366887")
 @jquery_lesson = Lesson.new(:title => "jQuery Lesson", :description => "I can help a few people work through some jQuery problems.", :references => "http://learn.jquery.com/about-jquery/how-jquery-works/")
 @javascript_lesson = Lesson.new(:title => "Javascript Lesson", :description => "A lesson to talk about writing some great scripts", :references => "https://github.com/dhh/popcorn_js-ruby-004")
 @sql_lesson = Lesson.new(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "http://teamtreehouse.com/library/programming/database-foundations")
@@ -60,17 +60,16 @@
 @css_lesson.registrations.create(:user => @john, :role => "student")
 @css_lesson.registrations.create(:user => @isaac, :role => "teacher")
 @jquery_lesson.registrations.create(:user => @sam, :role => "teacher", :admin => true)
-@jquery_lesson.registrations.create(:user => @isaac, :role => "student")
 @sql_lesson.registrations.create(:user => @sam, :role => "student")
 @sql_lesson.registrations.create(:user => @john, :role => "student", :admin => true)
 @javascript_lesson.registrations.create(:user => @sam, :role => "teacher")
 @javascript_lesson.registrations.create(:user => @isaac, :role => "student")
 
 # Creating some comments
-@comment1 = Comment.create(:user_id => @sam.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from Sam to CSS Lesson")
-@comment2 = Comment.create(:user_id => @isaac.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from Isaac to CSS Lesson")
-@comment3 = Comment.create(:user_id => @john.id, :lesson_id => @css_lesson.id, :content => "Comment from seed file from John to CSS Lesson")
-@comment4 = Comment.create(:user_id => @john.id, :lesson_id => @javascript_lesson.id, :content => "Comment from seed file from John to JavaScript Lesson")
-@comment5 = Comment.create(:user_id => @isaac.id, :lesson_id => @javascript_lesson.id, :content => "Comment from seed file from John to JavaScript Lesson")
+@comment1 = Comment.create(:user_id => @sam.id, :lesson_id => @css_lesson.id, :content => "I'm really confused about block elements")
+@comment2 = Comment.create(:user_id => @isaac.id, :lesson_id => @css_lesson.id, :content => "I can help with that. When are you free?")
+@comment3 = Comment.create(:user_id => @john.id, :lesson_id => @css_lesson.id, :content => "I can meet weekends -- I'm usually around Flatiron anyway")
+@comment4 = Comment.create(:user_id => @isaac.id, :lesson_id => @javascript_lesson.id, :content => "Would Sunday afternoon work for people? I'm free to meet anywhere.")
+@comment5 = Comment.create(:user_id => @sam.id, :lesson_id => @javascript_lesson.id, :content => "I'd be interested in this if I were available, but I can't commit yet.")
 
  
