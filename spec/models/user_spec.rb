@@ -82,10 +82,31 @@ describe "User" do
     expect(User.find_or_create_by_oauth(auth_hash)).to eq(user)
   end
 
+  it 'knows its open lessons as a student' do 
+    desired_lessons = @sam.lessons_by_role_and_status("student", "open")
+
+    expect(desired_lessons).to include(@css_lesson)
+    expect(desired_lessons).to_not include(@arel_lesson) 
+  end
+
   it 'knows its upcoming lessons as a student' do 
     desired_lessons = (@sam.lessons_by_role_and_status("student", "open") + @sam.lessons_by_role_and_status("student", "closed"))
 
     expect(desired_lessons).to include(@css_lesson)
+    expect(desired_lessons).to_not include(@arel_lesson) 
+  end
+
+  it 'knows its upcoming lessons as a teacher' do 
+    desired_lessons = (@sam.lessons_by_role_and_status("teacher", "open")) # + @sam.lessons_by_role_and_status("student", "closed"))
+
+    expect(desired_lessons).to include(@arel_lesson)
+    expect(desired_lessons).to_not include(@css_lesson) 
+  end
+
+  it 'knows its completed lessons as a teacher' do 
+    desired_lessons = (@sam.lessons_by_role_and_status("teacher", "completed"))
+
+    expect(desired_lessons).to include(@jquery_lesson)
     expect(desired_lessons).to_not include(@arel_lesson) 
   end
 

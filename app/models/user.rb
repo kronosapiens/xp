@@ -32,9 +32,15 @@ class User < ActiveRecord::Base
 
   def lessons_by_role_and_status(role, status)
     self.lessons.where(:status => status).select do |lesson|
-      lesson.registrations.where(:role => role, :user_id => self.id)
+      (lesson.registrations.where(:role => role) && lesson.registrations.where(:user_id => self.id))
     end
   end
+
+  # def lessons_by_role_and_status(role, status)
+  #   self.lessons.where(:status => status).select do |lesson|
+  #     lesson.registrations.where(:role => role, :user_id => self.id)
+  #   end
+  # end
 
   def open_lessons_as_student
     self.lessons.where(:status => "open").select do |lesson|
