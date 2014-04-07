@@ -13,11 +13,11 @@ module LessonsHelper
   end
 
 
-  def lesson_has_a_specific_location(lesson)
+  def lesson_has_a_specific_location?(lesson)
     lesson.specific_location != nil && lesson.specific_location != ""
   end
 
-  def lesson_has_a_specific_time(lesson)
+  def lesson_has_a_specific_time?(lesson)
     lesson.specific_time != nil && lesson.specific_time != ""
   end
 
@@ -27,7 +27,7 @@ module LessonsHelper
 
 
   def display_location(lesson) 
-    if lesson_has_a_specific_location(lesson)
+    if lesson_has_a_specific_location?(lesson)
       lesson.specific_location
     else
       "TDB"
@@ -35,7 +35,7 @@ module LessonsHelper
   end
 
   def display_time(lesson) 
-    if lesson_has_a_specific_time(lesson)
+    if lesson_has_a_specific_time?(lesson)
       adjusted_time(lesson).to_formatted_s(:long_ordinal)
     else
       "TDB"
@@ -43,7 +43,7 @@ module LessonsHelper
   end
 
   def prepopulate_time(lesson)
-    if lesson_has_a_specific_time(lesson)
+    if lesson_has_a_specific_time?(lesson)
       return adjusted_time(lesson).to_formatted_s(:long_ordinal)
     else
       return ""
@@ -52,7 +52,7 @@ module LessonsHelper
 
 
   def display_google_calendar_link(lesson)
-    if lesson_has_a_specific_time(lesson) && lesson_has_a_specific_location(lesson)
+    if lesson_has_a_specific_time?(lesson) && lesson_has_a_specific_location?(lesson)
       event_title = lesson.title.gsub(" ", "+")
       start_date = lesson.specific_time.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
       end_date = (lesson.specific_time + 2.hours).to_datetime.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
