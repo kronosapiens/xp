@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "Lesson" do
 
   before(:each) do
-    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it")
-    @ruby_lesson = Lesson.new(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it")
-    @html_lesson = Lesson.new(:title => "HTML Lesson", :description => "A lesson to talk about writing some great HTML", :references => "Bing it")
+    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it", :status => "open")
+    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it", :status => "open")
+    @ruby_lesson = Lesson.new(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it", :status => "closed")
+    @html_lesson = Lesson.new(:title => "HTML Lesson", :description => "A lesson to talk about writing some great HTML", :references => "Bing it", :status => "completed")
 
     @css = Tag.create(:name => "CSS", :category => "topic")
     @jquery = Tag.create(:name => "jQuery", :category => "topic")
@@ -37,6 +37,11 @@ describe "Lesson" do
     @css_lesson.registrations.create(:user => @tom, :role => "teacher", :admin => false)
     @css_lesson.registrations.create(:user => @ted, :role => "teacher")
     @html_lesson.registrations.create(:user => @ted, :role => "student")
+  end
+
+  it "can return all lessons of a particular status" do
+    expect(Lesson.by_status("open").length).to eq(2)
+    expect(Lesson.by_status("completed")).to include(@html_lesson)
   end
 
   it "can have sam as a user" do
@@ -82,6 +87,8 @@ describe "Lesson" do
     expect(@jquery_lesson.location_tags.length).to eq(1)
     expect(@jquery_lesson.topic_tags).to include(@frontend)
     expect(@jquery_lesson.topic_tags.length).to eq(2)
+    expect(@jquery_lesson.tags_by_category("topic")).to include(@frontend)
+    expect(@jquery_lesson.tags_by_category("topic").length).to eq(2)
   end
 
   it "returns [] if it has no tags of a particular category" do

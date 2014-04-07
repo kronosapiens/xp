@@ -13,6 +13,12 @@ class Lesson < ActiveRecord::Base
   validates :description, presence: true
   validate :has_tags
 
+  # Class Methods
+  def self.by_status(status)
+    where(:status => status)
+  end
+
+  # Instance Methods
   def ok_to_delete?
     registrations.length > 1
   end
@@ -56,6 +62,10 @@ class Lesson < ActiveRecord::Base
 
   def time_tags
     tags.where(category: "time")
+  end
+
+  def tags_by_category(category)
+    tags.where(category: category)
   end
 
   def tags_to_string

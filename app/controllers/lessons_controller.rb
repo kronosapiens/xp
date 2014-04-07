@@ -1,11 +1,12 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
   before_action :get_tags, only: [:index, :new, :edit, :show]
+  before_action :login_required, except: [:index, :show]
 
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.by_status("open")
     # stuff for sending tag data to the index
   end
 
@@ -30,7 +31,7 @@ class LessonsController < ApplicationController
     if is_user_admin?
       render :edit
     else
-      flash[:notice] = "Can't edit unless admin!"
+      flash[:alert] = "Can't edit unless admin!"
       redirect_to @lesson
     end
   end
@@ -90,10 +91,10 @@ class LessonsController < ApplicationController
   def update_status
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: "Lesson status successfully updated to #{params[:lesson][:status]}." }
+        format.html { redirect_to @lesson, notice: "Lesson status successfully updated to '#{params[:lesson][:status]}'." }
         format.json { head :no_content }
       else
-        format.html { redirect_to @lesson, notice: "Unable to change lesson status" }
+        format.html { redirect_to @lesson, alert: "Unable to change lesson status" }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
@@ -110,7 +111,7 @@ class LessonsController < ApplicationController
           format.json { head :no_content }
         end
       else
-        flash[:notice] = "Can't delete unless admin!"
+        flash[:alert] = "Can't delete unless admin!"
         redirect_to @lesson
       end
     else

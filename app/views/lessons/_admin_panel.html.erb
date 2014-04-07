@@ -1,17 +1,22 @@
   <h4>Admin Actions:</h4>
 
   <% if @lesson.status == "open" %>
-    <%= button_to "Close Lesson!", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "closed"}, {:method => :patch, :class => "btn btn-primary" } %>
+    <%= button_to "Close Lesson!", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "closed"}, {:method => :patch, :class => "btn btn-warning" } %>
   <% elsif @lesson.status == "closed" %>
     <%= button_to "Open Lesson!", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "open"}, {:method => :patch, :class => "btn btn-primary" } %>
   <% end %>
 
-  <%= button_to "Mark Completed", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "completed"}, {:method => :patch, :class => "btn btn-success", :data => { confirm: 'This will permamently archive the lesson. Are you sure?'} } %>
+  <% unless @lesson.status == "completed" %>
+    <%= button_to "Mark Completed", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "completed"}, {:method => :patch, :class => "btn btn-success", :data => { confirm: 'This will permamently archive the lesson. Are you sure?'} } %>
+  <% end %>
+
+  <br>
+  <br>
 
   <%= link_to 'Edit Lesson', edit_lesson_path(@lesson), { class: "btn btn-info" } %>
 
   <% if one_user?(@lesson) %>
-    <%= link_to 'Delete', @lesson, method: :delete, data: { confirm: 'Are you sure?', class: "btn btn-warning" } %>
+    <%= link_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } } %>
   <% end %>
 
   <br>

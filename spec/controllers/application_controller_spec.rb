@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe ApplicationController do
 
-  xit "returns nil for 'current_user' if there is no one logged in" do
-    reset_session
-    expect(current_user).to eq(nil)
+  describe 'current user' do
+
+    it "returns nil for if there is no one logged in" do
+      @request.reset_session
+      expect(@controller.current_user).to eq(nil)
+    end
+    
   end
 
 end

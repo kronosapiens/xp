@@ -4,7 +4,11 @@
 
   <% if notice %>
     <div class="alert alert-info">
-      <p id="notice"><%= notice %></p>
+      <p id="notice"><%= notice.html_safe %></p>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-warning">
+      <p id="alert"><%= alert.html_safe %></p>
     </div>
   <% end %>
 

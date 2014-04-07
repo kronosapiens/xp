@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
         format.json { head :no_content }
       end
     else
-      flash[:notice] = "Can't delete someone else's comment!"
+      flash[:alert] = "Can't delete someone else's comment!"
       redirect_to :back
     end
   end

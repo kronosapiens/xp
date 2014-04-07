@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
-
+# Class Methods
   def self.find_or_create_by_oauth(auth_hash)
     where(:provider => auth_hash["provider"], :uid => auth_hash["uid"]).first ||
     create_by_oauth(auth_hash)
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
     end
   end
 
+# Instance Methods
   def lessons_as_student
     registrations.where(:role => "student").map(&:lesson)
   end
