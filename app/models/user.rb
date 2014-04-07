@@ -31,8 +31,12 @@ class User < ActiveRecord::Base
   end
 
   def lessons_by_role_and_status(role, status)
-    self.lessons.where(:status => status).select do |lesson|
-      (lesson.registrations.where(:role => role) && lesson.registrations.where(:user_id => self.id))
+    my_registrations = self.registrations.where(:role => role).select do |registration|
+      registration.lesson.status == status
+    end
+
+    my_registrations.map do |registration| 
+      registration.lesson
     end
   end
 
