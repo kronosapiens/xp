@@ -13,10 +13,11 @@
     <strong>Upcoming Lessons as Student</strong>
     <ul>
       <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
-        <li><%= lesson.title %></li>
+        <!-- <li><%#= lesson.title %></li> -->
+        <li><%= link_to lesson.title, lesson %></li>
       <% end %>
       <% @user.lessons_by_role_and_status("student", "closed").each do |lesson| %>
-        <li><%= lesson.title %></li>
+        <li><%= link_to lesson.title, lesson %></li>
       <% end %>
     </ul>
   </p>
@@ -25,10 +26,10 @@
     <strong>Upcoming Lessons as Teacher</strong>
     <ul>
       <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
-        <li><%= lesson.title %></li>
+        <li><%= link_to lesson.title, lesson %></li>
       <% end %>
       <% @user.lessons_by_role_and_status("teacher", "closed").each do |lesson| %>
-        <li><%= lesson.title %></li>
+        <li><%= link_to lesson.title, lesson %></li>
       <% end %>
     </ul>
   </p>
@@ -37,7 +38,7 @@
     <strong>Past Lessons as Student</strong>
     <ul>
       <% @user.lessons_by_role_and_status("student", "completed").each do |lesson| %>
-        <li><%= lesson.title %></li>
+        <li><%= link_to lesson.title, lesson %></li>
       <% end %>
     </ul>
   </p>
@@ -46,7 +47,7 @@
     <strong>Past Lessons as Teacher</strong>
     <ul>
       <% @user.lessons_by_role_and_status("teacher", "completed").each do |lesson| %>
-        <li><%= lesson.title %></li>
+        <li><%= link_to lesson.title, lesson %></li>
       <% end %>
     </ul>
   </p>
