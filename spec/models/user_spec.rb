@@ -3,10 +3,13 @@ require 'spec_helper'
 describe "User" do
 
   before(:each) do
-    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it", :status => "completed")
-    @rails_lesson = Lesson.new(:title => "Rails Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it", :status => "closed")
-    @arel_lesson = Lesson.new(:title => "Arel Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
+    @css_lesson = create(:lesson)
+    @jquery_lesson = create(:lesson)
+    @rails_lesson = create(:lesson)
+    @arel_lesson = create(:lesson)
+
+    @jquery_lesson.update(:status => "completed")
+    @rails_lesson.update(:status => "closed")
   
     @css = Tag.create(:name => "CSS", :category => "topic")
     @jquery = Tag.create(:name => "jQuery", :category => "topic")
@@ -17,14 +20,9 @@ describe "User" do
     @jquery_lesson.lesson_tags.build(:tag => @jquery)
     @rails_lesson.lesson_tags.build(:tag => @rails)
     @arel_lesson.lesson_tags.build(:tag => @arel)
-
-    @css_lesson.save
-    @jquery_lesson.save
-    @rails_lesson.save
-    @arel_lesson.save
   
-    @tom = User.create(:name => "Tom")
-    @sam = User.create(:name => "Sam")
+    @tom = create(:user)
+    @sam = create(:user)
    
     @css_lesson.registrations.create(:user => @tom, :role => "teacher")
 
@@ -115,6 +113,9 @@ describe "User" do
 
     expect(desired_lessons).to include(@jquery_lesson)
     expect(desired_lessons).to_not include(@arel_lesson) 
+  end
+
+  xit 'can return the top users by tag and role' do
   end
 
 end

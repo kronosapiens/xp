@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "Tag" do
 
   before(:each) do
-    @lesson1 = FactoryGirl.create(:lesson)
-    @lesson2 = FactoryGirl.create(:lesson)
-    @lesson3 = FactoryGirl.create(:lesson)
-    @lesson4 = FactoryGirl.create(:lesson)
+    @lesson1 = create(:lesson)
+    @lesson2 = create(:lesson)
+    @lesson3 = create(:lesson)
+    @lesson4 = create(:lesson)
 
     @lesson3.update(:status => "closed")
     @lesson4.update(:status => "completed")
@@ -32,6 +32,16 @@ describe "Tag" do
     @css.lesson_tags.create(:lesson => @lesson2)
     @css.lesson_tags.create(:lesson => @lesson3)
     @css.lesson_tags.create(:lesson => @lesson4)
+
+    @user1 = create(:user)
+    @user2 = create(:user)
+    @user3 = create(:user)
+    @user4 = create(:user)
+
+    @lesson1.registrations.build(:user => @user1, :role => "teacher")
+    @lesson1.registrations.build(:user => @user2, :role => "student")
+    @lesson2.registrations.build(:user => @user1, :role => "teacher")
+    @lesson2.registrations.build(:user => @user3, :role => "teacher")
   end
 
   it "can have css_lesson as a lesson" do
@@ -72,14 +82,6 @@ describe "Tag" do
   it "can find all of its completed lessons" do
     expect(@css.completed_lessons).to include(@lesson4)
     expect(@css.completed_lessons.length).to eq(1)
-  end
-
-  xit "can find the user who taught the most of it" do
-    expect(@css.top_users("teacher", 2)).to include(@user1)
-  end
-
-  xit "can find the user who learned the most of it" do
-    expect(@css.top_users("student", 2)).to include(@user3)
   end
 
 end

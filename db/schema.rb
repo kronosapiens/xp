@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20140408191617) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
+    t.string   "category",   default: "topic"
     t.string   "slug"
   end
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140408191617) do
     t.string   "uid"
     t.string   "nickname"
     t.string   "email"
-    t.string   "image_url"
+    t.string   "image_url",  default: "http://i265.photobucket.com/albums/ii220/ivnovitch/pokeball.png"
   end
 
 end

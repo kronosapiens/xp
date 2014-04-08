@@ -29,10 +29,6 @@ class Tag < ActiveRecord::Base
     lessons.where(:status => "completed")
   end
 
-  def top_users(role, number)
-    # lessons.joins(:registrations).where(:'registrations.role' => )
-  end
-
   private
   def self.all_by_category(category)
     where(:category => category)

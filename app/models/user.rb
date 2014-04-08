@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.most_by_tag_and_role(tag, role, number)
+    self.joins(:lessons => :tags).where("registrations.role = '#{role}'").where("tags.id = '#{tag.id}'").group('users.id', 'tags.id').order('count(*) DESC').limit(number)
+  end
+
 # Instance Methods
   def lessons_as_student
     registrations.where(:role => "student").map(&:lesson)
