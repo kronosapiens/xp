@@ -4,7 +4,6 @@ describe "Sign Up" do
   before(:each) do
     @user = FactoryGirl.create(:user) 
     @lesson = FactoryGirl.create(:lesson)
-    
   end
 
 it 'does allow you to take course if you are logged in' do

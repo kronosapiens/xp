@@ -35,9 +35,7 @@ class User < ActiveRecord::Base
     my_registrations = self.registrations.where(:role => role).select do |registration|
       registration.lesson.status == status
     end
-    my_registrations.map do |registration| 
-      registration.lesson
-    end
+    my_registrations.map(&:lesson)
   end
 
 

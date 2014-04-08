@@ -5,8 +5,8 @@ FactoryGirl.define do
 
   factory :user do 
     uid
-    name "Sam"
-    nickname "sts10"
+    name "Eevee"
+    nickname "e3ve3"
     image_url "http://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/250px-133Eevee.png"
   end
 end

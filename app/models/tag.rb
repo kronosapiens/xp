@@ -21,6 +21,18 @@ class Tag < ActiveRecord::Base
     all_by_category("location")
   end
 
+  def upcoming_lessons
+    lessons.where(:status => "open") + lessons.where(:status => "closed")
+  end
+
+  def completed_lessons
+    lessons.where(:status => "completed")
+  end
+
+  def top_users(role, number)
+    # lessons.joins(:registrations).where(:'registrations.role' => )
+  end
+
   private
   def self.all_by_category(category)
     where(:category => category)
