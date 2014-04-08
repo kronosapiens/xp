@@ -4,7 +4,7 @@
   
   <% else %>
 
-    <%= button_to "Admin This!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, :'registration[admin]' => "true"}, {method: :patch, class: "btn btn-success", remote: true} %>
+    <%= button_to "Admin This!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, :'registration[admin]' => "true"}, {method: :patch, class: "btn btn-success"} %>
 
   <% end %>
 
@@ -12,4 +12,4 @@
       <%= render "lessons/admin_panel" %>
     <% end %>
 
-      <%= button_to "Leave Lesson!", {controller: "registrations", action: "destroy", lesson_id: @lesson.id, id: @registration.id }, {method: :delete, class: "btn btn-danger", remote: true} %>
+      <%= button_to "Leave Lesson!", {controller: "registrations", action: "destroy", lesson_id: @lesson.id, id: @registration.id }, {method: :delete, class: "btn btn-danger"} %>

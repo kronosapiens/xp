@@ -22,7 +22,7 @@
   <br>
   <br>
 
-  <%= button_to "Relinquish Administration!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, 'registration[admin]' => "false"}, {method: :patch, class: "btn btn-warning", remote: true} %>
+  <%= button_to "Relinquish Administration!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, 'registration[admin]' => "false"}, {method: :patch, class: "btn btn-warning"} %>
 
   <br><br>
 
