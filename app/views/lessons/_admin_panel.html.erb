@@ -26,10 +26,16 @@
 
   <br><br>
 
-  <form action="/lessons/<%= @lesson.id %>/admin_email" method="POST" id="admin_email">
+  <form role="form" action="/lessons/<%= @lesson.id %>/admin_email" method="POST" id="admin_email">
     <%= token_tag %>
-    Send an Email to all teachers and students<br>
-    Subject: <input type="text" name="subject"><br>
-    Body: <textarea name="content"></textarea><br>
-    <input type="submit" name="submit" value="Send Email">
+    <h4>Send an Email to All Teachers and Students:</h4>
+    <div class="form-group">
+      Subject: <input type="text" name="subject">
+    </div>
+    <div class="form-group">
+      Body: <textarea name="content"></textarea>
+    </div>
+    <input type="submit" name="submit" value="Send Email" class="btn">
   </form>
+
+  <br><br>
