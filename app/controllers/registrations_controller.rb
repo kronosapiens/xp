@@ -37,6 +37,11 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def admin_email 
+    set_lesson
+    LessonAdminMailer.admin_message(@lesson).deliver
+  end
+
   def destroy
     @registration.destroy
     

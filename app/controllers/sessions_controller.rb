@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   def oauth
     user = User.find_or_create_by_oauth(request.env["omniauth.auth"])
     login(user)
+    binding.pry
+    # LessonAdminMailer.signup_welcome(user).deliver
     redirect_to root_path
   end
 
