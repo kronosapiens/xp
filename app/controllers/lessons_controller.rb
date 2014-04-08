@@ -13,9 +13,9 @@ class LessonsController < ApplicationController
   # GET /lessons/1.json
   def show
     @registration = (current_user ? get_registration : nil)
-    @admin = @lesson.admin
-    @is_admin = is_user_admin?
     @comment = Comment.new
+    # @admin = @lesson.admin
+    # @is_admin = is_user_admin?
   end
 
   # GET /lessons/new
@@ -27,7 +27,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1/edit
   def edit
-    if is_user_admin?
+    if is_user_admin?(@lesson)
       render :edit
     else
       flash[:alert] = "Can't edit unless admin!"
@@ -132,9 +132,9 @@ class LessonsController < ApplicationController
     @time_tags = Tag.all_times
   end
 
-  def is_user_admin?
-    current_user && @lesson.admin == current_user
-  end
+  # def is_user_admin?
+  #   current_user && @lesson.admin == current_user
+  # end
 
   def tag_hash_from_params(params)
     {

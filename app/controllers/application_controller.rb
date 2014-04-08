@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :logged_in?
 
+  def is_user_admin?(lesson)
+    current_user && lesson.admin == current_user
+  end
+  helper_method :is_user_admin?
+
   if Rails.env.test?
     prepend_before_filter :stub_session_user_id
     def stub_session_user_id

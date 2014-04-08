@@ -1,6 +1,6 @@
-  <% if @admin %>
+  <% if @lesson.admin %>
 
-    <h4>This lesson's admin is: <%= image_tag(@admin.image_url, size: "30", alt: @admin.name ) %> <%= link_to @admin.name, user_path(@admin.nickname) %></h4>
+    <h4>This lesson's admin is: <%= image_tag(@lesson.admin.image_url, size: "30", alt: @lesson.admin.name ) %> <%= link_to @lesson.admin.name, user_path(@lesson.admin.nickname) %></h4>
   
   <% else %>
 
@@ -8,8 +8,8 @@
 
   <% end %>
 
-    <% if @is_admin %>
+    <% if is_user_admin?(@lesson) %>
       <%= render "lessons/admin_panel" %>
     <% end %>
 
-      <%= button_to "Leave Lesson!", {:controller => "registrations", :action => "destroy", :lesson_id => @lesson.id, :id => @registration.id }, {:method => :delete, :class => "btn btn-danger"} %>
+      <%= button_to "Leave Lesson!", {:controller => "registrations", :action => "destroy", :lesson_id => @lesson.id, :id => @registration.id }, {method: :delete, remote: true, class: "btn btn-danger"} %>

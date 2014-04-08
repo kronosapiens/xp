@@ -59,34 +59,20 @@
           </p>
         <% end %>
 
-        <div id="current_teachers col-sm-4">
-          <h4>Current Teachers:</h4>
-            <% unless @lesson.teachers == [] %>
-              <% @lesson.teachers.each do |teacher| %>
-                <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %>
-              <% end %>
-            <% else %>
-              <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
-            <% end %>
+        <div class="row" id="current-registrants">
+          <%= render "lessons/current_registrants" %>
         </div>
 
-        <div id="current_students col-sm-4">
-          <h4>Current Students:</h4>
-            <% unless @lesson.students == [] %>
-              <% @lesson.students.each do |student| %>
-                <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %>
-              <% end %>
-            <% else %>
-              <p>No one signed up for this lesson yet! Tell your friends!</p>
-            <% end %>
-        </div>
         <br>
 
-        <% if @registration %>
-          <%= render "lessons/lesson_registered" %>
-        <% else %>
-          <%= render "lessons/lesson_unregistered" %>
-        <% end %>
+        <div id="registration-info">
+          <% if @registration %>
+            <%= render "lessons/lesson_registered" %>
+          <% else %>
+            <%= render "lessons/lesson_unregistered" %>
+          <% end %>
+        </div>
+
       </div>
     </div>
   </div>
@@ -102,7 +88,7 @@
 
       <h4>Leave a New Comment</h4>
 
-      <%= form_for [@lesson, @comment], html: {role: "form", remote: true} do |f| %>
+      <%= form_for [@lesson, @comment], {role: "form", remote: true} do |f| %>
         <% if @comment.errors.any? %>
           <div class="alert alert-warning">
             <% @comment.errors.full_messages.each do |msg| %>
