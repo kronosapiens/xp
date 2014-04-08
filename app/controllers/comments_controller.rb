@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   def destroy
     @lesson = Lesson.find(params[:lesson_id])
     @comment = Comment.find(params[:id])
-    if permitted && @comment.destroy
+    if permitted_to_delete_comment?(@comment) && @comment.destroy
       respond_to do |format|
         format.html { redirect_to :back, :notice => "Commented successfully deleted" }
         format.json { head :no_content }
@@ -32,9 +32,5 @@ class CommentsController < ApplicationController
     end
   end
 
-  private 
-    def permitted
-      current_user == @comment.user || current_user == @lesson.admin
-    end
 
 end

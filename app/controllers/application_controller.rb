@@ -27,6 +27,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_user_admin?
 
+  def permitted_to_delete_comment?(comment)
+    current_user == comment.user || current_user == @lesson.admin
+  end
+  helper_method :permitted_to_delete_comment?
+
   if Rails.env.test?
     prepend_before_filter :stub_session_user_id
     def stub_session_user_id
