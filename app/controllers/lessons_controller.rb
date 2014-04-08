@@ -11,11 +11,17 @@ class LessonsController < ApplicationController
 
   def admin_email
     set_lesson
-    subject = params[:subject]
-    content = params[:content]
-    LessonAdminMailer.admin_message(@lesson, subject, content).deliver
+    if is_user_admin?(@lesson)
+      subject = params[:subject]
+      content = params[:content]
+      LessonAdminMailer.admin_message(@lesson, subject, content).deliver
 
-    redirect_to :back
+      redirect_to @lesson, notice: 'Email was sent!' 
+      # redirect_to :back
+    else
+      flash[:alert] = "Only lesson admins can send emails to the whole class"
+      redirect_to @lesson
+    end
   end
 
   # GET /lessons/1
