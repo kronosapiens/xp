@@ -1,21 +1,20 @@
 FactoryGirl.define do 
 
-  sequence :title do |l|
-    "Guitar Lesson With Mike #{l}"
+  sequence :title do |n|
+    "Mind Blowing Knowledge #{n}"
   end
 
   factory :lesson do 
     title 
-    description "1 hour of steaming shred sesh!"
-    references "Bob and Mike"
+    description "Super awesome lesson that will change your life"
+    references "github.com/something"
     specific_time DateTime.now
-    specific_location "My house"
+    specific_location "Flatiron Quad"
     status "open"
 
     before(:create) do |lesson|
       lesson.tags << FactoryGirl.create(:tag)
     end
   
-
   end
 end

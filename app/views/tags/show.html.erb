@@ -1,0 +1,30 @@
+<div class="container lesson-container">
+  <div class="floater">
+  </div>
+
+  <div class="col-md-6">
+    <div class="lesson" id="tag-stats">
+      <h1><%= @tag.name %></h1>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="lesson" id="tag-lessons">
+      <h3>Upcoming Lessons:</h3>
+        <ul>
+          <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
+            <li><%= link_to lesson.title, lesson %></li>
+          <% end %>
+          <% @user.lessons_by_role_and_status("student", "closed").each do |lesson| %>
+           <li><%= link_to lesson.title, lesson %></li>
+          <% end %>
+        </ul>
+
+      <h3>Completed Lessons:</h3>
+    </div>
+  </div>
+
+</div>
+
+
+

@@ -29,8 +29,6 @@ class LessonsController < ApplicationController
   def show
     @registration = (current_user ? get_registration : nil)
     @comment = Comment.new
-    # @admin = @lesson.admin
-    # @is_admin = is_user_admin?
   end
 
   # GET /lessons/new
@@ -129,11 +127,16 @@ class LessonsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_lesson
-    @lesson = Lesson.find(params[:id])
+    # if params[:id].is_a?(Integer)
+      @lesson = Lesson.find(params[:id])
+    # else
+    #   @lesson = Lesson.find_by(:slug => params[:id])
+    # end
   end
 
   def get_registration
-    Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
+    Registration.find_by(user: current_user, lesson: @lesson)
+    # Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -146,10 +149,6 @@ class LessonsController < ApplicationController
     @location_tags = Tag.all_locations
     @time_tags = Tag.all_times
   end
-
-  # def is_user_admin?
-  #   current_user && @lesson.admin == current_user
-  # end
 
   def tag_hash_from_params(params)
     {

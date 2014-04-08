@@ -7,9 +7,9 @@
     <p>Time: <%= display_time(lesson) %></p>
 
     <p><%= lesson.students.length %> people have signed up to take this class. 
-      <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success"} %></p>
+      <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-xs btn-success"} %></p>
 
     <p><%= lesson.teachers.length %> people have signed up to teach this class.
-        <%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-warning"} %></p>
+        <%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-xs btn-warning"} %></p>
   </div>
 </div>
