@@ -20,5 +20,8 @@ Rails.application.routes.draw do
 
 # Routes for user interactions
   get "/users/:nickname" => "users#show", as: :user
+  get "/users/:nickname/edit" => "users#edit", as: :edit_user
+
+  post "/users/:nickname/update" => "users#update", as: :update_user
   
 end
