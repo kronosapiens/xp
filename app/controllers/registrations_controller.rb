@@ -25,13 +25,14 @@ class RegistrationsController < ApplicationController
   end
 
   def update
-
     respond_to do |format|
       if @registration.update(registration_params)
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }
+        format.js {}
         format.json { head :no_content }
       else
         format.html { redirect_to @lesson, alert: 'Update registration failed...' }
+        format.js { redirect_to @lesson, alert: 'Update registration failed...' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end

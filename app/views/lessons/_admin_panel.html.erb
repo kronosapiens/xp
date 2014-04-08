@@ -1,28 +1,28 @@
   <h4>Admin Actions:</h4>
 
   <% if @lesson.status == "open" %>
-    <%= button_to "Close Lesson!", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "closed"}, {:method => :patch, :class => "btn btn-warning" } %>
+    <%= button_to "Close Lesson!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "closed"}, {method: :patch, class: "btn btn-warning", remote: true } %>
   <% elsif @lesson.status == "closed" %>
-    <%= button_to "Open Lesson!", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "open"}, {:method => :patch, :class => "btn btn-primary" } %>
+    <%= button_to "Open Lesson!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "open"}, {method: :patch, class: "btn btn-primary", remote: true } %>
   <% end %>
 
   <% unless @lesson.status == "completed" %>
-    <%= button_to "Mark Completed", {:controller => "lessons", :action => "update_status", :id => @lesson.id, :admin_id => @registration.id, :'lesson[status]' => "completed"}, {:method => :patch, :class => "btn btn-success", :data => { confirm: 'This will permamently archive the lesson. Are you sure?'} } %>
-  <% end %>
+    <%= button_to "Mark Completed", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "completed"}, {method: :patch, class: "btn btn-success", data: { confirm: 'This will permamently archive the lesson. Are you sure?'} } %>
 
-  <br>
-  <br>
+      <br>
+      <br>
+  <% end %>
 
   <%= link_to 'Edit Lesson', edit_lesson_path(@lesson), { class: "btn btn-info" } %>
 
   <% if one_user?(@lesson) %>
-    <%= link_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } } %>
+    <%= link_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, remote: true } %>
   <% end %>
 
   <br>
   <br>
 
-  <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
+  <%= button_to "Relinquish Administration!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, 'registration[admin]' => "false"}, {method: :patch, class: "btn btn-warning", remote: true} %>
 
   <br><br>
 
@@ -39,3 +39,4 @@
   </form>
 
   <br><br>
+
