@@ -35,27 +35,8 @@ class User < ActiveRecord::Base
     my_registrations = self.registrations.where(:role => role).select do |registration|
       registration.lesson.status == status
     end
-
     my_registrations.map do |registration| 
       registration.lesson
-    end
-  end
-
-  # def lessons_by_role_and_status(role, status)
-  #   self.lessons.where(:status => status).select do |lesson|
-  #     lesson.registrations.where(:role => role, :user_id => self.id)
-  #   end
-  # end
-
-  def open_lessons_as_student
-    self.lessons.where(:status => "open").select do |lesson|
-      lesson.registrations.where(:role => "student").where(:user_id => self.id)
-    end
-  end
-
-  def open_lessons_as_teacher
-    self.lessons.where(:status => "open").select do |lesson|
-      lesson.registrations.where(:role => "teacher", :user_id => self.id)
     end
   end
 

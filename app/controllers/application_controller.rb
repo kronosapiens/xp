@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   def login_required
     unless logged_in?
       flash[:alert] = "You must be logged in to take this action. Please <a href='#{login_path}'>log in</a> and try again."
-      # redirect_to root_path
       redirect_to :back
     end
   end
@@ -29,4 +28,5 @@ class ApplicationController < ActionController::Base
       session[:user_id] = $rspec_user_id if $rspec_user_id
     end
   end
+  
 end

@@ -5,16 +5,15 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(registration_params)
-    @registration.lesson_id = params[:lesson_id]
-    @registration.user_id = current_user.id
+    @registration(:lesson_id => params[:lesson_id], :user => current_user)
     @lesson = Lesson.find(@registration.lesson_id)
 
     respond_to do |format|
       if @registration.save
-        format.html { redirect_to @lesson, notice: 'Sign Up Successful!' }
+        format.html { redirect_to @lesson, notice: 'Sign up successful!' }
         format.json { render action: 'show', status: :created, location: @lesson }
       else
-        format.html { redirect_to @lesson, alert: 'Sign Up Failed :(' }
+        format.html { redirect_to @lesson, alert: 'Sign up failed... are you already signed up?' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
@@ -28,7 +27,7 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @lesson, alert: 'You cannot update your registration right now.' }
+        format.html { redirect_to @lesson, alert: 'Update registration failed...' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end

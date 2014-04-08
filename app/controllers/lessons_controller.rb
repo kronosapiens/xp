@@ -6,8 +6,7 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.by_status("open")
-    # stuff for sending tag data to the index
+    @lessons = Lesson.all_by_status("open")
   end
 
   # GET /lessons/1
@@ -39,19 +38,14 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create 
+    tags_hash = tag_hash_from_params(params)
     @lesson = Lesson.new(lesson_params)
-
-    tags_hash = {
-      :topics => params[:lesson][:topics],
-      :locations => params[:lesson][:locations],
-      :times => params[:lesson][:times]
-    }
     @lesson.build_tags(tags_hash)
 
     respond_to do |format|
      if @lesson.save
        @lesson.registrations.create(:user => current_user, :role => params[:role])
-       format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+       format.html { redirect_to @lesson, notice: 'Lesson was successfully created!' }
        format.json { render action: 'show', status: :created, location: @lesson }
      else
       get_tags
@@ -67,11 +61,8 @@ class LessonsController < ApplicationController
   def update
     unless params[:lesson][:status]
       @lesson.lesson_tags.clear
-      tags_hash = {
-        :topics => params[:lesson][:topics],
-        :locations => params[:lesson][:locations],
-        :times => params[:lesson][:times]
-      }
+
+      tags_hash = tag_hash_from_params(params)
       @lesson.build_tags(tags_hash)
           
       params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
@@ -121,28 +112,36 @@ class LessonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lesson
-      @lesson = Lesson.find(params[:id])
-    end
-
-    def get_registration
-      Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lesson_params
-      params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time, :status)
-    end
-
-    def get_tags
-      @topic_tags = Tag.all_topics
-      @location_tags = Tag.all_locations
-      @time_tags = Tag.all_times
-    end
-
-    def is_user_admin?
-      current_user && @lesson.admin == current_user
-    end
-
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lesson
+    @lesson = Lesson.find(params[:id])
   end
+
+  def get_registration
+    Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lesson_params
+    params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time, :status)
+  end
+
+  def get_tags
+    @topic_tags = Tag.all_topics
+    @location_tags = Tag.all_locations
+    @time_tags = Tag.all_times
+  end
+
+  def is_user_admin?
+    current_user && @lesson.admin == current_user
+  end
+
+  def tag_hash_from_params(params)
+    {
+      :topics => params[:lesson][:topics],
+      :locations => params[:lesson][:locations],
+      :times => params[:lesson][:times]
+    }
+  end
+
+end

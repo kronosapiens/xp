@@ -9,12 +9,13 @@ class Lesson < ActiveRecord::Base
 
   has_many :comments
 
-  validates :title, presence: true 
+  validates :title, presence: true
   validates :description, presence: true
+  validates :references, presence: true
   validate :has_tags
 
   # Class Methods
-  def self.by_status(status)
+  def self.all_by_status(status)
     where(:status => status)
   end
 

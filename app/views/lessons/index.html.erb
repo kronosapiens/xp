@@ -1,6 +1,6 @@
 <%= render "lessons/lesson_nav", locals: {location_tags: @location_tags, time_tags: @time_tags, topic_tags: @topic_tags } %>
 
-<div class="container">
+<div class="container lesson-container">
   <% if notice %>
     <div class="alert alert-info">
       <p id="notice"><%= notice.html_safe %></p>

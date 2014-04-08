@@ -51,25 +51,25 @@
 @sql_lesson.save
 
 #Creating some users
-@sam = User.create(:name => "Sam", :uid => "12345", :nickname => "sam", :image_url => "http://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/250px-133Eevee.png")
-@isaac = User.create(:name => "Isaac", :uid => "98765", :nickname => "izk.harper", :image_url => "http://fc01.deviantart.net/fs70/f/2013/061/1/e/pikachu_digital_art___pokemon_by_dark_omni-d5wotdb.png")
-@john = User.create(:name => "John", :uid => "14894", :nickname => "krauss", :image_url => "http://images1.wikia.nocookie.net/__cb20120906010245/es.pokemon/images/8/8b/Dratini_(anime_SO)_2.png")
+@eevee = User.create(:name => "Eevee", :uid => "12345", :nickname => "e3ve3", :image_url => "http://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/250px-133Eevee.png")
+@pikachu = User.create(:name => "Pikachu", :uid => "98765", :nickname => "pikapika", :image_url => "http://fc01.deviantart.net/fs70/f/2013/061/1/e/pikachu_digital_art___pokemon_by_dark_omni-d5wotdb.png")
+@dratini = User.create(:name => "Dratini", :uid => "14894", :nickname => "dratinibobini", :image_url => "http://images1.wikia.nocookie.net/__cb20120906010245/es.pokemon/images/8/8b/Dratini_(anime_SO)_2.png")
 
 #Associating some lessons and users
-@css_lesson.registrations.create(:user => @sam, :role => "student", :admin => true)
-@css_lesson.registrations.create(:user => @john, :role => "student")
-@css_lesson.registrations.create(:user => @isaac, :role => "teacher")
-@jquery_lesson.registrations.create(:user => @sam, :role => "teacher", :admin => true)
-@sql_lesson.registrations.create(:user => @sam, :role => "student")
-@sql_lesson.registrations.create(:user => @john, :role => "student", :admin => true)
-@javascript_lesson.registrations.create(:user => @sam, :role => "teacher")
-@javascript_lesson.registrations.create(:user => @isaac, :role => "student")
+@css_lesson.registrations.create(:user => @eevee, :role => "student", :admin => true)
+@css_lesson.registrations.create(:user => @dratini, :role => "student")
+@css_lesson.registrations.create(:user => @pikachu, :role => "teacher")
+@jquery_lesson.registrations.create(:user => @eevee, :role => "teacher", :admin => true)
+@sql_lesson.registrations.create(:user => @eevee, :role => "student")
+@sql_lesson.registrations.create(:user => @dratini, :role => "student", :admin => true)
+@javascript_lesson.registrations.create(:user => @eevee, :role => "teacher")
+@javascript_lesson.registrations.create(:user => @pikachu, :role => "student")
 
 # Creating some comments
-@comment1 = Comment.create(:user_id => @sam.id, :lesson_id => @css_lesson.id, :content => "I'm really confused about block elements")
-@comment2 = Comment.create(:user_id => @isaac.id, :lesson_id => @css_lesson.id, :content => "I can help with that. When are you free?")
-@comment3 = Comment.create(:user_id => @john.id, :lesson_id => @css_lesson.id, :content => "I can meet weekends -- I'm usually around Flatiron anyway")
-@comment4 = Comment.create(:user_id => @isaac.id, :lesson_id => @javascript_lesson.id, :content => "Would Sunday afternoon work for people? I'm free to meet anywhere.")
-@comment5 = Comment.create(:user_id => @sam.id, :lesson_id => @javascript_lesson.id, :content => "I'd be interested in this if I were available, but I can't commit yet.")
+@comment1 = Comment.create(:user_id => @eevee.id, :lesson_id => @css_lesson.id, :content => "I'm really confused about block elements")
+@comment2 = Comment.create(:user_id => @pikachu.id, :lesson_id => @css_lesson.id, :content => "I can help with that. When are you free?")
+@comment3 = Comment.create(:user_id => @dratini.id, :lesson_id => @css_lesson.id, :content => "I can meet weekends -- I'm usually around Flatiron anyway")
+@comment4 = Comment.create(:user_id => @pikachu.id, :lesson_id => @javascript_lesson.id, :content => "Would Sunday afternoon work for people? I'm free to meet anywhere.")
+@comment5 = Comment.create(:user_id => @eevee.id, :lesson_id => @javascript_lesson.id, :content => "I'd be interested in this if I were available, but I can't commit yet.")
 
  

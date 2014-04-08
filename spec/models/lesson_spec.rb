@@ -40,8 +40,8 @@ describe "Lesson" do
   end
 
   it "can return all lessons of a particular status" do
-    expect(Lesson.by_status("open").length).to eq(2)
-    expect(Lesson.by_status("completed")).to include(@html_lesson)
+    expect(Lesson.all_by_status("open").length).to eq(2)
+    expect(Lesson.all_by_status("completed")).to include(@html_lesson)
   end
 
   it "can have sam as a user" do

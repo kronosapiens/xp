@@ -3,13 +3,13 @@ class CommentsController < ApplicationController
   # before_action :permission_check, only: :destroy
 
   def create
-    @comment = Comment.new(:user_id => current_user.id, :content => params[:content])
-    @comment.lesson_id = params[:lesson_id]
+    @comment = Comment.new(:user => current_user, :lesson_id = params[:lesson_id], :content => params[:content])
     @lesson = Lesson.find(params[:lesson_id])
 
     if @comment.save
-      redirect_to @lesson #:back
+      redirect_to @lesson
     else
+      flash[:alert] = "Comment failed to save..."
       render "lessons/show"
     end
   end 

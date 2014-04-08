@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.lesson {
+.lessons {
   padding-top: 24px;
   padding-bottom: 24px;
   margin-top: 12px;
@@ -15,6 +15,57 @@
   }
 }
 
+$gray-lighter:                lighten(#000, 93.5%) !default; // #eee
+$font-size-base:              14px !default;
+$border-radius-large:         6px !default;
+$screen-sm:                   768px !default;
+$screen-sm-min:               $screen-sm !default;
+$lesson-padding:              12px !default;
+$lesson-color:                inherit !default;
+$lesson-bg:                   $gray-lighter !default;
+$lesson-heading-color:        inherit !default;
+$lesson-font-size:            ceil(($font-size-base * 1)) !default;
+
+.lesson {
+  padding: $lesson-padding;
+  margin-bottom: $lesson-padding;
+  color: $lesson-color;
+  background-color: $lesson-bg;
+
+  h1,
+  .h1 {
+    color: $lesson-heading-color;
+  }
+  p {
+    margin-bottom: ($lesson-padding / 2);
+    font-size: $lesson-font-size;
+    font-weight: 200;
+  }
+
+  .container & {
+    border-radius: $border-radius-large; // Only round corners at higher resolutions if contained in a container
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: $screen-sm-min) {
+    padding-top:    ($lesson-padding * 1.6);
+    padding-bottom: ($lesson-padding * 1.6);
+
+    .container & {
+      padding-left:  ($lesson-padding * 2);
+      padding-right: ($lesson-padding * 2);
+    }
+
+    h1,
+    .h1 {
+      font-size: ($font-size-base * 2);
+    }
+  }
+}
+
 .lesson-index {
 
 }
@@ -24,7 +75,7 @@
 }
 
 .lesson-container {
-  width: 80%;
+  width: 85%;
 }
 
 .form-control {
@@ -44,74 +95,16 @@
   height: 24px;
 }
 
+.chosen-index {
+  width: 100%;
+}
+
 .chosen-box {
   vertical-align: middle;
   display: inline-block;
+  width: 300px;
 }
 
 .button_to {
   display: inline-block;
 }
-
-// .chosen-container {
-//   width: 100% !important;
-// } 
-
-// .chosen-container-multi {
-//   width: 95% !important;
-// }
-
-//== Jumbotron
-//
-//##
-
-// $jumbotron-padding:              30px !default;
-// $jumbotron-color:                inherit !default;
-// $jumbotron-bg:                   $gray-lighter !default;
-// $jumbotron-heading-color:        inherit !default;
-// $jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
-
-//
-// Jumbotron
-// --------------------------------------------------
-
-
-// .jumbotron {
-//   padding: $jumbotron-padding;
-//   margin-bottom: $jumbotron-padding;
-//   color: $jumbotron-color;
-//   background-color: $jumbotron-bg;
-
-//   h1,
-//   .h1 {
-//     color: $jumbotron-heading-color;
-//   }
-//   p {
-//     margin-bottom: ($jumbotron-padding / 2);
-//     font-size: $jumbotron-font-size;
-//     font-weight: 200;
-//   }
-
-//   .container & {
-//     border-radius: $border-radius-large; // Only round corners at higher resolutions if contained in a container
-//   }
-
-//   .container {
-//     max-width: 100%;
-//   }
-
-//   @media screen and (min-width: $screen-sm-min) {
-//     padding-top:    ($jumbotron-padding * 1.6);
-//     padding-bottom: ($jumbotron-padding * 1.6);
-
-//     .container & {
-//       padding-left:  ($jumbotron-padding * 2);
-//       padding-right: ($jumbotron-padding * 2);
-//     }
-
-//     h1,
-//     .h1 {
-//       font-size: ($font-size-base * 4.5);
-//     }
-//   }
-// }

@@ -4,6 +4,10 @@ class TagsController < ApplicationController
     @tag = Tag.new
   end
 
+  def show
+    set_tag
+  end
+
   def create
     @tag = Tag.new(:name => params[:name], :category => "topic")
 
@@ -11,10 +15,13 @@ class TagsController < ApplicationController
       redirect_to :back
     else
       redirect_to :back
-      # render "lessons/new"
-      # render "lessons/new", :locals => {:lesson => @lesson}
-      # render :controller => "lessons", :action => "new" 
     end
   end
+
+  private
+  def set_tag
+    @tag = Tag.find(params[:id])
+  end
+
 
 end

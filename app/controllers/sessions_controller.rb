@@ -14,4 +14,5 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path
   end
+  
 end
