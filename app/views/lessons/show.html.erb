@@ -102,7 +102,7 @@
 
       <h4>Leave a New Comment</h4>
 
-      <%= form_for [@lesson, @comment], html: {role: "form", :remote => true} do |f| %>
+      <%= form_for [@lesson, @comment], html: {role: "form", remote: true} do |f| %>
         <% if @comment.errors.any? %>
           <div class="alert alert-warning">
             <% @comment.errors.full_messages.each do |msg| %>

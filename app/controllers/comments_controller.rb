@@ -20,14 +20,14 @@ class CommentsController < ApplicationController
   def destroy
     @lesson = Lesson.find(params[:lesson_id])
     @comment = Comment.find(params[:id])
-  
     if permitted && @comment.destroy
       respond_to do |format|
         format.html { redirect_to :back, :notice => "Commented successfully deleted" }
         format.json { head :no_content }
+        format.js {}
       end
     else
-      flash[:alert] = "Can't delete someone else's comment!"
+      flash.now[:alert] = "Can't delete someone else's comment!"
       redirect_to :back
     end
   end
