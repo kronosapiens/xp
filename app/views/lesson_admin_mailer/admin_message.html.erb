@@ -4,9 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Test email!</h1>
+    <h3>From: <%= @lesson.admin.name %> (<%= @lesson.admin.email if @lesson.admin.email %>)</h3>
+    <h3>Lesson Name: <%= @lesson.title %></h3>
     <p>
       <%= @content %>
     </p>
+
+    <br><br>
+    <p><em>
+      You recieved this email because you signed up for a class on xp.
+    </em></p>
   </body>
 </html>
