@@ -95,24 +95,14 @@
     <div class="lesson">
       <p><strong>Comments:</strong></p>
       <br>
-      <% @lesson.comments.each do |comment| %>
-        <p><%= image_tag(comment.user.image_url, size: "26", alt: comment.user.name) %> <%= link_to comment.user.name, user_path(comment.user.nickname) %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
-        <p><%= comment.content %></p>
 
-        <%= button_to 'Delete', lesson_comment_path(@lesson.id, comment.id), :class => "btn btn-danger btn-xs",  method: :delete %>
-
-        <br>
-        <br>
-      <% end %>
-      
+      <div id="comments-section">
+        <%= render @lesson.comments %>
+      </div>
 
       <h4>Leave a New Comment</h4>
-      <!-- <form action="/lessons/<%#= @lesson.id %>/comments" method="POST" role="form"> -->
 
-      <%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>
-
-      <%= form_for [@lesson, @comment], html: {role: "form"} do |f| %>
-
+      <%= form_for [@lesson, @comment], html: {role: "form", :remote => true} do |f| %>
         <% if @comment.errors.any? %>
           <div class="alert alert-warning">
             <% @comment.errors.full_messages.each do |msg| %>
@@ -120,13 +110,12 @@
             <% end %>
           </div>
         <% end %>
-
-        <!-- <label>Your User ID: <input type="text" name="user_id"></label> -->
         <div class="form-group">
           <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
         </div>
         <input type="submit" value="Post Comment" class="btn">
       <% end %>
+
     </div>
   </div>
 </div> 
