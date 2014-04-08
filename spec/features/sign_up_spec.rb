@@ -15,7 +15,7 @@ it 'does allow you to take course if you are logged in' do
       click_button "Take This!"
     end
 
-    expect(page).to have_content("Sign Up Successful!")
+    expect(page).to have_content("Sign up successful!")
 end
 
 it 'requires that you be logged in to take course' do
@@ -39,7 +39,7 @@ it 'does not allow you to take course twice' do
       click_button "Take This!"
     end
 
-    expect(page).to have_content("Sign Up Failed")
+    expect(page).to have_content("Sign up failed")
 end
 
 end

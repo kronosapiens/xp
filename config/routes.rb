@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   patch "/lessons/:id/status" => "lessons#update_status", as: :update_status
 
   resources :tags, only: [:new, :create]
+  get "tags/:slug" => "tags#show", as: :tag
 
 # Routes for user authentication
   get "/auth/github" => "auth#github", as: :login

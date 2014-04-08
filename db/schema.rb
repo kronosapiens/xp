@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404173229) do
+ActiveRecord::Schema.define(version: 20140408191617) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140404173229) do
     t.datetime "specific_time",     limit: 255
     t.string   "specific_location"
     t.string   "status",                        default: "open"
+    t.string   "slug"
   end
 
   create_table "registrations", force: true do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140404173229) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
+    t.string   "slug"
   end
 
   create_table "users", force: true do |t|

@@ -14,6 +14,10 @@ class Lesson < ActiveRecord::Base
   validates :references, presence: true
   validate :has_tags
 
+  before_save do
+    self.slug = slugify(self.title)
+  end
+
   # Class Methods
   def self.all_by_status(status)
     where(:status => status)
@@ -101,6 +105,10 @@ class Lesson < ActiveRecord::Base
   private
   def teachers_collection
     registrations.where(:role => "teacher")
+  end
+
+  def slugify(string)
+    string.downcase.gsub(" ", "-")
   end
 
 end
