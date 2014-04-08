@@ -23,3 +23,13 @@
   <br>
 
   <%= button_to "Relinquish Administration!", {:controller => "registrations", :action => "update", :lesson_id => @lesson.id, :id => @registration.id, :'registration[admin]' => "false"}, {:method => :patch, :class => "btn btn-warning"} %>
+
+  <br><br>
+
+  <form action="/lessons/<%= @lesson.id %>/admin_email" method="POST" id="admin_email">
+    <%= token_tag %>
+    Send an Email to all teachers and students<br>
+    Subject: <input type="text" name="subject"><br>
+    Body: <textarea name="content"></textarea><br>
+    <input type="submit" name="submit" value="Send Email">
+  </form>

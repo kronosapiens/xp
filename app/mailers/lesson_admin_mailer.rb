@@ -6,11 +6,14 @@ class LessonAdminMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 
-  def admin_message(lesson)
+  def admin_message(lesson, subject, content)
     @lesson = lesson
+    @subject = subject
+    @content = content
+
     email_array = lesson.users.map do |user|
       user.email if user.email
     end
-    mail(to: email_array.join("; "), subject: 'Welcome to My Awesome Site')
+    mail(to: email_array.join("; "), subject: @subject)
   end
 end

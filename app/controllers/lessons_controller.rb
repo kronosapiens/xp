@@ -9,6 +9,15 @@ class LessonsController < ApplicationController
     @lessons = Lesson.all_by_status("open")
   end
 
+  def admin_email
+    set_lesson
+    subject = params[:subject]
+    content = params[:content]
+    LessonAdminMailer.admin_message(@lesson, subject, content).deliver
+
+    redirect_to :back
+  end
+
   # GET /lessons/1
   # GET /lessons/1.json
   def show

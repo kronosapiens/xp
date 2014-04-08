@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   patch "/lessons/:id/status" => "lessons#update_status", as: :update_status
 
+  post "/lessons/:id/admin_email" => "lessons#admin_email"
+
   resources :tags, only: [:new, :create]
 
 # Routes for user authentication
