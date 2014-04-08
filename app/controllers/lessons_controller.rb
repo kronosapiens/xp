@@ -57,33 +57,39 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-    unless params[:lesson][:status]
+    # unless params[:lesson][:status]
       @lesson.lesson_tags.clear
 
       tags_hash = tag_hash_from_params(params)
       @lesson.build_tags(tags_hash)
           
       params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
-    end
+    # end
 
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
+        format.js {}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
+        format.js { render action: 'edit' }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
   end
 
+# Specific route for updating the lesson's status (accessed via buttons from the Admin panel)
   def update_status
+    @registration = get_registration
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: "Lesson status successfully updated to '#{params[:lesson][:status]}'." }
+        format.js {}
         format.json { head :no_content }
       else
         format.html { redirect_to @lesson, alert: "Unable to change lesson status" }
+        format.js { redirect_to @lesson, alert: "Unable to change lesson status" }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
