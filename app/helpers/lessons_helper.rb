@@ -70,8 +70,14 @@ module LessonsHelper
   end
 
   def short_description(lesson)
+    n = 25
     dek = lesson.description
-    dek.length > 200 ? dek[0..196]+"..." : dek 
+
+    if dek.split.size > n
+      "#{dek.split[0...n].join(' ')}..."
+    else
+      dek
+    end
   end 
 
   def one_user?(lesson)
