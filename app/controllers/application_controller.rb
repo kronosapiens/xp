@@ -40,10 +40,10 @@ class ApplicationController < ActionController::Base
   end
 
   def get_tags(scope = :used)
-    @topic_tags = Tag.all_by_category("topic")
     @language_tags = Tag.all_by_category("language").send(scope)
     @location_tags = Tag.all_by_category("location").send(scope)
     @time_tags = Tag.all_by_category("time").send(scope)
+    @topic_tags = Tag.all_by_category("topic").send(scope)
   end
   
 end

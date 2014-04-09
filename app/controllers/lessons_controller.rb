@@ -5,15 +5,11 @@ class LessonsController < ApplicationController
     get_tags(:active)
   end
 
-
-  before_action only: [:show, :edit, :update, :destroy] do
-  set_support("value")
-end
-
   # GET /lessons
   # GET /lessons.json
   def index
     @lessons = Lesson.all_by_status("open")
+    binding.pry
   end
 
   def admin_email
