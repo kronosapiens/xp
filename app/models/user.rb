@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :registrations, :dependent => :destroy
   has_many :lessons, :through => :registrations
+  has_many :experiences, :dependent => :destroy
+  has_many :tags, :through => :experiences
 
   has_many :comments
 
@@ -43,7 +45,16 @@ class User < ActiveRecord::Base
   end
 
   def add_to_completed(lesson)
-    binding.pry
+    role = self.registrations.where(:lesson => lesson).first.role
+    lesson.tags.each do |tag|
+      experience = self.experiences.find_or_create_by(:tag => tag)
+      if role == "teacher"
+        experience.taught += 1
+      elsif role == "student"
+        experience.taken += 1
+      end
+      experience.save
+    end
   end
 
 

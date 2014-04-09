@@ -16,8 +16,8 @@ describe "User" do
     @tag3 = create(:tag)
     @tag4 = create(:tag)
   
-    @lesson1.lesson_tags.create(:tag => @tag1)
-    @lesson1.lesson_tags.create(:tag => @tag2)
+    @lesson1.tags << @tag1
+    @lesson1.tags << @tag2
     @lesson2.lesson_tags.create(:tag => @tag3)
     @lesson2.lesson_tags.create(:tag => @tag4)
     @lesson2.lesson_tags.create(:tag => @tag2)
@@ -93,6 +93,18 @@ describe "User" do
 
   it 'can return the top users by tag and role' do
     expect(User.ranked_by_tag_and_role(@tag2, "student").first).to eq(@user2)
+  end
+
+  describe '#add_to_completed' do
+    it 'creates experiences when lessons are marked completed' do
+      @user1.add_to_completed(@lesson1)
+      expect(@user1.experiences.length).to eq(3) 
+    end
+
+    it 'creates new experiences if the user has never seen that tag before' do
+      @user1.add_to_completed(@lesson1)
+      expect(@user1.experiences).to include(Experience.where(:tag => @tag1).first)
+    end
   end
 
 end

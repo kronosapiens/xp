@@ -1,6 +1,8 @@
 class Tag < ActiveRecord::Base
   has_many :lesson_tags, :dependent => :destroy
   has_many :lessons, :through => :lesson_tags
+  has_many :experiences, :dependent => :destroy
+  has_many :users, :through => :experiences
 
   validates :name, presence: true
   validates_uniqueness_of :name, :case_sensitive => false

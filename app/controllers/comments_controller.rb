@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
         format.js {}
       end
     else
-      flash.now[:alert] = "Can't delete someone else's comment!"
+      flash[:alert] = "Can't delete someone else's comment!"
       redirect_to :back
     end
   end

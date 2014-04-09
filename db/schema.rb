@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20140409143723) do
   create_table "experiences", force: true do |t|
     t.integer  "user_id"
     t.integer  "tag_id"
-    t.integer  "taken"
-    t.integer  "taught"
-    t.integer  "gh_stat"
+    t.integer  "taken",      default: 0
+    t.integer  "taught",     default: 0
+    t.integer  "gh_stat",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
