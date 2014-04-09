@@ -91,16 +91,16 @@ class Lesson < ActiveRecord::Base
   end
 
   def close
-    self.status = "closed"
+    self.update(:status => "closed")
   end
 
   def open
-    self.status = "open"
+    self.update(:status => "open")
   end
 
   def mark_completed
-    self.status = "completed"
-    self.users.add_
+    self.update(:status => "completed")
+    self.users.each {|user| user.add_to_completed(self)}
   end
 
   private

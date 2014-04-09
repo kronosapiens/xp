@@ -1,11 +1,8 @@
   <div class="comment" id="comment_<%= comment.id %>">
-    <p><%= image_tag(comment.user.image_url, size: "30", alt: comment.user.name) %> <%= link_to comment.user.name, user_path(comment.user.nickname) %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>:</p>
-    <p><%= comment.content %></p>
+    <p><%= image_tag(comment.user.image_url, size: "30", alt: comment.user.name) %> <%= link_to comment.user.name, user_path(comment.user.nickname) %> posted on <%= comment.created_at.to_formatted_s(:long_ordinal) %>: <strong><%= comment.content %></strong></p>
 
     <% if permitted_to_delete_comment?(comment) %>
       <%= button_to 'Delete', lesson_comment_path(comment.lesson.id, comment.id), { :class => "btn btn-danger btn-xs",  method: :delete, remote: true } %>
     <% end %>
-
-  <br>
   <br>
   </div>

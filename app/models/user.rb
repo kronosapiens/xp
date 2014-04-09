@@ -42,5 +42,9 @@ class User < ActiveRecord::Base
     Tag.all_by_user(tag, self)
   end
 
+  def add_to_completed(lesson)
+    binding.pry
+  end
+
 
 end
