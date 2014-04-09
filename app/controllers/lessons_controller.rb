@@ -9,7 +9,6 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
     @lessons = Lesson.all_by_status("open")
-    binding.pry
   end
 
   def admin_email

@@ -11,8 +11,13 @@ class ApplicationController < ActionController::Base
 
   def login_required
     unless logged_in?
-      flash[:alert] = "You must be logged in to take this action. Please <a href='#{login_path}'>log in</a> and try again."
-      redirect_to :back
+      respond_to do |format|
+        format.html do
+          flash[:alert] = "You must be logged in to take this action. Please <a href='#{login_path}'>log in</a> and try again."
+          redirect_to :back
+        end
+        format.js { } # WRITE SOME JAVASCRIPT TO PUT UP A "MUST LOG IN BEFORE YOU CAN POST A COMMENT" ALERT
+      end
     end
   end
 

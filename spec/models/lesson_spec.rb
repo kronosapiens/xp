@@ -156,6 +156,7 @@ describe "Lesson" do
   end
 
   it "can mark itself held" do
+    expect(@user1).to receive(:add_to_completed).with(@lesson1)
     @lesson1.mark_completed
     expect(@lesson1.status).to eq("completed")
   end

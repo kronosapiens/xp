@@ -28,6 +28,9 @@
       <% @topic_tags.each do |tag| %>
         <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %>><%= tag.name %></option>
       <% end %>
+      <% @language_tags.each do |tag| %>
+        <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %>><%= tag.name %></option>
+      <% end %>
     </select>
   </div>
 
