@@ -80,6 +80,38 @@ module LessonsHelper
     end
   end 
 
+  def uri?(string)
+    uri = URI.parse(string)
+    %w( http https ).include?(uri.scheme)
+  rescue URI::BadURIError
+    false
+  rescue URI::InvalidURIError
+    false
+  end
+
+  def linkify_references(lesson)
+    # binding.pry
+    refs = lesson.references 
+
+    refs_array = refs.split(
+        /\s*[,;]\s* # comma or semicolon, optionally surrounded by whitespace
+        |           # or
+        \s{2,}      # two or more whitespace characters
+        |           # or
+        [\r\n]+     # any number of newline characters
+        /x)
+
+    refs_list_array = refs_array.map do |ref|
+      if uri?(ref) # if ref.include?("http")
+        ref = "<li><a href='#{ref}'>#{ref}</a></li>"
+      else
+        ref = "<li>#{ref}</li>"
+      end
+    end
+
+    refs_list = refs_list_array.join.html_safe
+  end
+
   def one_user?(lesson)
     lesson.registrations.length == 1
   end

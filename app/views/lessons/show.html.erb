@@ -18,7 +18,7 @@
         <h3><%= @lesson.title %></h3>
         <br>
         <p><strong>Description:</strong> <%= @lesson.description %></p>
-        <p><strong>References:</strong> <%= @lesson.references %></p>
+        <p><strong>References:</strong><ul><%= linkify_references(@lesson) %></ul></p>
         <p><strong>Tags:</strong>
           <% @lesson.topic_tags.each do |tag| %>
             <%= link_to tag.name, tag_path(tag.slug), class: "tags" %> 
