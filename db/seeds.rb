@@ -1,25 +1,45 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
+#Creating some tags
+@frontend = Tag.create(:name => "Front-End", :category => "topic")
+@rails = Tag.create(:name => "Rails", :category => "topic")
+@testing = Tag.create(:name => "Testing", :category => "topic")
+@databases = Tag.create(:name => "Databases", :category => "topic")
+@random_fun = Tag.create(:name => "Random Fun", :category => "topic")
+
+@ruby = Tag.create(:name => "Ruby", :category => "language")
+@javascript = Tag.create(:name => "JavaScript", :category => "language")
+@css = Tag.create(:name => "CSS", :category => "language")
+@sql = Tag.create(:name => "SQL", :category => "language")
+@objective_c = Tag.create(:name => "Objective-C", :category => "language")
+@python = Tag.create(:name => "Python", :category => "language")
+@php = Tag.create(:name => "PHP", :category => "language")
+
+@morning = Tag.create(:name => "Morning", :category => "time")
+@afternoon = Tag.create(:name => "Afternoon", :category => "time")
+@evening = Tag.create(:name => "Evening", :category => "time")
+@monday = Tag.create(:name => "Monday", :category => "time")
+@tuesday = Tag.create(:name => "Tuesday", :category => "time")
+@wednesday = Tag.create(:name => "Wednesday", :category => "time")
+@thursday = Tag.create(:name => "Thursday", :category => "time")
+@friday = Tag.create(:name => "Friday", :category => "time")
+@saturday = Tag.create(:name => "Saturday", :category => "time")
+@sunday = Tag.create(:name => "Sunday", :category => "time")
+
+@flatiron = Tag.create(:name => "Flatiron Campus", :category => "location")
+@manhattan = Tag.create(:name => "Manhattan", :category => "location")
+@brooklyn = Tag.create(:name => "Brooklyn", :category => "location")
+@queens = Tag.create(:name => "Queens", :category => "location")
+@bronx = Tag.create(:name => "The Bronx", :category => "location")
+@staten = Tag.create(:name => "Staten Island", :category => "location")
+@remote = Tag.create(:name => "Remote", :category => "location")
+
 # Creating some lessons
 @css_lesson = Lesson.new(:title => "CSS Lesson", :description => "Can someone help me understand the CSS prework?", :references => "http://www.skillshare.com/Build-a-HTML-and-CSS-Website-From-Scratch/1216366887")
 @jquery_lesson = Lesson.new(:title => "jQuery Lesson", :description => "I can help a few people work through some jQuery problems.", :references => "http://learn.jquery.com/about-jquery/how-jquery-works/")
 @javascript_lesson = Lesson.new(:title => "Javascript Lesson", :description => "A lesson to talk about writing some great scripts", :references => "https://github.com/dhh/popcorn_js-ruby-004")
 @sql_lesson = Lesson.new(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "http://teamtreehouse.com/library/programming/database-foundations")
-
-#Creating some tags
-@css = Tag.create(:name => "CSS", :category => "topic")
-@frontend = Tag.create(:name => "Front End", :category => "topic")
-@backend = Tag.create(:name => "Back End", :category => "topic")
-@jquery = Tag.create(:name => "jQuery", :category => "topic")
-@javascript = Tag.create(:name => "JavaScript", :category => "topic")
-@sql = Tag.create(:name => "SQL", :category => "topic")
-
-@evening = Tag.create(:name => "Evening", :category => "time")
-@afternoon = Tag.create(:name => "Afternoon", :category => "time")
-
-@on_campus = Tag.create(:name => "On Campus", :category => "location")
-@remote = Tag.create(:name => "Remote", :category => "location")
 
 #Associating some lessons and tags
 @css_lesson.lesson_tags.build(:tag => @css)
@@ -27,9 +47,9 @@
 @jquery_lesson.lesson_tags.build(:tag => @frontend)
 @javascript_lesson.lesson_tags.build(:tag => @frontend)
 @javascript_lesson.lesson_tags.build(:tag => @javascript)
-@jquery_lesson.lesson_tags.build(:tag => @jquery)
+@jquery_lesson.lesson_tags.build(:tag => @frontend)
 @sql_lesson.lesson_tags.build(:tag => @sql)
-@sql_lesson.lesson_tags.build(:tag => @backend)
+@sql_lesson.lesson_tags.build(:tag => @databases)
 
 @sql_lesson.lesson_tags.build(:tag => @evening)
 @javascript_lesson.lesson_tags.build(:tag => @evening)
@@ -38,11 +58,11 @@
 @javascript_lesson.lesson_tags.build(:tag => @afternoon)
 @css_lesson.lesson_tags.build(:tag => @afternoon)
 
-@sql_lesson.lesson_tags.build(:tag => @on_campus)
-@javascript_lesson.lesson_tags.build(:tag => @on_campus)
-@css_lesson.lesson_tags.build(:tag => @on_campus)
-@jquery_lesson.lesson_tags.build(:tag => @remote)
-@javascript_lesson.lesson_tags.build(:tag => @remote)
+@sql_lesson.lesson_tags.build(:tag => @flatiron)
+@javascript_lesson.lesson_tags.build(:tag => @flatiron)
+@css_lesson.lesson_tags.build(:tag => @flatiron)
+@jquery_lesson.lesson_tags.build(:tag => @manhattan)
+@javascript_lesson.lesson_tags.build(:tag => @brooklyn)
 @css_lesson.lesson_tags.build(:tag => @remote)
 
 @css_lesson.save

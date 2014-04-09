@@ -17,6 +17,14 @@ class Tag < ActiveRecord::Base
     where(:category => category)
   end
 
+  def self.active
+    self.joins(:lessons).where("lessons.status = 'open'").group('tags.id')
+  end
+
+  def self.used
+    joins(:lessons).group('tags.id')
+  end
+
   def upcoming_lessons
     lessons.where(:status => "open") + lessons.where(:status => "closed")
   end
