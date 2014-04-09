@@ -1,15 +1,8 @@
 
-<div class="form-group">
-  Where is this lesson going to be held? <input type="text" name="lesson[specific_location]" value="<%= @lesson.specific_location %>">
-</div>
-
-<div class="form-group">
-  When is this lesson going to be held? <input type="text" name="lesson[specific_time]" value="<%= prepopulate_time(@lesson) %>">
-</div>
-
 <div class="form-group" id="select-locations" >
-  What tags best describe possbile locations of this lesson?
-  <select data-placeholder="Select Locations" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[locations][]">
+  <label>Select Location Tags</label>
+  <small>What tags best describe possible locations of this lesson?</small><br>
+  <select data-placeholder="Select Locations" style="max-width:700px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[locations][]">
     <% @location_tags.each do |tag| %>
       <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %>><%= tag.name %></option>
     <% end %>
@@ -17,10 +10,28 @@
 </div>
 
 <div class="form-group" id="select-times">
-  What tags best describe possible times of this lesson?
-  <select data-placeholder="Select Times" style="width:280px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[times][]">
+  <label>Select Time Tags</label>
+  <small>What tags best describe possible times of this lesson?</small><br>
+  <select data-placeholder="Select Times" style="max-width:700px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[times][]">
     <% @time_tags.each do |tag| %>
       <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %>><%= tag.name %></option>
     <% end %>
   </select>
 </div>
+
+<br>
+
+<h4>Ready to Set a Specific Location and Time for this Lesson?</h4>
+<!-- <div style="border: 1px solid #ccc"> -->
+<div class="form-group">
+  <label>Set Specific Location</label>
+  <small>Where is this lesson going to be held? </small><br>
+  <input type="text" name="lesson[specific_location]" style="width:500px" value="<%= @lesson.specific_location %>">
+</div>
+
+<div class="form-group">
+  <label>Set Specific Time</label>
+  <small>When is this lesson going to be held?</small><br>
+  <input type="text" name="lesson[specific_time]" style="width:500px" value="<%= prepopulate_time(@lesson) %>">
+</div>
+<!-- </div> -->

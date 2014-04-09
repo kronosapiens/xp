@@ -62,7 +62,7 @@ module LessonsHelper
 
       href = "https://www.google.com/calendar/render?action=TEMPLATE&text=#{event_title}&dates=#{dates}&details=#{details}&location=#{location}&sf=true&output=xml"
 
-      html = "<p><a href='#{href}' target='_blank' rel='nofollow'>Add this lesson to my Google calendar</a></p>".html_safe
+      html = "<p><a href='#{href}' target='_blank' rel='nofollow'><span class='glyphicon glyphicon-calendar'></span> Add this lesson to my Google calendar</a></p>".html_safe
       return html
     else
       return ""

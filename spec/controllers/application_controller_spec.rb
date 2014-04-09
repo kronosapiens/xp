@@ -15,10 +15,10 @@ describe ApplicationController do
     @topic_tag2.lesson_tags.create(:lesson => @lesson2)
   end
 
-    it "returns nil for if there is no one logged in" do
-      @request.reset_session
-      expect(@controller.current_user).to eq(nil)
-    end
+  it "returns nil for if there is no one logged in" do
+    @request.reset_session
+    expect(@controller.current_user).to eq(nil)
+  end
 
   it "can return all tags with multiple scopes" do
     @topic_tags = @controller.get_tags(:active)
