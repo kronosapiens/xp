@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20140409143723) do
     t.datetime "updated_at"
     t.string   "category",   default: "topic"
     t.string   "slug"
-    t.boolean  "active",     default: false
   end
 
   create_table "users", force: true do |t|

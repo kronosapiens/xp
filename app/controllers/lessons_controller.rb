@@ -1,7 +1,14 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
-  before_action :get_tags, only: [:index, :new, :edit, :show]
   before_action :login_required, except: [:index, :show]
+  before_action only: [:index, :new, :edit, :show] do
+    get_tags(:active)
+  end
+
+
+  before_action only: [:show, :edit, :update, :destroy] do
+  set_support("value")
+end
 
   # GET /lessons
   # GET /lessons.json

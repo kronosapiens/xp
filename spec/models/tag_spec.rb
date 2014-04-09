@@ -13,10 +13,12 @@ describe "Tag" do
 
     @topic_tag1 = create(:tag)
     @topic_tag2 = create(:tag)
+    @topic_tag3 = create(:tag)
+    @topic_tag4 = create(:tag)
 
     @location_tag1 = create(:tag)
-    @location_tag1.update(:category => "location")
     @location_tag2 = create(:tag)
+    @location_tag1.update(:category => "location")
     @location_tag2.update(:category => "location")
 
     @topic_tag1.lesson_tags.create(:lesson => @lesson1)
@@ -24,6 +26,7 @@ describe "Tag" do
     @topic_tag1.lesson_tags.create(:lesson => @lesson3)
     @topic_tag1.lesson_tags.create(:lesson => @lesson4)
     @topic_tag2.lesson_tags.create(:lesson => @lesson2)
+    @topic_tag3.lesson_tags.create(:lesson => @lesson4)
 
     @location_tag1.lesson_tags.create(:lesson => @lesson1)
     @location_tag2.lesson_tags.create(:lesson => @lesson2)
@@ -39,6 +42,33 @@ describe "Tag" do
     @lesson2.registrations.create(:user => @user3, :role => "teacher")
   end
 
+  it "can return all tags by category" do
+    expect(Tag.all_by_category("location")).to include(@location_tag1)
+    expect(Tag.all_by_category("location").length).to eq(2)
+    expect(Tag.all_by_category("location")).to be_a(ActiveRecord::Relation)
+  end
+
+  it "can return all of itself for a particular user" do
+    expect(Tag.all_by_user(@topic_tag1, @user1).length).to eq(2)
+  end
+
+  it "can return tags that have been used in lessons" do
+    expect(Tag.used).to include(@topic_tag1)
+    expect(Tag.used).to_not include(@topic_tag4)
+    expect(Tag.used.length).to eq(3 + 2 + 4) # topic + location + FactoryGirl
+  end
+
+  it "can return tags that have open lessons" do
+    expect(Tag.active).to include(@topic_tag1)
+    expect(Tag.active).to_not include(@topic_tag3)
+    expect(Tag.active.length).to eq(2 + 2 + 2) # topic + location + FactoryGirl
+  end
+
+  it "can chain class methods" do
+    expect(Tag.all_by_category("topic").active).to include(@topic_tag1)
+    expect(Tag.all_by_category("topic").active.length).to eq(4)
+  end
+
   it "can have topic_tag1_lesson as a lesson" do
     expect(@topic_tag1.lessons).to include(@lesson1)
   end
@@ -46,17 +76,6 @@ describe "Tag" do
   it "doesn't include what it isn't tagged with" do
     expect(@topic_tag2.lessons).to include(@lesson2)
     expect(@topic_tag2.lessons).to_not include(@lesson1)
-  end
-
-  it "can return only the topic tags" do
-    expect(Tag.all_by_category("topic")).to include(@topic_tag2)
-    expect(Tag.all_by_category("topic").length).to eq(6)
-  end
-
-  it "can return all tags by category" do
-    expect(Tag.all_by_category("location")).to include(@location_tag1)
-    expect(Tag.all_by_category("location").length).to eq(2)
-    expect(Tag.all_by_category("location")).to be_a(ActiveRecord::Relation)
   end
 
   it "automatically writes the slug before save" do
@@ -72,10 +91,6 @@ describe "Tag" do
   it "can find all of its completed lessons" do
     expect(@topic_tag1.completed_lessons).to include(@lesson4)
     expect(@topic_tag1.completed_lessons.length).to eq(1)
-  end
-
-  it "can return all of itself for a particular user" do
-    expect(Tag.all_by_user(@topic_tag1, @user1).length).to eq(2)
   end
 
 end

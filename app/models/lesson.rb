@@ -100,6 +100,7 @@ class Lesson < ActiveRecord::Base
 
   def mark_completed
     self.status = "completed"
+    self.users.add_
   end
 
   private
