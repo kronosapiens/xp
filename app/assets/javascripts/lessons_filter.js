@@ -32,7 +32,7 @@ $(document).ready(function () {
   });
 
   function filterLessons(){
-    $("div.lesson").hide();
+    $("div.lesson").parents(".lesson-wrapper").hide();
     var activeFilters = getActiveFilters();
     $("div.lesson").each(function(){
       var $lesson = $(this);
@@ -40,7 +40,7 @@ $(document).ready(function () {
       var studentCount = $lesson.data("students");
       var teacherCount = $lesson.data("teachers");
       if(filterCheck(activeFilters, lessonFilters) && interestCheck(studentCount, teacherCount)){
-        $lesson.show();
+        $lesson.parents(".lesson-wrapper").show();
       }
     });
   };
