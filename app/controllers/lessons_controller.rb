@@ -5,11 +5,6 @@ class LessonsController < ApplicationController
     get_tags(:active)
   end
 
-
-  before_action only: [:show, :edit, :update, :destroy] do
-  set_support("value")
-end
-
   # GET /lessons
   # GET /lessons.json
   def index

@@ -23,7 +23,7 @@ describe ApplicationController do
   end
 
   it "can return all tags with multiple scopes" do
-    binding.pry
+    
     @controller.get_tags(:active)
     expect(@topic_tags).to include(@topic_tag1)
   end
