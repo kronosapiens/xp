@@ -69,6 +69,11 @@ module LessonsHelper
     end
   end
 
+  def short_description(lesson)
+    dek = lesson.description
+    dek.length > 200 ? dek[0..196]+"..." : dek 
+  end 
+
   def one_user?(lesson)
     lesson.registrations.length == 1
   end
