@@ -103,7 +103,7 @@ module LessonsHelper
 
     refs_list_array = refs_array.map do |ref|
       if uri?(ref) # if ref.include?("http")
-        ref = "<li><a href='#{ref}'>#{ref}</a></li>"
+        ref = "<li><a href='#{ref}' target='_blank'>#{ref}</a></li>"
       else
         ref = "<li>#{ref}</li>"
       end
