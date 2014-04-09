@@ -1,9 +1,9 @@
   <h4>Admin Actions:</h4>
 
   <% if @lesson.status == "open" %>
-    <%= button_to "Close Lesson!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "closed"}, {method: :patch, class: "btn btn-warning", remote: true } %>
+    <%= button_to "Close Registration!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "closed"}, {method: :patch, class: "btn btn-warning", remote: true } %>
   <% elsif @lesson.status == "closed" %>
-    <%= button_to "Open Lesson!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "open"}, {method: :patch, class: "btn btn-primary", remote: true } %>
+    <%= button_to "Open Registration!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "open"}, {method: :patch, class: "btn btn-primary", remote: true } %>
   <% end %>
 
   <% unless @lesson.status == "completed" %>
