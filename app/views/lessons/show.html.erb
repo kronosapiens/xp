@@ -20,8 +20,8 @@
         <p><strong>Description:</strong> <%= @lesson.description %></p>
         <p><strong>References:</strong> <%= @lesson.references %></p>
         <p><strong>Tags:</strong>
-          <% @lesson.topic_tags.each do |topic_tag| %>
-            <%= topic_tag.name %> 
+          <% @lesson.topic_tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag.slug) %> 
           <% end %>
         </p>
         <p><strong>Location:</strong> 
@@ -44,8 +44,8 @@
         <% unless @lesson.location_tags == [] %>
           <p>
             Possible Locations: 
-            <% @lesson.location_tags.each do |location_tag| %>
-              <%= location_tag.name %> 
+            <% @lesson.location_tags.each do |tag| %>
+              <%= link_to tag.name, tag_path(tag.slug) %> 
             <% end %>
           </p>
         <% end %>
@@ -53,8 +53,8 @@
         <% unless @lesson.time_tags == [] %>
           <p>
             Possible Times: 
-            <% @lesson.time_tags.each do |time_tag| %>
-              <%= time_tag.name %> 
+            <% @lesson.time_tags.each do |tag| %>
+              <%= link_to tag.name, tag_path(tag.slug) %> 
             <% end %>
           </p>
         <% end %>

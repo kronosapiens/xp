@@ -22,17 +22,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.most_by_tag_and_role(tag, role, number)
-    self.joins(:lessons => :tags).where("registrations.role = '#{role}'").where("tags.id = '#{tag.id}'").group('users.id', 'tags.id').order('count(*) DESC').limit(number)
+  def self.ranked_by_tag_and_role(tag, role)
+    self.joins(:lessons => :tags).where("registrations.role = '#{role}'").where("tags.id = '#{tag.id}'").group('users.id', 'tags.id').order('count(*) DESC')
   end
 
 # Instance Methods
-  def lessons_as_student
-    registrations.where(:role => "student").map(&:lesson)
-  end
-
-  def lessons_as_teacher
-    registrations.where(:role => "teacher").map(&:lesson)
+  def lessons_by_role(role)
+    registrations.where(:role => role).map(&:lesson)
   end
 
   def lessons_by_role_and_status(role, status)
@@ -40,6 +36,10 @@ class User < ActiveRecord::Base
       registration.lesson.status == status
     end
     my_registrations.map(&:lesson)
+  end
+
+  def all_instances_of_tag(tag)
+    Tag.all_by_user(tag, self)
   end
 
 

@@ -9,6 +9,10 @@ class Tag < ActiveRecord::Base
     self.slug = slugify(self.name)
   end
 
+  def self.all_by_user(tag, user)
+    self.joins(:lessons => :users).where("tags.id = '#{tag.id}'").where("users.id = '#{user.id}'")
+  end
+
   def self.all_topics
     all_by_category("topic")
   end

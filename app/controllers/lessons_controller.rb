@@ -150,12 +150,6 @@ class LessonsController < ApplicationController
     params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time, :status)
   end
 
-  def get_tags
-    @topic_tags = Tag.all_topics
-    @location_tags = Tag.all_locations
-    @time_tags = Tag.all_times
-  end
-
   def tag_hash_from_params(params)
     {
       :topics => params[:lesson][:topics],

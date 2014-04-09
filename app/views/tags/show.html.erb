@@ -5,6 +5,27 @@
   <div class="col-md-6">
     <div class="lesson" id="tag-stats">
       <h1><%= @tag.name %></h1>
+
+      <h3>Stats:</h3>
+      <h4><%= @tag.lessons.length %> Lessons Total</h4>
+      <h4><%= all_teachers.length %> Teachers Teaching</h4>
+      <h4><%= all_students.length %> Students Learning</h4>
+
+
+      <h3>Top Five Teachers</h3>
+      <ol>
+        <% top_5_teachers.each do |teacher| %>
+          <li><%= display_user(teacher) %> (<%= teacher.all_instances_of_tag(@tag).length %> lessons taught)</li>
+        <% end %>
+      </ol>
+
+
+      <h3>Top Five Students</h3>
+      <ol>
+        <% top_5_students.each do |student| %>
+          <li><%= display_user(student) %>, (<%= student.all_instances_of_tag(@tag).length %> lessons taken)</li>
+        <% end %>
+    </ol>
     </div>
   </div>
 
@@ -12,15 +33,17 @@
     <div class="lesson" id="tag-lessons">
       <h3>Upcoming Lessons:</h3>
         <ul>
-          <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
+          <% @tag.upcoming_lessons.each do |lesson| %>
             <li><%= link_to lesson.title, lesson %></li>
-          <% end %>
-          <% @user.lessons_by_role_and_status("student", "closed").each do |lesson| %>
-           <li><%= link_to lesson.title, lesson %></li>
           <% end %>
         </ul>
 
       <h3>Completed Lessons:</h3>
+        <ul>
+          <% @tag.completed_lessons.each do |lesson| %>
+            <li><%= link_to lesson.title, lesson %></li>
+          <% end %>
+        </ul>
     </div>
   </div>
 

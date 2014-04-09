@@ -1,3 +1,3 @@
-<%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-warning",  remote: true} %>
+<%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-warning" } %>
 
-<%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success",  remote: true} %>
+<%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => @lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-success" } %>

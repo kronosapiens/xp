@@ -2,7 +2,7 @@
   <h4>Current Teachers:</h4>
     <% unless @lesson.teachers == [] %>
       <% @lesson.teachers.each do |teacher| %>
-        <%= image_tag(teacher.image_url, size: "30", alt: teacher.name ) %> <%= link_to teacher.name, user_path(teacher.nickname) %><br><br>
+        <%= display_user(teacher) %><br><br>
       <% end %>
     <% else %>
       <p>No one has volunteered to teach this lesson yet! Will you be the one?</p>
@@ -13,7 +13,7 @@
   <h4>Current Students:</h4>
     <% unless @lesson.students == [] %>
       <% @lesson.students.each do |student| %>
-        <%= image_tag(student.image_url, size: "30", alt: student.name ) %> <%= link_to student.name, user_path(student.nickname) %><br><br>
+        <%= display_user(student) %><br><br>
       <% end %>
     <% else %>
       <p>No one signed up for this lesson yet! Tell your friends!</p>

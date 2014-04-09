@@ -38,10 +38,10 @@ describe "Tag" do
     @user3 = create(:user)
     @user4 = create(:user)
 
-    @lesson1.registrations.build(:user => @user1, :role => "teacher")
-    @lesson1.registrations.build(:user => @user2, :role => "student")
-    @lesson2.registrations.build(:user => @user1, :role => "teacher")
-    @lesson2.registrations.build(:user => @user3, :role => "teacher")
+    @lesson1.registrations.create(:user => @user1, :role => "teacher")
+    @lesson1.registrations.create(:user => @user2, :role => "student")
+    @lesson2.registrations.create(:user => @user1, :role => "teacher")
+    @lesson2.registrations.create(:user => @user3, :role => "teacher")
   end
 
   it "can have css_lesson as a lesson" do
@@ -55,7 +55,7 @@ describe "Tag" do
 
   it "can return only the topic tags" do
     expect(Tag.all_topics).to include(@jquery)
-    expect(Tag.all_topics.length).to eq(2)
+    expect(Tag.all_topics.length).to eq(6)
   end
 
   it "can return only the times tags" do
@@ -82,6 +82,10 @@ describe "Tag" do
   it "can find all of its completed lessons" do
     expect(@css.completed_lessons).to include(@lesson4)
     expect(@css.completed_lessons.length).to eq(1)
+  end
+
+  it "can return all of itself for a particular user" do
+    expect(Tag.all_by_user(@css, @user1).length).to eq(2)
   end
 
 end

@@ -1,4 +1,8 @@
 class TagsController < ApplicationController
+
+  def index
+    get_tags
+  end
   
   def new 
     @tag = Tag.new
@@ -22,6 +26,5 @@ class TagsController < ApplicationController
   def set_tag
     @tag = Tag.find_by(:slug => params[:slug])
   end
-
 
 end

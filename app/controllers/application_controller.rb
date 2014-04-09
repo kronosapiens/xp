@@ -38,5 +38,11 @@ class ApplicationController < ActionController::Base
       session[:user_id] = $rspec_user_id if $rspec_user_id
     end
   end
+
+  def get_tags
+    @topic_tags = Tag.all_topics
+    @location_tags = Tag.all_locations
+    @time_tags = Tag.all_times
+  end
   
 end
