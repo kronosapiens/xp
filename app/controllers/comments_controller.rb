@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
         format.js {}
       end
     else
-      flash[:alert] = "Comment failed to save..."
+      # flash[:alert] = "Comment failed to save..."
       render "lessons/show"
     end
   end 
