@@ -4,33 +4,32 @@
     <div class="navbar-header" style="width:100%">
 
       <div class="btn-group" style="display:inline-block; float:left;" data-toggle="buttons">
-        <label class="btn btn-primary navbar-btn btn-success">
+        <label class="btn btn-sm btn-primary navbar-btn btn-success">
           <input type="checkbox" class="interest-filter" id="student-button"> Students Needed
         </label>
-        <label class="btn btn-primary navbar-btn btn-warning">
+        <label class="btn btn-sm btn-primary navbar-btn btn-warning">
           <input type="checkbox" class="interest-filter" id="teacher-button"> Teachers Needed
         </label>
       </div>
   
       <form id="filters">
         <div class="chosen-box">
-          <select data-placeholder="Filter by Topic" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+          <select data-placeholder="Filter by Topic and Language" multiple class="chosen-index chosen-select tag-select" tabindex="8">
             <% @topic_tags.each do |tag| %>
-            <option id="<%= tag.id %>"><%= tag.name %></option>
+              <option id="<%= tag.id %>"><%= tag.name %></option>
+            <% end %>
+            <% @language_tags.each do |tag| %>
+              <option id="<%= tag.id %>"><%= tag.name %></option>
             <% end %>
           </select>
         </div>
         <div class="chosen-box">
-          <select data-placeholder="Filter by Location" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+          <select data-placeholder="Filter by Time and Location" multiple class="chosen-index chosen-select tag-select" tabindex="8">
             <% @location_tags.each do |tag| %>
-            <option id="<%= tag.id %>"><%= tag.name %></option>
+              <option id="<%= tag.id %>"><%= tag.name %></option>
             <% end %>
-          </select>
-        </div>
-        <div class="chosen-box">
-          <select data-placeholder="Filter by Time" multiple class="chosen-index chosen-select tag-select" tabindex="8">
             <% @time_tags.each do |tag| %>
-            <option id="<%= tag.id %>"><%= tag.name %></option>
+              <option id="<%= tag.id %>"><%= tag.name %></option>
             <% end %>
           </select>
         </div>

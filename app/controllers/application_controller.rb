@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
 
   def get_tags
     @topic_tags = Tag.all_by_category("topic")
+    @language_tags = Tag.all_by_category("language")
     @location_tags = Tag.all_by_category("location")
     @time_tags = Tag.all_by_category("time")
   end
