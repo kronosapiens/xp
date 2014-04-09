@@ -21,7 +21,7 @@
         <p><strong>References:</strong> <%= @lesson.references %></p>
         <p><strong>Tags:</strong>
           <% @lesson.topic_tags.each do |tag| %>
-            <%= link_to tag.name, tag_path(tag.slug) %> 
+            <%= link_to tag.name, tag_path(tag.slug), class: "tags" %> 
           <% end %>
         </p>
         <p><strong>Location:</strong> 
