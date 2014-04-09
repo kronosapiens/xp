@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
       end
     else
       # flash[:alert] = "Comment failed to save..."
+      
       render "lessons/show"
     end
   end 
