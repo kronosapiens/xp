@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def add_to_completed(lesson)
-    binding.pry
+    # binding.pry
   end
 
 
