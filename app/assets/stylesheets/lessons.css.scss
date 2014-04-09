@@ -109,7 +109,7 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
   display: inline-block;
 }
 
-.tags {
+.tag_box {
   font-size: 13px;
   position: relative;
   margin: 3px 0 3px 5px;
@@ -125,7 +125,7 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
 
 }
 
-.tags:hover {
+.tag_box:hover {
   text-decoration: none;
   color: #333;
 }
