@@ -90,7 +90,6 @@ module LessonsHelper
   end
 
   def linkify_references(lesson)
-    # binding.pry
     refs = lesson.references 
 
     refs_array = refs.split(
@@ -102,7 +101,7 @@ module LessonsHelper
         /x)
 
     refs_list_array = refs_array.map do |ref|
-      if uri?(ref) # if ref.include?("http")
+      if uri?(ref) 
         ref = "<li><a href='#{ref}' target='_blank'>#{ref}</a></li>"
       else
         ref = "<li>#{ref}</li>"
