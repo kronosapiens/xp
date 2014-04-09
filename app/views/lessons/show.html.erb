@@ -77,31 +77,34 @@
     </div>
   </div>
 
-  <div class="col-md-12">
-    <div class="lesson">
-      <p><strong>Comments:</strong></p>
-      <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="lesson">
+        <p><strong>Comments:</strong></p>
+        <br>
 
-      <div id="comments-section">
-        <%= render @lesson.comments %>
-      </div>
-
-      <h4>Leave a New Comment</h4>
-
-      <%= form_for [@lesson, @comment], {role: "form", remote: true} do |f| %>
-        <% if @comment.errors.any? %>
-          <div class="alert alert-warning">
-            <% @comment.errors.full_messages.each do |msg| %>
-              <p><%= msg %></p>
-            <% end %>
-          </div>
-        <% end %>
-        <div class="form-group">
-          <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
+        <div id="comments-section">
+          <%= render @lesson.comments %>
         </div>
-        <input type="submit" value="Post Comment" class="btn">
-      <% end %>
 
+        <h4>Leave a New Comment</h4>
+
+        <%= form_for [@lesson, @comment], {role: "form", remote: true} do |f| %>
+          <% if @comment.errors.any? %>
+            <div class="alert alert-warning">
+              <% @comment.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <textarea class="form-control" name="content" placeholder="Write your comment here"></textarea>
+          </div>
+          <input type="submit" value="Post Comment" class="btn">
+        <% end %>
+
+      </div>
     </div>
   </div>
+
 </div> 

@@ -8,8 +8,8 @@
 
       <h3>Stats:</h3>
       <h4><%= @tag.lessons.length %> Lessons Total</h4>
-      <h4><%= all_teachers.length %> Teachers Teaching</h4>
-      <h4><%= all_students.length %> Students Learning</h4>
+      <h4><%= all_teachers.length %> Teachers Taught</h4>
+      <h4><%= all_students.length %> Students Learned</h4>
 
 
       <h3>Top Five Teachers</h3>
@@ -23,7 +23,7 @@
       <h3>Top Five Students</h3>
       <ol>
         <% top_5_students.each do |student| %>
-          <li><%= display_user(student) %>, (<%= student.all_instances_of_tag(@tag).length %> lessons taken)</li>
+          <li><%= display_user(student) %> (<%= student.all_instances_of_tag(@tag).length %> lessons taken)</li>
         <% end %>
     </ol>
     </div>

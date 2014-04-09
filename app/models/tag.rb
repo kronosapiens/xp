@@ -13,16 +13,8 @@ class Tag < ActiveRecord::Base
     self.joins(:lessons => :users).where("tags.id = '#{tag.id}'").where("users.id = '#{user.id}'")
   end
 
-  def self.all_topics
-    all_by_category("topic")
-  end
-
-  def self.all_times
-    all_by_category("time")
-  end
-
-  def self.all_locations
-    all_by_category("location")
+  def self.all_by_category(category)
+    where(:category => category)
   end
 
   def upcoming_lessons
@@ -34,10 +26,6 @@ class Tag < ActiveRecord::Base
   end
 
   private
-  def self.all_by_category(category)
-    where(:category => category)
-  end
-
   def slugify(string)
     string.downcase.gsub(" ", "-")
   end

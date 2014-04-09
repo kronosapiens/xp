@@ -1,19 +1,14 @@
 FactoryGirl.define do 
 
-  sequence :title do |n|
-    "Mind Blowing Knowledge #{n}"
-  end
-
   factory :lesson do 
-    title 
-    description "Super awesome lesson that will change your life"
-    references "github.com/something"
-    specific_time DateTime.now
-    specific_location "Flatiron Quad"
-    status "open"
+    title { Faker::Name.name + rand(1000).to_s }
+    description { Faker::Lorem.sentence }
+    references { Faker::Internet.url }
+    specific_time { DateTime.now }
+    specific_location { Faker::Address.street_address }
 
     before(:create) do |lesson|
-      lesson.tags << FactoryGirl.create(:tag)
+      lesson.tags << create(:tag)
     end
   
   end

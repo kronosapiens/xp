@@ -3,164 +3,161 @@ require 'spec_helper'
 describe "Lesson" do
 
   before(:each) do
-    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it", :status => "open")
-    @jquery_lesson = Lesson.new(:title => "Jquery Lesson", :description => "A lesson to talk about writing some great frontend", :references => "Bing it", :status => "open")
-    @ruby_lesson = Lesson.new(:title => "Ruby Lesson", :description => "A lesson to talk about writing some great ruby", :references => "Bing it", :status => "closed")
-    @html_lesson = Lesson.new(:title => "HTML Lesson", :description => "A lesson to talk about writing some great HTML", :references => "Bing it", :status => "completed")
+    @lesson1 = create(:lesson) 
+    @lesson2 = create(:lesson) 
+    @lesson3 = create(:lesson)
+    @lesson4 = create(:lesson) 
+    @lesson3.update(:status => "closed") 
+    @lesson4.update(:status => "completed") 
 
-    @css = Tag.create(:name => "CSS", :category => "topic")
-    @jquery = Tag.create(:name => "jQuery", :category => "topic")
-    @frontend = Tag.create(:name => "Front End", :category => "topic")
+    @topic_tag1 = create(:tag)
+    @topic_tag2 = create(:tag)
+    @topic_tag3 = create(:tag)
 
-    @on_campus = Tag.create(:name => "On Campus", :category => "location")
-    @evening = Tag.create(:name => "Evening", :category => "time")
+    @location_tag1 = create(:tag)
+    @location_tag2 = create(:tag)
+    @location_tag1.update(:category => "location")
+    @location_tag2.update(:category => "location")
 
-    @css_lesson.lesson_tags.build(:tag => @css)
-    @jquery_lesson.lesson_tags.build(:tag => @jquery)
-    @jquery_lesson.lesson_tags.build(:tag => @frontend)
-    @jquery_lesson.lesson_tags.build(:tag => @on_campus)
-    @html_lesson.lesson_tags.build(:tag => @on_campus)
+    @lesson1.lesson_tags.create(:tag => @topic_tag1)
+    @lesson2.lesson_tags.create(:tag => @topic_tag2)
+    @lesson2.lesson_tags.create(:tag => @topic_tag3)
+    @lesson2.lesson_tags.create(:tag => @location_tag1)
+    @lesson4.lesson_tags.create(:tag => @location_tag1)
 
-    @css_lesson.save
-    @jquery_lesson.save
-    @ruby_lesson.save
-    @html_lesson.save
+    @user1 = create(:user)
+    @user2 = create(:user)
+    @user3 = create(:user)
+    @user4 = create(:user)
+    @user5 = create(:user)
 
-    @steve = User.create(:name => "Steve")
-    @sam = User.create(:name => "Sam")
-    @tom = User.create(:name => "Tom")
-    @ted = User.create(:name => "Ted")
-    @jack = User.create(:name => "Jack")
-
-    @css_lesson.registrations.create(:user => @sam, :role => "student", :admin => true)
-    @css_lesson.registrations.create(:user => @steve, :role => "student")
-    @css_lesson.registrations.create(:user => @tom, :role => "teacher", :admin => false)
-    @css_lesson.registrations.create(:user => @ted, :role => "teacher")
-    @html_lesson.registrations.create(:user => @ted, :role => "student")
+    @lesson1.registrations.create(:user => @user1, :role => "student")
+    @lesson1.registrations.create(:user => @user2, :role => "student", :admin => true)
+    @lesson1.registrations.create(:user => @user3, :role => "teacher", :admin => false)
+    @lesson1.registrations.create(:user => @user4, :role => "teacher")
+    @lesson4.registrations.create(:user => @user4, :role => "student")
   end
 
   it "can return all lessons of a particular status" do
     expect(Lesson.all_by_status("open").length).to eq(2)
-    expect(Lesson.all_by_status("completed")).to include(@html_lesson)
+    expect(Lesson.all_by_status("completed")).to include(@lesson4)
   end
 
-  it "can have sam as a user" do
-    expect(@css_lesson.users).to include(@sam)
+  it "can have user2 as a user" do
+    expect(@lesson1.users).to include(@user2)
   end
 
-  it "can have tom as a user" do
-    expect(@css_lesson.users).to include(@tom)
+  it "can have user3 as a user" do
+    expect(@lesson1.users).to include(@user3)
   end
 
   it "knows its students" do 
-    expect(@css_lesson.students).to include(@sam)
-    expect(@css_lesson.students).to include(@steve)
-    expect(@css_lesson.students.length).to eq(2)
+    expect(@lesson1.students).to include(@user2)
+    expect(@lesson1.students).to include(@user1)
+    expect(@lesson1.students.length).to eq(2)
   end
 
   it "knows its teachers" do
-    expect(@css_lesson.teachers).to include(@tom)
-    expect(@css_lesson.teachers).to include(@ted)
-    expect(@css_lesson.teachers.length).to eq(2)
+    expect(@lesson1.teachers).to include(@user3)
+    expect(@lesson1.teachers).to include(@user4)
+    expect(@lesson1.teachers.length).to eq(2)
   end
 
   it "knows the first teacher" do
-    expect(@css_lesson.first_teacher).to eq(@tom)
+    expect(@lesson1.first_teacher).to eq(@user3)
   end
 
   it "returns [] if it has no students" do
-    expect(@ruby_lesson.students).to eq([])
+    expect(@lesson3.students).to eq([])
   end
 
   it "returns [] if it has no teachers" do
-    expect(@ruby_lesson.teachers).to eq([])
+    expect(@lesson3.teachers).to eq([])
   end
 
   it "knows what tags it has" do
-    expect(@css_lesson.tags).to include(@css)
-    expect(@css_lesson.tags).to_not include(@jquery)
-    expect(@css_lesson.tags.length).to eq(1)
+    expect(@lesson1.tags).to include(@topic_tag1)
+    expect(@lesson1.tags).to_not include(@topic_tag2)
+    expect(@lesson1.tags.length).to eq(2)
   end
 
   it "can return tags of a particular category" do
-    expect(@jquery_lesson.location_tags).to include(@on_campus)
-    expect(@jquery_lesson.location_tags.length).to eq(1)
-    expect(@jquery_lesson.topic_tags).to include(@frontend)
-    expect(@jquery_lesson.topic_tags.length).to eq(2)
-    expect(@jquery_lesson.tags_by_category("topic")).to include(@frontend)
-    expect(@jquery_lesson.tags_by_category("topic").length).to eq(2)
+    expect(@lesson2.tags_by_category("location")).to include(@location_tag1)
+    expect(@lesson2.tags_by_category("location").length).to eq(1)
+    expect(@lesson2.tags_by_category("topic")).to include(@topic_tag3)
+    expect(@lesson2.tags_by_category("topic").length).to eq(3)
   end
 
   it "returns [] if it has no tags of a particular category" do
-    (expect(@css_lesson.location_tags).to eq([]))
+    (expect(@lesson1.location_tags).to eq([]))
   end
 
   it "can have multiple tags" do
-    expect(@jquery_lesson.tags.length).to eq(3)
+    expect(@lesson2.tags.length).to eq(4)
   end
 
   it "can return its tags as a string" do
-    expect(@jquery_lesson.tags_to_string).to be_a(String)
-    expect(@jquery_lesson.tags_to_string).to eq("jQuery, Front End, On Campus")
+    expect(@lesson2.tags_to_string).to be_a(String)
+    expect(@lesson2.tags_to_string).to include(@lesson2.tags.first.name)
   end
 
   it "can return its tag ids as an array" do
-    expect(@jquery_lesson.tag_ids_to_array).to be_a(Array)
-    expect(@jquery_lesson.tag_ids_to_array).to eq([2, 3, 4])
+    expect(@lesson2.tag_ids_to_array).to be_a(Array)
+    expect(@lesson2.tag_ids_to_array).to include(@lesson2.tags.first.id)
   end
 
   it "can add tags to itself, given a full hash of existing tags" do
     tags_hash = {
-      :topics => ["CSS", "jQuery"],
+      :topics => ["topic_tag1", "topic_tag2"],
       :locations => ["On Campus"],
-      :times => ["Evening"]
+      :times => ["location_tag2"]
     } 
-    @ruby_lesson.build_tags(tags_hash)
-    @ruby_lesson.save
+    @lesson3.build_tags(tags_hash)
+    @lesson3.save
 
-    expect(@ruby_lesson.tags).to include(@css)
-    expect(@ruby_lesson.tags).to include(@on_campus)
-    expect(@ruby_lesson.tags).to include(@evening)
-    expect(@ruby_lesson.tags.length).to eq(4)
+    expect(@lesson3.tags).to include(@topic_tag1)
+    expect(@lesson3.tags).to include(@location_tag1)
+    expect(@lesson3.tags).to include(@location_tag2)
+    expect(@lesson3.tags.length).to eq(5)
   end
 
   it "can add tags to itself, given a partial hash of existing tags" do
         tags_hash = {
-      :topics => ["CSS", "jQuery"],
+      :topics => ["topic_tag1", "topic_tag2"],
       :locations => nil,
-      :times => ["Evening"]
+      :times => ["location_tag2"]
     } 
-    @ruby_lesson.build_tags(tags_hash)
-    @ruby_lesson.save
+    @lesson3.build_tags(tags_hash)
+    @lesson3.save
 
-    expect(@ruby_lesson.tags).to include(@jquery)
-    expect(@ruby_lesson.tags).to include(@evening)
-    expect(@ruby_lesson.tags).to_not include(@on_campus)
-    expect(@ruby_lesson.tags.length).to eq(3)
+    expect(@lesson3.tags).to include(@topic_tag2)
+    expect(@lesson3.tags).to include(@location_tag2)
+    expect(@lesson3.tags).to_not include(@location_tag1)
+    expect(@lesson3.tags.length).to eq(4)
   end
 
   it "knows its admin" do
-    expect(@css_lesson.admin).to eq(@sam)
-    expect(@css_lesson.admin).to_not eq(@tom)
+    expect(@lesson1.admin).to eq(@user2)
+    expect(@lesson1.admin).to_not eq(@user3)
   end
 
   it "it returns nil if theres no admin" do
-    expect(@jquery_lesson.admin).to eq(nil)
+    expect(@lesson2.admin).to eq(nil)
   end
 
   it "verifies user count before deletion" do
-    expect(@html_lesson.ok_to_delete?).to eq(false)
-    expect(@css_lesson.ok_to_delete?).to eq(true)
+    expect(@lesson4.ok_to_delete?).to eq(false)
+    expect(@lesson1.ok_to_delete?).to eq(true)
   end
 
   it "can close its status" do
-    @css_lesson.close
-    expect(@css_lesson.status).to eq("closed")
+    @lesson1.close
+    expect(@lesson1.status).to eq("closed")
   end
 
   it "can mark itself held" do
-    @css_lesson.mark_completed
-    expect(@css_lesson.status).to eq("completed")
+    @lesson1.mark_completed
+    expect(@lesson1.status).to eq("completed")
   end
 
 end

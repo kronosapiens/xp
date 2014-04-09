@@ -40,9 +40,9 @@ class ApplicationController < ActionController::Base
   end
 
   def get_tags
-    @topic_tags = Tag.all_topics
-    @location_tags = Tag.all_locations
-    @time_tags = Tag.all_times
+    @topic_tags = Tag.all_by_category("topic")
+    @location_tags = Tag.all_by_category("location")
+    @time_tags = Tag.all_by_category("time")
   end
   
 end

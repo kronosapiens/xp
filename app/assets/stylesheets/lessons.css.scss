@@ -2,18 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.lessons {
-  padding-top: 24px;
-  padding-bottom: 24px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  h1 {
-    font-size: 24px;
-  }
-  p {
-    font-size: 14px;
-  }
-}
+// .lessons {
+//   padding-top: 24px;
+//   padding-bottom: 24px;
+//   margin-top: 12px;
+//   margin-bottom: 12px;
+//   h1 {
+//     font-size: 24px;
+//   }
+//   p {
+//     font-size: 14px;
+//   }
+// }
 
 $gray-lighter:                lighten(#000, 93.5%) !default; // #eee
 $font-size-base:              14px !default;
@@ -28,7 +28,7 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
 
 .lesson {
   padding: $lesson-padding;
-  margin-bottom: $lesson-padding;
+  margin-bottom: ($lesson-padding * 2);
   color: $lesson-color;
   background-color: $lesson-bg;
 
@@ -37,7 +37,7 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
     color: $lesson-heading-color;
   }
   p {
-    margin-bottom: ($lesson-padding / 2);
+    margin-bottom: ($lesson-padding / 1);
     font-size: $lesson-font-size;
     font-weight: 200;
   }

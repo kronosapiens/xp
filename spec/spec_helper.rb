@@ -52,3 +52,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'default'
 end
+
+def use_user_id(id=nil)
+  session[:user_id] = id
+end

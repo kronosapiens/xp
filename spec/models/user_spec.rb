@@ -3,38 +3,37 @@ require 'spec_helper'
 describe "User" do
 
   before(:each) do
-    @front_end_lesson = create(:lesson)
-    @back_end_lesson = create(:lesson)
-    @jquery_lesson = create(:lesson)
-    @arel_lesson = create(:lesson)
+    @lesson1 = create(:lesson)
+    @lesson2 = create(:lesson)
+    @lesson3 = create(:lesson)
+    @lesson4 = create(:lesson)
 
-    @jquery_lesson.update(:status => "completed")
-    @back_end_lesson.update(:status => "closed")
+    @lesson3.update(:status => "completed")
+    @lesson2.update(:status => "closed")
   
-    @css = create(:tag)
-    @jquery = create(:tag)
-    @rails = create(:tag)
-    @arel = create(:tag)
+    @tag1 = create(:tag)
+    @tag2 = create(:tag)
+    @tag3 = create(:tag)
+    @tag4 = create(:tag)
   
-    @front_end_lesson.lesson_tags.create(:tag => @css)
-    @front_end_lesson.lesson_tags.create(:tag => @jquery)
-    @back_end_lesson.lesson_tags.create(:tag => @rails)
-    @back_end_lesson.lesson_tags.create(:tag => @arel)
-    @back_end_lesson.lesson_tags.create(:tag => @jquery)
-    @jquery_lesson.lesson_tags.create(:tag => @jquery)
-    @jquery_lesson.lesson_tags.create(:tag => @css)
-    @arel_lesson.lesson_tags.create(:tag => @arel)
+    @lesson1.lesson_tags.create(:tag => @tag1)
+    @lesson1.lesson_tags.create(:tag => @tag2)
+    @lesson2.lesson_tags.create(:tag => @tag3)
+    @lesson2.lesson_tags.create(:tag => @tag4)
+    @lesson2.lesson_tags.create(:tag => @tag2)
+    @lesson3.lesson_tags.create(:tag => @tag2)
+    @lesson3.lesson_tags.create(:tag => @tag1)
+    @lesson4.lesson_tags.create(:tag => @tag4)
   
-    @ash = create(:user)
-    @misty = create(:user)
+    @user1 = create(:user)
+    @user2 = create(:user)
 
-    @ash.registrations.create(:lesson => @front_end_lesson, :role => "teacher")
-    @ash.registrations.create(:lesson => @jquery_lesson, :role => "student")
-
-    @misty.registrations.create(:lesson => @front_end_lesson, :role => "student")
-    @misty.registrations.create(:lesson => @jquery_lesson, :role => "teacher")
-    @misty.registrations.create(:lesson => @back_end_lesson, :role => "student")
-    @misty.registrations.create(:lesson => @arel_lesson, :role => "teacher")
+    @user1.registrations.create(:lesson => @lesson1, :role => "teacher")
+    @user1.registrations.create(:lesson => @lesson3, :role => "student")
+    @user2.registrations.create(:lesson => @lesson1, :role => "student")
+    @user2.registrations.create(:lesson => @lesson2, :role => "student")
+    @user2.registrations.create(:lesson => @lesson3, :role => "teacher")
+    @user2.registrations.create(:lesson => @lesson4, :role => "teacher")
 
     @auth_hash = {
      "provider"=>"github",
@@ -48,42 +47,37 @@ describe "User" do
   end
 
   it 'knows what lessons it has' do
-    expect(@misty.lessons.first).to eq(@front_end_lesson)
-    expect(@misty.lessons.length).to eq(4)
+    expect(@user2.lessons.first).to eq(@lesson1)
+    expect(@user2.lessons.length).to eq(4)
   end
 
   it 'knows when it is a student' do
-    expect(@misty.lessons_by_role("student").first).to eq(@front_end_lesson) 
+    expect(@user2.lessons_by_role("student").first).to eq(@lesson1) 
   end
 
   it 'knows when it is a teacher' do
-    expect(@misty.lessons_by_role("teacher").first).to eq(@jquery_lesson)
+    expect(@user2.lessons_by_role("teacher").first).to eq(@lesson3)
   end
 
   it 'knows its open lessons as a student' do 
-    desired_lessons = @misty.lessons_by_role_and_status("student", "open")
+    desired_lessons = @user2.lessons_by_role_and_status("student", "open")
 
-    expect(desired_lessons).to include(@front_end_lesson)
-    expect(desired_lessons).to_not include(@arel_lesson) 
+    expect(desired_lessons).to include(@lesson1)
+    expect(desired_lessons).to_not include(@lesson4) 
   end
 
   it 'knows its upcoming lessons as a student' do 
-    desired_lessons = (@misty.lessons_by_role_and_status("student", "open") + @misty.lessons_by_role_and_status("student", "closed"))
+    desired_lessons = (@user2.lessons_by_role_and_status("student", "open") + @user2.lessons_by_role_and_status("student", "closed"))
 
-    expect(desired_lessons).to include(@front_end_lesson)
-    expect(desired_lessons).to_not include(@arel_lesson) 
+    expect(desired_lessons).to include(@lesson1)
+    expect(desired_lessons).to_not include(@lesson4) 
   end
 
   it 'knows its completed lessons as a teacher' do 
-    desired_lessons = (@misty.lessons_by_role_and_status("teacher", "completed"))
+    desired_lessons = (@user2.lessons_by_role_and_status("teacher", "completed"))
 
-    expect(desired_lessons).to include(@jquery_lesson)
-    expect(desired_lessons).to_not include(@arel_lesson) 
-  end
-
-  xit 'knows its lessons by tag' do
-    expect(@misty.lessons_by_tag(@css).length).to eq(2)
-    expect(@misty.lessons_by_tag(@css)).to include(@jquery_lesson)
+    expect(desired_lessons).to include(@lesson3)
+    expect(desired_lessons).to_not include(@lesson4) 
   end
   
   it 'can create a user from oauth' do
@@ -98,7 +92,7 @@ describe "User" do
   end
 
   it 'can return the top users by tag and role' do
-    expect(User.ranked_by_tag_and_role(@jquery, "student").first).to eq(@misty)
+    expect(User.ranked_by_tag_and_role(@tag2, "student").first).to eq(@user2)
   end
 
 end
