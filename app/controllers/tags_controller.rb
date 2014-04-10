@@ -2,9 +2,6 @@ class TagsController < ApplicationController
 
   def index
     get_tags
-  end
-  
-  def new 
     @tag = Tag.new
   end
 
@@ -13,6 +10,7 @@ class TagsController < ApplicationController
   end
 
   def create
+    login_required
     @tag = Tag.new(:name => params[:name], :category => "topic")
 
     if @tag.save

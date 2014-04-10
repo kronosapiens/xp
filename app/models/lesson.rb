@@ -29,21 +29,27 @@ class Lesson < ActiveRecord::Base
   end
 
   def has_tags
-    if self.all_tags.count == 0
+    if self.tags.length == 0
       errors.add(:tags, "Lesson must have at least one tag.")
     end
   end
    
-  def build_tags(tags_hash)
-    tags_hash.each do |category, tags|
-      if tags
-        tags.each do |tag|
-          @this_tag = Tag.where(:name=> tag, :category => category.to_s.singularize).first_or_create
-          self.lesson_tags.build(:tag => @this_tag)
-        end
-      end
-    end   
+  def build_tags(tags_array)
+    tags_array.each do |tag_id|
+      self.tags << Tag.find(tag_id.to_i)
+    end
   end
+
+  # def build_tags(tags_hash)
+  #   tags_hash.each do |category, tags|
+  #     if tags
+  #       tags.each do |tag|
+  #         @this_tag = Tag.where(:name=> tag, :category => category.to_s.singularize).first_or_create
+  #         self.lesson_tags.build(:tag => @this_tag)
+  #       end
+  #     end
+  #   end   
+  # end
 
   def students
     registrations.where(:role => "student").map(&:user)
@@ -53,9 +59,9 @@ class Lesson < ActiveRecord::Base
     teachers_collection.map(&:user)
   end
 
-  def all_tags
-    lesson_tags.map(&:tag)
-  end
+  # def all_tags
+  #   lesson_tags.map(&:tag)
+  # end
 
   def topic_tags 
     tags.where(category: "topic")
@@ -74,11 +80,11 @@ class Lesson < ActiveRecord::Base
   end
 
   def tags_to_string
-    all_tags.inject(""){|tag_string, tag| tag_string << tag.name + ", "}.chop.chop
+    tags.inject(""){|tag_string, tag| tag_string << tag.name + ", "}.chop.chop
   end
 
   def tag_ids_to_array
-    all_tags.inject([]){|tag_array, tag| tag_array << tag.id}
+    tags.inject([]){|tag_array, tag| tag_array << tag.id}
   end
 
   def first_teacher

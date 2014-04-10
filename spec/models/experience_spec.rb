@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe Experience do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  # let(:exp1){ create(:experience).tap{}}
+
+  describe '#by_tag_category' do
+    it 'can return experiences only from topics' do
+      expect(Experience.by_tag_category("topic")).to include(topic_tag)
+    end
+  end
+
 end

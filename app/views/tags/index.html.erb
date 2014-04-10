@@ -1,21 +1,72 @@
-<h2>Topics</h2>
-<br>
-  <% @topic_tags.each do |tag| %>
-    <h4><%= link_to tag.name, tag_path(tag.slug) %></h4><br>
+<div class="container lesson-container">
+  <div class="floater">
+  </div>
+
+  <% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice.html_safe %></p>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-warning">
+      <p id="alert"><%= alert.html_safe %></p>
+    </div>
   <% end %>
 
-  <br><br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="lesson">
+        <h2>Topics</h2>
+        <br>
+        <p>
+          <% @topic_tags.each do |tag| %>
+            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
 
-<h2>Locations</h2>
-<br>
-  <% @location_tags.each do |tag| %>
-    <h4><%= link_to tag.name, tag_path(tag.slug) %></h4><br>
-  <% end %>
+    <div class="col-md-6">
+      <div class="lesson">
+        <h2>Languages</h2>
+        <br>
+        <p>
+          <% @language_tags.each do |tag| %>
+            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
 
-  <br><br>
+    <div class="col-md-6">
+      <div class="lesson">
+        <h2>Times</h2>
+        <br>
+        <p>
+        <% @time_tags.each do |tag| %>
+          <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+        <% end %>
+        </p>
+      </div>
+    </div>
 
-<h2>Times</h2>
-<br>
-  <% @time_tags.each do |tag| %>
-    <h4><%= link_to tag.name, tag_path(tag.slug) %></h4><br>
-  <% end %>
+    <div class="col-md-6">
+      <div class="lesson">
+        <h2>Locations</h2>
+        <br>
+        <p>
+          <% @location_tags.each do |tag| %>
+            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="lesson">
+        <%= render 'tags/form' %>
+      </div>
+    </div>
+
+  </div>
+
+</div> 

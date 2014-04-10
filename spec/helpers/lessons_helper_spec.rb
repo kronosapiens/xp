@@ -10,29 +10,25 @@ require 'spec_helper'
 #     end
 #   end
 # end
+
 describe LessonsHelper do
 
-  before(:each) do
-    @css_lesson = Lesson.new(:title => "Css Lesson", :description => "A lesson to talk about writing a stylesheet", :references => "Google it")
-    @css = Tag.create(:name => "CSS", :category => "topic")
-    @jquery = Tag.create(:name => "jQuery", :category => "topic")
-    @css_lesson.lesson_tags.build(:tag => @css)
-    @css_lesson.save
-
-    @sam = User.create(:name => "Sam")
-    @css_lesson.registrations.create(:user => @sam, :role => "student", :admin => true)
-  end
+    let(:tag1){ create(:tag).tap { |tag| tag.update(:category => "topic") } }
+    let(:tag2){ create(:tag).tap { |tag| tag.update(:category => "topic") } }
+    let(:lesson){ create(:lesson).tap { |lesson| lesson.tags << tag1 } }
+    let(:user){ create(:user) }
 
   it "returns 'selected' if it has the tag" do
-    expect(prepopulate_tags(@css_lesson, @css)).to eq("selected")
+    expect(prepopulate_tags(lesson, tag1)).to eq("selected")
   end
 
   it "returns nothing if it doesn't have the tag" do
-    expect(prepopulate_tags(@css_lesson, @jquery)).to eq(nil)
+    expect(prepopulate_tags(lesson, tag2)).to eq(nil)
   end
   
   it "knows when the lesson has only one user" do
-    expect(one_user?(@css_lesson)).to eq(true)
+    lesson.registrations.create(:user => user, :role => "student", :admin => true)
+    expect(one_user?(lesson)).to eq(true)
   end
 
 

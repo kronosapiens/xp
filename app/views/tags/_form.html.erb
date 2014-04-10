@@ -9,7 +9,11 @@
   <% end %>
 
   <div class="form-group">
-    <input type="text" name="name">
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <input type="submit" value="Create a New Tag" class="btn btn-sm">
+
+  <div class="form-group">
+    <%= f.submit 'Create New Topic', class: 'btn btn-sm' %>
+  </div>
+
 <% end %>

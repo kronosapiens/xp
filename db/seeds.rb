@@ -42,28 +42,28 @@
 @sql_lesson = Lesson.new(:title => "SQL Lesson", :description => "Need help with SQL!", :references => "http://teamtreehouse.com/library/programming/database-foundations")
 
 #Associating some lessons and tags
-@css_lesson.lesson_tags.build(:tag => @css)
-@css_lesson.lesson_tags.build(:tag => @frontend)
-@jquery_lesson.lesson_tags.build(:tag => @frontend)
-@javascript_lesson.lesson_tags.build(:tag => @frontend)
-@javascript_lesson.lesson_tags.build(:tag => @javascript)
-@jquery_lesson.lesson_tags.build(:tag => @frontend)
-@sql_lesson.lesson_tags.build(:tag => @sql)
-@sql_lesson.lesson_tags.build(:tag => @databases)
+@css_lesson.tags << @css
+@css_lesson.tags << @frontend
+@jquery_lesson.tags << @frontend
+@javascript_lesson.tags << @frontend
+@javascript_lesson.tags << @javascript
+@jquery_lesson.tags << @frontend
+@sql_lesson.tags << @sql
+@sql_lesson.tags << @databases
 
-@sql_lesson.lesson_tags.build(:tag => @evening)
-@javascript_lesson.lesson_tags.build(:tag => @evening)
-@jquery_lesson.lesson_tags.build(:tag => @evening)
-@sql_lesson.lesson_tags.build(:tag => @afternoon)
-@javascript_lesson.lesson_tags.build(:tag => @afternoon)
-@css_lesson.lesson_tags.build(:tag => @afternoon)
+@sql_lesson.tags << @evening
+@javascript_lesson.tags << @evening
+@jquery_lesson.tags << @evening
+@sql_lesson.tags << @afternoon
+@javascript_lesson.tags << @afternoon
+@css_lesson.tags << @afternoon
 
-@sql_lesson.lesson_tags.build(:tag => @flatiron)
-@javascript_lesson.lesson_tags.build(:tag => @flatiron)
-@css_lesson.lesson_tags.build(:tag => @flatiron)
-@jquery_lesson.lesson_tags.build(:tag => @manhattan)
-@javascript_lesson.lesson_tags.build(:tag => @brooklyn)
-@css_lesson.lesson_tags.build(:tag => @remote)
+@sql_lesson.tags << @flatiron
+@javascript_lesson.tags << @flatiron
+@css_lesson.tags << @flatiron
+@jquery_lesson.tags << @manhattan
+@javascript_lesson.tags << @brooklyn
+@css_lesson.tags << @remote
 
 @css_lesson.save
 @jquery_lesson.save
@@ -76,7 +76,7 @@
 @dratini = User.create(:name => "Dratini", :uid => "14894", :nickname => "dratinibobini", :image_url => "http://images1.wikia.nocookie.net/__cb20120906010245/es.pokemon/images/8/8b/Dratini_(anime_SO)_2.png")
 
 #Associating some lessons and users
-@css_lesson.registrations.create(:user => @eevee, :role => "student", :admin => true)
+@css_lesson.registrations.create(:user => @eevee, :role => "student")
 @css_lesson.registrations.create(:user => @dratini, :role => "student")
 @css_lesson.registrations.create(:user => @pikachu, :role => "teacher")
 @jquery_lesson.registrations.create(:user => @eevee, :role => "teacher", :admin => true)

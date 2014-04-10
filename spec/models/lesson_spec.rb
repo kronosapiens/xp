@@ -110,34 +110,14 @@ describe "Lesson" do
   end
 
   # The following two tests work, but something about FactoryGirl makes it not see tags properly
-  xit "can add tags to itself, given a full hash of existing tags" do
-    tags_hash = {
-      :topics => [@topic_tag1.name, @topic_tag2.name],
-      :locations => [@location_tag1.name, @location_tag2.name],
-      :times => [@time_tag1.name]
-    } 
-    @lesson3.build_tags(tags_hash)
+  it "can add tags to itself, given an array of existing tag_ids as strings" do
+    tags_array = ["2", "4", "3"]
+    @lesson3.build_tags(tags_array)
     @lesson3.save
 
-    expect(@lesson3.tags).to include(@topic_tag1)
-    expect(@lesson3.tags).to include(@location_tag1)
-    expect(@lesson3.tags).to include(@location_tag2)
-    expect(@lesson3.tags.length).to eq(5)
-  end
-
-  xit "can add tags to itself, given a partial hash of existing tags" do
-        tags_hash = {
-      :topics => [@topic_tag1.name, @topic_tag2.name],
-      :locations => nil,
-      :times => [@time_tag1.name]
-    } 
-    @lesson3.build_tags(tags_hash)
-    @lesson3.save
-
-    expect(@lesson3.tags).to include(@topic_tag2)
-    expect(@lesson3.tags).to include(@time_tag1)
-    expect(@lesson3.tags).to_not include(@location_tag1)
-    expect(@lesson3.tags.length).to eq(3)
+    expect(@lesson3.tags).to include(Tag.find(2))
+    expect(@lesson3.tags).to include(Tag.find(4))
+    expect(@lesson3.tags.length).to eq(4)
   end
 
   it "knows its admin" do
@@ -159,18 +139,14 @@ describe "Lesson" do
     expect(@lesson1.status).to eq("closed")
   end
 
-  xit "can mark itself held" do
-    expect(@user1).to receive(:add_to_completed).with(@lesson1)
-    # @user1.add_to_completed(@lesson1)
-    @lesson1.mark_completed
-    expect(@lesson1.status).to eq("completed")
+  describe "#add_to_completed" do
+    xit "can mark itself held" do
+      expect(@user1).to receive(:add_to_completed).with(@lesson1)
+      # @user1.add_to_completed(@lesson1)
+      @lesson1.mark_completed
+      expect(@lesson1.status).to eq("completed")
+    end
   end
-
-  # describe "#add_to_completed" do
-  #   it "can mark itself held" do
-  #     expect(something).to be(something)
-  #   end
-  # end
 
 
 end

@@ -1,13 +1,14 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
   before_action :login_required, except: [:index, :show]
-  before_action only: [:index, :new, :edit, :show] do
-    get_tags(:active)
+  before_action only: [:new, :edit, :show, :update, :create] do
+    get_tags(:all)
   end
 
   # GET /lessons
   # GET /lessons.json
   def index
+    get_tags(:active)
     @lessons = Lesson.all_by_status("open")
   end
 
@@ -53,9 +54,10 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create 
-    tags_hash = tag_hash_from_params(params)
+    # tags_hash = tag_hash_from_params(params)
+    # @lesson.build_tags(tags_hash)
     @lesson = Lesson.new(lesson_params)
-    @lesson.build_tags(tags_hash)
+    @lesson.build_tags(params[:lesson][:tags])
 
     respond_to do |format|
      if @lesson.save
@@ -74,14 +76,14 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-    # unless params[:lesson][:status]
-      @lesson.lesson_tags.clear
+      # @lesson.lesson_tags.clear
+      # tags_hash = tag_hash_from_params(params)
+      # @lesson.build_tags(tags_hash)
 
-      tags_hash = tag_hash_from_params(params)
-      @lesson.build_tags(tags_hash)
-          
+      @lesson.tags.clear
+      @lesson.build_tags(params[:lesson][:tags])
+
       params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
-    # end
 
     respond_to do |format|
       if @lesson.update(lesson_params)
@@ -101,7 +103,7 @@ class LessonsController < ApplicationController
     @registration = get_registration
     respond_to do |format|
       if @lesson.update(lesson_params)
-        @lesson.mark_completed if lesson.status == "completed"
+        @lesson.mark_completed if @lesson.status == "completed"
         format.html { redirect_to @lesson, notice: "Lesson status successfully updated to '#{params[:lesson][:status]}'." }
         format.js {}
         format.json { head :no_content }
@@ -156,6 +158,7 @@ class LessonsController < ApplicationController
   def tag_hash_from_params(params)
     {
       :topics => params[:lesson][:topics],
+      :languages => params[:lesson][:languages],
       :locations => params[:lesson][:locations],
       :times => params[:lesson][:times]
     }

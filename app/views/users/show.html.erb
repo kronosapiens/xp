@@ -1,56 +1,69 @@
-<div class="container">
-<div class="jumbotron">
+<div class="container lesson-container">
+  <div class="floater">
+  </div>
+
   <p id="notice"><%= notice %></p>
 
-  <img src="<%= @user.image_url %>" alt="<%= @user.name %> thumbnail" class="img-responsive" style=" height:280px; float:right">
+  <div class="row">
 
-  <p>
-    <strong><%= @user.name %></strong> (<%= @user.nickname %>)
-  </p>
-  <br>
+    <div class="col-md-5">
+      <div class="lesson">
+        <p>
+          <strong><%= @user.name %></strong> (<%= link_to @user.nickname, "http://www.github.com/#{@user.nickname}" %>)
+        </p>
+        <%= image_tag(@user.image_url, { size: "250", alt: "#{@user.name} thumbnail", class: "img-responsive img-rounded" } ) %> 
+        <br>
 
-  <p>
-    <strong>Upcoming Lessons as Student</strong>
-    <ul>
-      <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
-        <li><%= link_to lesson.title, lesson %></li>
-      <% end %>
-      <% @user.lessons_by_role_and_status("student", "closed").each do |lesson| %>
-        <li><%= link_to lesson.title, lesson %></li>
-      <% end %>
-    </ul>
-  </p>
+         <p>
+          <strong>Upcoming Lessons as Student</strong>
+          <ul>
+            <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
+              <li><%= link_to lesson.title, lesson %></li>
+            <% end %>
+            <% @user.lessons_by_role_and_status("student", "closed").each do |lesson| %>
+              <li><%= link_to lesson.title, lesson %></li>
+            <% end %>
+          </ul>
+        </p>
 
-  <p>
-    <strong>Upcoming Lessons as Teacher</strong>
-    <ul>
-      <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
-        <li><%= link_to lesson.title, lesson %></li>
-      <% end %>
-      <% @user.lessons_by_role_and_status("teacher", "closed").each do |lesson| %>
-        <li><%= link_to lesson.title, lesson %></li>
-      <% end %>
-    </ul>
-  </p>
+        <p>
+          <strong>Upcoming Lessons as Teacher</strong>
+          <ul>
+            <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
+              <li><%= link_to lesson.title, lesson %></li>
+            <% end %>
+            <% @user.lessons_by_role_and_status("teacher", "closed").each do |lesson| %>
+              <li><%= link_to lesson.title, lesson %></li>
+            <% end %>
+          </ul>
+        </p>
 
-  <p>
-    <strong>Past Lessons as Student</strong>
-    <ul>
-      <% @user.lessons_by_role_and_status("student", "completed").each do |lesson| %>
-        <li><%= link_to lesson.title, lesson %></li>
-      <% end %>
-    </ul>
-  </p>
+        <p>
+          <strong>Past Lessons as Student</strong>
+          <ul>
+            <% @user.lessons_by_role_and_status("student", "completed").each do |lesson| %>
+              <li><%= link_to lesson.title, lesson %></li>
+            <% end %>
+          </ul>
+        </p>
 
-  <p>
-    <strong>Past Lessons as Teacher</strong>
-    <ul>
-      <% @user.lessons_by_role_and_status("teacher", "completed").each do |lesson| %>
-        <li><%= link_to lesson.title, lesson %></li>
-      <% end %>
-    </ul>
-  </p>
+        <p>
+          <strong>Past Lessons as Teacher</strong>
+          <ul>
+            <% @user.lessons_by_role_and_status("teacher", "completed").each do |lesson| %>
+              <li><%= link_to lesson.title, lesson %></li>
+            <% end %>
+          </ul>
+        </p>
+      </div>
+    </div>
 
-</div>
+    <div class="col-md-7">
+      <div class="lesson">
+        <h2>Experience</h2>
+        <%= render @user.experiences %>
+      </div>
+    </div>
+
 </div>
 

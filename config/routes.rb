@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   post "/lessons/:id/admin_email" => "lessons#admin_email"
 
-  resources :tags, only: [:index, :new, :create]
+  resources :tags, only: [:index, :create]
   get "tags/:slug" => "tags#show", as: :tag
 
 # Routes for user authentication

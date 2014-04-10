@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :experience do
-    user nil
-    tag nil
-    taken 1
-    taught 1
-    gh_stat 1
+    user { rand(100) }
+    tag { rand(100) }
+    taken { rand(100) }
+    taught { rand(100) }
+    gh_stat { rand(1000) }
   end
 end

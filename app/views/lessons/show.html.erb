@@ -20,8 +20,8 @@
         <p><strong>Description:</strong> <%= @lesson.description %></p>
         <p><strong>References:</strong><ul><%= linkify_references(@lesson) %></ul></p>
         <p><strong>Tags:</strong>
-          <% @lesson.topic_tags.each do |tag| %>
-            <%= link_to tag.name, tag_path(tag.slug), class: "tag_box" %> 
+          <% @lesson.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag.slug), class: "btn btn-sm" %> 
           <% end %>
         </p>
         <p><strong>Location:</strong> 
