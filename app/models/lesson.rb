@@ -14,9 +14,7 @@ class Lesson < ActiveRecord::Base
   validates :references, presence: true
   validate :has_tags
 
-  before_save do
-    self.slug = slugify(self.title)
-  end
+  before_save :before_save_slugify
 
   # Class Methods
   def self.all_by_status(status)
@@ -107,6 +105,10 @@ class Lesson < ActiveRecord::Base
   def mark_completed
     self.update(:status => "completed")
     self.users.each {|user| user.add_to_completed(self)}
+  end
+
+  def before_save_slugify
+    self.slug = slugify(self.title)
   end
 
   private
