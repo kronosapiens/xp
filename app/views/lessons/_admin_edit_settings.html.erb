@@ -2,7 +2,7 @@
 <div class="form-group" id="select-locations" >
   <label>Select Location Tags</label>
   <small>What tags best describe possible locations of this lesson?</small><br>
-  <select data-placeholder="Select Locations" style="max-width:700px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[tags][]">
+  <select data-placeholder="Select Locations" style="max-width:700px;" multiple class="chosen-select tag-select form-control" name="lesson[tags][]">
     <% @location_tags.each do |tag| %>
       <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %> value="<%= tag.id %>"><%= tag.name %></option>
     <% end %>
@@ -12,7 +12,7 @@
 <div class="form-group" id="select-times">
   <label>Select Time Tags</label>
   <small>What tags best describe possible times of this lesson?</small><br>
-  <select data-placeholder="Select Times" style="max-width:700px;" multiple class="chosen-select tag-select form-control" tabindex="8" name="lesson[tags][]">
+  <select data-placeholder="Select Times" style="max-width:700px;" multiple class="chosen-select tag-select form-control"  name="lesson[tags][]">
     <% @time_tags.each do |tag| %>
       <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %> value="<%= tag.id %>"><%= tag.name %></option>
     <% end %>

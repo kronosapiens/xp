@@ -14,7 +14,7 @@
   
       <form id="filters">
         <div class="chosen-box">
-          <select data-placeholder="Filter by Topic and Language" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+          <select data-placeholder="Filter by Topic and Language" multiple class="chosen-index chosen-select tag-select">
             <% @topic_tags.each do |tag| %>
               <option id="<%= tag.id %>"><%= tag.name %></option>
             <% end %>
@@ -24,7 +24,7 @@
           </select>
         </div>
         <div class="chosen-box">
-          <select data-placeholder="Filter by Time and Location" multiple class="chosen-index chosen-select tag-select" tabindex="8">
+          <select data-placeholder="Filter by Time and Location" multiple class="chosen-index chosen-select tag-select">
             <% @location_tags.each do |tag| %>
               <option id="<%= tag.id %>"><%= tag.name %></option>
             <% end %>

@@ -66,10 +66,14 @@
         <br>
 
         <div id="registration-info">
-          <% if @registration %>
+          <% if @lesson.status == "completed" %>
+            <h4>This Lesson has Been Completed.</h4>
+          <% elsif @registration %>
             <%= render "lessons/lesson_registered" %>
-          <% else %>
+          <% elsif @lesson.status == "open" %>
             <%= render "lessons/lesson_unregistered" %>
+          <% else %>
+            <h4>Registration for This Lesson is Closed.</h4>
           <% end %>
         </div>
 

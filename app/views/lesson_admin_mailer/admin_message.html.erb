@@ -10,7 +10,7 @@
     <h3>
       Lesson Name: 
       <%= link_to @lesson.title, :controller => "lessons", :action => "show",
-      :only_path => false, :id => @lesson.id, :host => "http://127.0.0.1:3000" %>
+      :only_path => false, :id => @lesson.id, :host => "http://get-xp.herokuapp.com" %>
       <!-- when entering host URL, do NOT put a / at the end -->
     </h3>
     <p>
@@ -19,7 +19,7 @@
 
     <br><br>
     <p><em>
-      You received this email because you signed up for a class on xp.
+      You received this email because you signed up for a class (<%= @lesson.title %>) on xp.
     </em></p>
   </body>
 </html>
