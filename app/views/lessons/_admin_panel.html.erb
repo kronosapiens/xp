@@ -16,7 +16,7 @@
   <%= link_to 'Edit Lesson', edit_lesson_path(@lesson), { class: "btn btn-info" } %>
 
   <% if one_user?(@lesson) %>
-    <%= link_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, remote: true } %>
+    <%= link_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } } %>
   <% end %>
 
   <br>
