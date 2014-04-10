@@ -22,7 +22,7 @@ module LessonsHelper
   end
 
   def adjusted_time(lesson)
-    lesson.specific_time - 4.hours
+    lesson.specific_time + 4.hours
   end
 
 

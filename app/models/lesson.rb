@@ -23,7 +23,7 @@ class Lesson < ActiveRecord::Base
 
   # Instance Methods
   def ok_to_delete?
-    registrations.length > 1
+    registrations.length <= 1
   end
 
   def has_tags

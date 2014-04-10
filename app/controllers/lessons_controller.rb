@@ -119,7 +119,7 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1.json
   def destroy
     if @lesson.ok_to_delete?
-      if is_user_admin?
+      if is_user_admin?(@lesson)
         @lesson.destroy
         respond_to do |format|
           format.html { redirect_to lessons_url }
@@ -130,7 +130,7 @@ class LessonsController < ApplicationController
         redirect_to @lesson
       end
     else
-      errors.add(:base, "Can't delete if there are other users signed up.")
+      flash[:alert] = "Can't delete if there are other users signed up."
       redirect_to @lesson
     end
   end
