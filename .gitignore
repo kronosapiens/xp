@@ -15,10 +15,8 @@
 /log/*.log
 /tmp
 
-
-# Ignore secret
-/config/secrets.yml
-
 # Ignore SimpleCov files
 /coverage
 
+# Ignore application configuration and secret
+/config/application.yml
