@@ -8,7 +8,10 @@
       From: <%= @lesson.admin.name %> (<%= @lesson.admin.email if @lesson.admin.email %>)
     </h3>
     <h3>
-      Lesson Name: <%= @lesson.title %>
+      Lesson Name: 
+      <%= link_to @lesson.title, :controller => "lessons", :action => "show",
+      :only_path => false, :id => @lesson.id, :host => "http://127.0.0.1:3000" %>
+      <!-- when entering host URL, do NOT put a / at the end -->
     </h3>
     <p>
       <%= @content %>
