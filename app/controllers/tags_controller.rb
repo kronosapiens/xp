@@ -11,11 +11,13 @@ class TagsController < ApplicationController
 
   def create
     login_required
-    @tag = Tag.new(:name => params[:name], :category => "topic")
+    @tag = Tag.new(tag_params)
 
     if @tag.save
+      flash[:alert] = "#{@tag.name} tag created!"
       redirect_to :back
     else
+      flash[:error] = "Tag creation failed..."
       redirect_to :back
     end
   end
@@ -23,6 +25,10 @@ class TagsController < ApplicationController
   private
   def set_tag
     @tag = Tag.find_by(:slug => params[:slug])
+  end
+
+  def tag_params
+    params.require(:tag).permit(:name)
   end
 
 end

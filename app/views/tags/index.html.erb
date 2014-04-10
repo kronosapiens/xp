@@ -19,19 +19,7 @@
         <br>
         <p>
           <% @topic_tags.each do |tag| %>
-            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
-          <% end %>
-        </p>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="lesson">
-        <h2>Languages</h2>
-        <br>
-        <p>
-          <% @language_tags.each do |tag| %>
-            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "tag_box" %>
           <% end %>
         </p>
       </div>
@@ -43,8 +31,20 @@
         <br>
         <p>
         <% @time_tags.each do |tag| %>
-          <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+          <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "tag_box" %>
         <% end %>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="lesson">
+        <h2>Languages</h2>
+        <br>
+        <p>
+          <% @language_tags.each do |tag| %>
+            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "tag_box" %>
+          <% end %>
         </p>
       </div>
     </div>
@@ -55,7 +55,7 @@
         <br>
         <p>
           <% @location_tags.each do |tag| %>
-            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "btn btn-md" %>
+            <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "tag_box" %>
           <% end %>
         </p>
       </div>

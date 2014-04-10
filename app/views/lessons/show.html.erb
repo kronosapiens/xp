@@ -21,7 +21,7 @@
         <p><strong>References:</strong><ul><%= linkify_references(@lesson) %></ul></p>
         <p><strong>Tags:</strong>
           <% @lesson.tags.each do |tag| %>
-            <%= link_to tag.name, tag_path(tag.slug), class: "btn btn-sm" %> 
+            <%= link_to tag.name, tag_path(tag.slug), class: "tag_box" %> 
           <% end %>
         </p>
         <p><strong>Location:</strong> 

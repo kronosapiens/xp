@@ -155,13 +155,13 @@ class LessonsController < ApplicationController
     params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time, :status)
   end
 
-  def tag_hash_from_params(params)
-    {
-      :topics => params[:lesson][:topics],
-      :languages => params[:lesson][:languages],
-      :locations => params[:lesson][:locations],
-      :times => params[:lesson][:times]
-    }
-  end
+  # def tag_hash_from_params(params)
+  #   {
+  #     :topics => params[:lesson][:topics],
+  #     :languages => params[:lesson][:languages],
+  #     :locations => params[:lesson][:locations],
+  #     :times => params[:lesson][:times]
+  #   }
+  # end
 
 end

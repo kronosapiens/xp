@@ -8,18 +8,16 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">xp</a>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Teach Lesson', new_lesson_path(role: 'teacher') %></li>
-        <li><%= link_to 'Request Lesson', new_lesson_path(role: 'student') %></li>
-        <!-- This UL disables the automatic drop-down menu on mobile. A better solution is advised. -->
-      </ul>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Teach Lesson', new_lesson_path(role: 'teacher') %></li>
+        <li><%= link_to 'Request Lesson', new_lesson_path(role: 'student') %></li>
+        <li><%= link_to "Browse All Tags", tags_path %></li>
         <% if logged_in? %>
           <li><%= link_to "(Logout)", logout_path %></li>
           <li><%= link_to current_user.name, user_path(current_user.nickname) %></li>
-          <li><img src="<%= current_user.image_url %>" alt="<%= current_user.name %> thumbnail" class="img-responsive" style="width:50px; height:50px;"></li>
+          <li><%= image_tag( current_user.image_url, { size: "50", alt: "#{current_user.name} thumbnail", class: "img-responsive" } ) %></li>
         <% else %>
           <li><%= link_to "-> Login w/ Github", login_path %></li>
         <% end %>
