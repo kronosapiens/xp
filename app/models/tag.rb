@@ -9,8 +9,8 @@ class Tag < ActiveRecord::Base
 
   before_save :before_save_slugify
 
-  def self.all_by_user(tag, user)
-    self.joins(:lessons => :users).where("tags.id = '#{tag.id}'").where("users.id = '#{user.id}'")
+  def self.all_by_user(user)
+    self.joins(:lessons => :users).where("users.id = '#{user.id}'")
   end
 
   def self.all_by_category(category)

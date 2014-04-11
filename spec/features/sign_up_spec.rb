@@ -7,7 +7,8 @@ describe "Sign Up" do
   end
 
 it 'does allow you to take course if you are logged in' do
-    $rspec_user_id = @user.id
+    # $rspec_user_id = @user.id
+    use_user_id(@user.id)
     visit('/')
 
     within "#lesson_#{@lesson.id}" do

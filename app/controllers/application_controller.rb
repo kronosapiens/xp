@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= (session[:user_id] ? User.find(session[:user_id]) : nil)
   end
-
   helper_method :current_user
 
   def login_required
@@ -16,7 +15,7 @@ class ApplicationController < ActionController::Base
           flash[:alert] = "You must be logged in to take this action. Please <a href='#{login_path}'>log in</a> and try again."
           redirect_to :back
         end
-        format.js { } # WRITE SOME JAVASCRIPT TO PUT UP A "MUST LOG IN BEFORE YOU CAN POST A COMMENT" ALERT
+        format.js {} # Implement the js to create a login-in prompt in response to js requests
       end
     end
   end
@@ -24,7 +23,6 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!session[:user_id]
   end
-
   helper_method :logged_in?
 
   def is_user_admin?(lesson)
@@ -37,18 +35,18 @@ class ApplicationController < ActionController::Base
   end
   helper_method :permitted_to_delete_comment?
 
+  def get_tags(scope = :all)
+    @language_tags = Tag.all_by_category("language").send(scope)
+    @location_tags = Tag.all_by_category("location").send(scope)
+    @time_tags = Tag.all_by_category("time").send(scope)
+    @topic_tags = Tag.all_by_category("topic").send(scope)
+  end
+
   if Rails.env.test?
     prepend_before_filter :stub_session_user_id
     def stub_session_user_id
       session[:user_id] = $rspec_user_id if $rspec_user_id
     end
-  end
-
-  def get_tags(scope = :used)
-    @language_tags = Tag.all_by_category("language").send(scope)
-    @location_tags = Tag.all_by_category("location").send(scope)
-    @time_tags = Tag.all_by_category("time").send(scope)
-    @topic_tags = Tag.all_by_category("topic").send(scope)
   end
   
 end

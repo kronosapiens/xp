@@ -92,7 +92,7 @@ describe "Lesson" do
   end
 
   it "returns [] if it has no tags of a particular category" do
-    (expect(@lesson1.location_tags).to eq([]))
+    (expect(@lesson1.tags_by_category("location")).to eq([]))
   end
 
   it "can have multiple tags" do

@@ -1,5 +1,9 @@
 module LessonsHelper
 
+  def one_user?(lesson)
+    lesson.registrations.length == 1
+  end
+
   def prepopulate_tags(lesson, tag)
     "selected" if lesson.tag_ids_to_array.include?(tag.id)
   end
@@ -12,7 +16,6 @@ module LessonsHelper
     user && (lesson.admin == user)
   end
 
-
   def lesson_has_a_specific_location?(lesson)
     lesson.specific_location != nil && lesson.specific_location != ""
   end
@@ -24,7 +27,6 @@ module LessonsHelper
   def adjusted_time(lesson)
     lesson.specific_time + 4.hours
   end
-
 
   def display_location(lesson) 
     if lesson_has_a_specific_location?(lesson)
@@ -49,7 +51,6 @@ module LessonsHelper
       return ""
     end
   end
-
 
   def display_google_calendar_link(lesson)
     if lesson_has_a_specific_time?(lesson) && lesson_has_a_specific_location?(lesson)
@@ -109,10 +110,6 @@ module LessonsHelper
     end
 
     refs_list = refs_list_array.join.html_safe
-  end
-
-  def one_user?(lesson)
-    lesson.registrations.length == 1
   end
 
 end

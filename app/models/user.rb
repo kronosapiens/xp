@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   end
 
   def all_instances_of_tag(tag)
-    Tag.all_by_user(tag, self)
+    Tag.all_by_user(self).where("tags.id = '#{tag.id}'")
   end
 
   def add_to_completed(lesson)

@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :login_required
-  # before_action :permission_check, only: :destroy
 
   def create
     @comment = Comment.new(:user => current_user, :lesson_id => params[:lesson_id], :content => params[:content])
@@ -13,7 +12,6 @@ class CommentsController < ApplicationController
       end
     else
       # flash[:alert] = "Comment failed to save..."
-      
       render "lessons/show"
     end
   end 
@@ -24,7 +22,6 @@ class CommentsController < ApplicationController
     if permitted_to_delete_comment?(@comment) && @comment.destroy
       respond_to do |format|
         format.html { redirect_to :back, :notice => "Commented successfully deleted" }
-        format.json { head :no_content }
         format.js {}
       end
     else
@@ -32,6 +29,5 @@ class CommentsController < ApplicationController
       redirect_to :back
     end
   end
-
 
 end
