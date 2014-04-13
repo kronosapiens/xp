@@ -46,7 +46,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def teachers
-    teachers_collection.map(&:user)
+    registrations.where(:role => "teacher").map(&:user)
   end
 
   # def tags_to_string
@@ -75,7 +75,6 @@ class Lesson < ActiveRecord::Base
   end
 
   def mark_completed_for_users
-    self.update(:status => "completed")
     self.users.each {|user| user.add_to_completed(self)}
   end
 
