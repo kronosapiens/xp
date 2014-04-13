@@ -12,18 +12,6 @@ class User < ActiveRecord::Base
     create_by_oauth(auth_hash)
   end
 
-  def self.create_by_oauth(auth_hash)
-    new.tap do |u|
-      u.provider = auth_hash["provider"]
-      u.uid = auth_hash["uid"]
-      u.name = auth_hash["info"]["name"]
-      u.nickname = auth_hash["info"]["nickname"]
-      u.email = auth_hash["info"]["email"]
-      u.image_url = auth_hash["info"]["image"]
-      u.save
-    end
-  end
-
   def self.ranked_by_tag_and_role(tag, role)
     self.joins(:lessons => :tags).where("registrations.role = '#{role}'").where("tags.id = '#{tag.id}'").group('users.id', 'tags.id').order('count(*) DESC')
   end
@@ -57,5 +45,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  private
+  def self.create_by_oauth(auth_hash)
+    new.tap do |u|
+      u.provider = auth_hash["provider"]
+      u.uid = auth_hash["uid"]
+      u.name = auth_hash["info"]["name"]
+      u.nickname = auth_hash["info"]["nickname"]
+      u.email = auth_hash["info"]["email"]
+      u.image_url = auth_hash["info"]["image"]
+      u.save
+    end
+  end
 
 end

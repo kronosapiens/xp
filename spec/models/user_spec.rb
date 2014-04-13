@@ -45,54 +45,55 @@ describe "User" do
        "image"=>"https://avatars.githubusercontent.com/u/1874062?"}
      }
   end
-
-  it 'knows what lessons it has' do
-    expect(@user2.lessons.first).to eq(@lesson1)
-    expect(@user2.lessons.length).to eq(4)
+    
+  describe '::create_by_oauth' do
+    it 'can create a user from oauth' do
+      user = User.find_or_create_by_oauth(@auth_hash)
+      expect(user.uid).to eq("1874062")
+      expect(user.email).to eq("kronovet@gmail.com")
+    end
   end
 
-  it 'knows when it is a student' do
-    expect(@user2.lessons_by_role("student").first).to eq(@lesson1) 
+  describe '::find_or_create_by_oauth' do
+    it 'can find a user from oauth' do
+      user = User.create_by_oauth(@auth_hash)
+      expect(User.find_or_create_by_oauth(@auth_hash)).to eq(user)
+    end
   end
 
-  it 'knows when it is a teacher' do
-    expect(@user2.lessons_by_role("teacher").first).to eq(@lesson3)
+  describe '::ranked_by_tag_and_role' do
+    it 'can return the top users by tag and role' do
+      expect(User.ranked_by_tag_and_role(@tag2, "student").first).to eq(@user2)
+    end
   end
 
-  it 'knows its open lessons as a student' do 
-    desired_lessons = @user2.lessons_by_role_and_status("student", "open")
-
-    expect(desired_lessons).to include(@lesson1)
-    expect(desired_lessons).to_not include(@lesson4) 
+  describe '#lessons_by_role' do
+    it 'knows when it is a student' do
+      expect(@user2.lessons_by_role("student").first).to eq(@lesson1) 
+    end
   end
 
-  it 'knows its upcoming lessons as a student' do 
-    desired_lessons = (@user2.lessons_by_role_and_status("student", "open") + @user2.lessons_by_role_and_status("student", "closed"))
+  describe '#lessons_by_role_and_status' do
+    it 'knows its open lessons as a student' do 
+      desired_lessons = @user2.lessons_by_role_and_status("student", "open")
 
-    expect(desired_lessons).to include(@lesson1)
-    expect(desired_lessons).to_not include(@lesson4) 
-  end
+      expect(desired_lessons).to include(@lesson1)
+      expect(desired_lessons).to_not include(@lesson4) 
+    end
 
-  it 'knows its completed lessons as a teacher' do 
-    desired_lessons = (@user2.lessons_by_role_and_status("teacher", "completed"))
+    it 'knows its upcoming lessons as a student' do 
+      desired_lessons = (@user2.lessons_by_role_and_status("student", "open") + @user2.lessons_by_role_and_status("student", "closed"))
 
-    expect(desired_lessons).to include(@lesson3)
-    expect(desired_lessons).to_not include(@lesson4) 
-  end
-  
-  it 'can create a user from oauth' do
-    user = User.create_by_oauth(@auth_hash)
-    expect(user.uid).to eq("1874062")
-    expect(user.email).to eq("kronovet@gmail.com")
-  end
+      expect(desired_lessons).to include(@lesson1)
+      expect(desired_lessons).to_not include(@lesson4) 
+    end
 
-  it 'can find a user from oauth' do
-    user = User.create_by_oauth(@auth_hash)
-    expect(User.find_or_create_by_oauth(@auth_hash)).to eq(user)
-  end
+    it 'knows its completed lessons as a teacher' do 
+      desired_lessons = (@user2.lessons_by_role_and_status("teacher", "completed"))
 
-  it 'can return the top users by tag and role' do
-    expect(User.ranked_by_tag_and_role(@tag2, "student").first).to eq(@user2)
+      expect(desired_lessons).to include(@lesson3)
+      expect(desired_lessons).to_not include(@lesson4) 
+    end
   end
 
   describe '#add_to_completed' do
