@@ -66,7 +66,7 @@ class LessonsController < ApplicationController
     @registration = get_registration
     respond_to do |format|
       if @lesson.update(lesson_params)
-        @lesson.mark_completed if @lesson.status == "completed"
+        @lesson.mark_completed_for_users if @lesson.status == "completed"
         format.html { redirect_to @lesson, notice: "Lesson status successfully updated to '#{params[:lesson][:status]}'." }
         format.js {}
       else
