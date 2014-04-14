@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def update_xp
-    client = Octokit::Client.new(:access_token => current_user.token)
+    client = Octokit::Client.new(:access_token => User.find_by(:nickname => params[:nickname]).token)
     user = client.user
 
     all_repos = client.repos #array
