@@ -13,10 +13,11 @@ class UsersController < ApplicationController
 
     languages_all_repos = get_language_info(all_repos)
     languages_source_repos = get_language_info(source_repos) #an array of hashes
-    half_line_counts(languages_all_repos)
+    languages_non_source_repos = languages_all_repos.reject {|language_hash| languages_source_repos.include?(language_hash) }
+    reduce_line_counts(languages_non_source_repos)
 
     @user.clear_gh_stats
-    @user.update_xp(languages_all_repos)
+    @user.update_xp(languages_non_source_repos)
     @user.update_xp(languages_source_repos)
 
     respond_to do |format|
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
     repos_array.map { |repo| repo.rels[:languages].get.data.to_hash }
   end
 
-  def half_line_counts(languages_array)
+  def reduce_line_counts(languages_array)
     languages_array.reject! {|language_hash| language_hash == {}}
     languages_array.each do |language_hash|
       language_hash.each {|language, line_count| language_hash[language] = line_count / 2}
