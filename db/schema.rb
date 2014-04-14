@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409143723) do
+ActiveRecord::Schema.define(version: 20140413214917) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140409143723) do
     t.string   "nickname"
     t.string   "email"
     t.string   "image_url",  default: "http://i265.photobucket.com/albums/ii220/ivnovitch/pokeball.png"
+    t.string   "token"
   end
 
 end

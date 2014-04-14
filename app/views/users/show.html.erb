@@ -2,7 +2,15 @@
   <div class="floater">
   </div>
 
-  <p id="notice"><%= notice %></p>
+  <% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice.html_safe %></p>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-warning">
+      <p id="alert"><%= alert.html_safe %></p>
+    </div>
+  <% end %>
 
   <div class="row">
 
@@ -12,10 +20,12 @@
           <strong><%= @user.name %></strong> (<%= link_to @user.nickname, "http://www.github.com/#{@user.nickname}" %>)
         </p>
         <%= image_tag(@user.image_url, { size: "250", alt: "#{@user.name} thumbnail", class: "img-responsive img-rounded" } ) %> 
-        <br>
+      </div>
 
+      <div class="lesson">
+         <h4>Upcoming</h4>
          <p>
-          <strong>Upcoming Lessons as Student</strong>
+          <strong>As Student</strong>
           <ul>
             <% @user.lessons_by_role_and_status("student", "open").each do |lesson| %>
               <li><%= link_to lesson.title, lesson %></li>
@@ -27,7 +37,7 @@
         </p>
 
         <p>
-          <strong>Upcoming Lessons as Teacher</strong>
+          <strong>As Teacher</strong>
           <ul>
             <% @user.lessons_by_role_and_status("teacher", "open").each do |lesson| %>
               <li><%= link_to lesson.title, lesson %></li>
@@ -37,9 +47,12 @@
             <% end %>
           </ul>
         </p>
+      </div>
 
+      <div class="lesson">
+        <h4>Past</h4>
         <p>
-          <strong>Past Lessons as Student</strong>
+          <strong>As Student</strong>
           <ul>
             <% @user.lessons_by_role_and_status("student", "completed").each do |lesson| %>
               <li><%= link_to lesson.title, lesson %></li>
@@ -48,7 +61,7 @@
         </p>
 
         <p>
-          <strong>Past Lessons as Teacher</strong>
+          <strong>As Teacher</strong>
           <ul>
             <% @user.lessons_by_role_and_status("teacher", "completed").each do |lesson| %>
               <li><%= link_to lesson.title, lesson %></li>
@@ -58,7 +71,12 @@
       </div>
     </div>
 
+
     <div class="col-md-7">
+      <div class="lesson">
+        <%= link_to 'Calculate xp', update_xp_user_path(@user.nickname), { class: "btn btn-info btn-lg" } %>
+      </div>
+      
       <div class="lesson">
         <h2>Experience</h2>
         <%= render @user.experiences %>

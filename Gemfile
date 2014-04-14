@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
 ruby "2.1.0"
+
 # Use Chosen to handle selection fields
 gem 'chosen-rails'
-
-# Use Omniauth for Github
+# Use Omniauth and Octokit for Github authentication and API interaction
 gem 'omniauth-github'
-
+gem 'octokit'
 # Use Chronic for parsing lesson's specific_time input from admin user
 gem 'chronic'
 

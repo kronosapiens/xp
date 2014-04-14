@@ -23,9 +23,11 @@
           <% end %>
         </p>
       </div>
-    </div>
 
-    <div class="col-md-6">
+      <div class="lesson">
+        <%= render 'tags/form' %>
+      </div>
+
       <div class="lesson">
         <h2>Times</h2>
         <br>
@@ -47,9 +49,7 @@
           <% end %>
         </p>
       </div>
-    </div>
 
-    <div class="col-md-6">
       <div class="lesson">
         <h2>Locations</h2>
         <br>
@@ -58,12 +58,6 @@
             <%= link_to "#{tag.name} (#{tag.lessons.length})", tag_path(tag.slug), class: "tag_box" %>
           <% end %>
         </p>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="lesson">
-        <%= render 'tags/form' %>
       </div>
     </div>
 
