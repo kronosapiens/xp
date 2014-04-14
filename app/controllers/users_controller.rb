@@ -1,10 +1,7 @@
-class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update_xp]
+class UsersController < ApplicationController  
+  before_action :set_user, only: [:show, :update_xp]
 
   def show 
-  end
-
-  def edit
   end
 
   def update_xp
@@ -18,9 +15,18 @@ class UsersController < ApplicationController
     languages_source_repos = get_language_info(source_repos) #an array of hashes
     half_line_counts(languages_all_repos)
 
+    @user.clear_gh_stats
     @user.update_xp(languages_all_repos)
     @user.update_xp(languages_source_repos)
+
+    respond_to do |format|
+      format.html { redirect_to "/users/#{@user.nickname}", notice: 'Experience successfully calculated' }
+      format.js {}
+    end
   end
+
+  # def edit
+  # end
 
   # def update 
   #   @user = User.find_by(nickname: params[:nickname])
@@ -38,7 +44,10 @@ class UsersController < ApplicationController
   end
 
   def half_line_counts(languages_array)
-    self.each {|language, line_count| hash[language] = line_count / 2}
+    languages_array.reject! {|language_hash| language_hash == {}}
+    languages_array.each do |language_hash|
+      language_hash.each {|language, line_count| language_hash[language] = line_count / 2}
+    end
   end
 
 end

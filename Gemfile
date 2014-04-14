@@ -6,7 +6,7 @@ ruby "2.1.0"
 gem 'chosen-rails'
 # Use Omniauth and Octokit for Github authentication and API interaction
 gem 'omniauth-github'
-gem "octokit", "~> 2.0"
+gem 'octokit'
 # Use Chronic for parsing lesson's specific_time input from admin user
 gem 'chronic'
 

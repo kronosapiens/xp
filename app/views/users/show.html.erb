@@ -2,7 +2,15 @@
   <div class="floater">
   </div>
 
-  <p id="notice"><%= notice %></p>
+  <% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice.html_safe %></p>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-warning">
+      <p id="alert"><%= alert.html_safe %></p>
+    </div>
+  <% end %>
 
   <div class="row">
 
@@ -61,6 +69,7 @@
     <div class="col-md-7">
       <div class="lesson">
         <h2>Experience</h2>
+        <%= link_to 'Calculate xp', update_xp_user_path(@user.nickname), { class: "btn btn-info" } %>
         <%= render @user.experiences %>
       </div>
     </div>
