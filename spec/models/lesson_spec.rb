@@ -41,110 +41,123 @@ describe "Lesson" do
     @lesson4.registrations.create(:user => @user4, :role => "student")
   end
 
-  it "can return all lessons of a particular status" do
-    expect(Lesson.all_by_status("open").length).to eq(2)
-    expect(Lesson.all_by_status("completed")).to include(@lesson4)
+  describe "::all_by_status" do
+    it "can return all lessons of a particular status" do
+      expect(Lesson.all_by_status("open").length).to eq(2)
+      expect(Lesson.all_by_status("completed")).to include(@lesson4)
+    end
   end
 
-  it "can have user2 as a user" do
-    expect(@lesson1.users).to include(@user2)
+  describe "#students" do
+    it "knows its students" do 
+      expect(@lesson1.students).to include(@user2)
+      expect(@lesson1.students).to include(@user1)
+      expect(@lesson1.students.length).to eq(2)
+    end
+
+    it "returns [] if it has no students" do
+      expect(@lesson3.students).to eq([])
+    end
   end
 
-  it "can have user3 as a user" do
-    expect(@lesson1.users).to include(@user3)
+  describe "#teachers" do
+    it "knows its teachers" do
+      expect(@lesson1.teachers).to include(@user3)
+      expect(@lesson1.teachers).to include(@user4)
+      expect(@lesson1.teachers.length).to eq(2)
+    end
+
+    it "returns [] if it has no teachers" do
+      expect(@lesson3.teachers).to eq([])
+    end
   end
 
-  it "knows its students" do 
-    expect(@lesson1.students).to include(@user2)
-    expect(@lesson1.students).to include(@user1)
-    expect(@lesson1.students.length).to eq(2)
+    # it "knows the first teacher" do
+    #   expect(@lesson1.first_teacher).to eq(@user3)
+    # end
+
+  describe "#tags" do
+    it "knows what tags it has" do
+      expect(@lesson1.tags).to include(@topic_tag1)
+      expect(@lesson1.tags).to_not include(@topic_tag2)
+      expect(@lesson1.tags.length).to eq(2)
+    end
+
+    it "can have multiple tags" do
+      expect(@lesson2.tags.length).to eq(4)
+    end
   end
 
-  it "knows its teachers" do
-    expect(@lesson1.teachers).to include(@user3)
-    expect(@lesson1.teachers).to include(@user4)
-    expect(@lesson1.teachers.length).to eq(2)
+  describe "#tags_by_category" do
+    it "can return tags of a particular category" do
+      expect(@lesson2.tags_by_category("location")).to include(@location_tag1)
+      expect(@lesson2.tags_by_category("location").length).to eq(1)
+      expect(@lesson2.tags_by_category("topic")).to include(@topic_tag3)
+      expect(@lesson2.tags_by_category("topic").length).to eq(3)
+    end
+
+    it "returns [] if it has no tags of a particular category" do
+      (expect(@lesson1.tags_by_category("location")).to eq([]))
+    end
   end
 
-  it "knows the first teacher" do
-    expect(@lesson1.first_teacher).to eq(@user3)
+  describe "#tags_to_string" do ## DEPRECATED
+    xit "can return its tags as a string" do
+      expect(@lesson2.tags_to_string).to be_a(String)
+      expect(@lesson2.tags_to_string).to include(@lesson2.tags.first.name)
+    end
   end
 
-  it "returns [] if it has no students" do
-    expect(@lesson3.students).to eq([])
+  describe "#tag_ids_to_array" do
+    it "can return its tag ids as an array" do
+      expect(@lesson2.tag_ids_to_array).to be_a(Array)
+      expect(@lesson2.tag_ids_to_array).to include(@lesson2.tags.first.id)
+    end
   end
 
-  it "returns [] if it has no teachers" do
-    expect(@lesson3.teachers).to eq([])
+    # The following two tests work, but something about FactoryGirl makes it not see tags properly
+  describe "#build_tags" do
+    it "can add tags to itself, given an array of existing tag_ids as strings" do
+      tags_array = ["2", "4", "3"]
+      @lesson3.build_tags(tags_array)
+      @lesson3.save
+
+      expect(@lesson3.tags).to include(Tag.find(2))
+      expect(@lesson3.tags).to include(Tag.find(4))
+      expect(@lesson3.tags.length).to eq(4)
+    end
   end
 
-  it "knows what tags it has" do
-    expect(@lesson1.tags).to include(@topic_tag1)
-    expect(@lesson1.tags).to_not include(@topic_tag2)
-    expect(@lesson1.tags.length).to eq(2)
+  describe "#admin" do
+    it "knows its admin" do
+      expect(@lesson1.admin).to eq(@user2)
+      expect(@lesson1.admin).to_not eq(@user3)
+    end
+
+    it "it returns nil if theres no admin" do
+      expect(@lesson2.admin).to eq(nil)
+    end
   end
 
-  it "can return tags of a particular category" do
-    expect(@lesson2.tags_by_category("location")).to include(@location_tag1)
-    expect(@lesson2.tags_by_category("location").length).to eq(1)
-    expect(@lesson2.tags_by_category("topic")).to include(@topic_tag3)
-    expect(@lesson2.tags_by_category("topic").length).to eq(3)
+  describe "#ok_to_delete?" do
+    it "verifies user count before deletion" do
+      expect(@lesson4.ok_to_delete?).to eq(true)
+      expect(@lesson1.ok_to_delete?).to eq(false)
+    end
   end
 
-  it "returns [] if it has no tags of a particular category" do
-    (expect(@lesson1.location_tags).to eq([]))
+  describe "#close" do
+    it "can close its status" do
+      @lesson1.close
+      expect(@lesson1.status).to eq("closed")
+    end
   end
 
-  it "can have multiple tags" do
-    expect(@lesson2.tags.length).to eq(4)
-  end
-
-  it "can return its tags as a string" do
-    expect(@lesson2.tags_to_string).to be_a(String)
-    expect(@lesson2.tags_to_string).to include(@lesson2.tags.first.name)
-  end
-
-  it "can return its tag ids as an array" do
-    expect(@lesson2.tag_ids_to_array).to be_a(Array)
-    expect(@lesson2.tag_ids_to_array).to include(@lesson2.tags.first.id)
-  end
-
-  # The following two tests work, but something about FactoryGirl makes it not see tags properly
-  it "can add tags to itself, given an array of existing tag_ids as strings" do
-    tags_array = ["2", "4", "3"]
-    @lesson3.build_tags(tags_array)
-    @lesson3.save
-
-    expect(@lesson3.tags).to include(Tag.find(2))
-    expect(@lesson3.tags).to include(Tag.find(4))
-    expect(@lesson3.tags.length).to eq(4)
-  end
-
-  it "knows its admin" do
-    expect(@lesson1.admin).to eq(@user2)
-    expect(@lesson1.admin).to_not eq(@user3)
-  end
-
-  it "it returns nil if theres no admin" do
-    expect(@lesson2.admin).to eq(nil)
-  end
-
-  it "verifies user count before deletion" do
-    expect(@lesson4.ok_to_delete?).to eq(false)
-    expect(@lesson1.ok_to_delete?).to eq(true)
-  end
-
-  it "can close its status" do
-    @lesson1.close
-    expect(@lesson1.status).to eq("closed")
-  end
-
-  describe "#add_to_completed" do
+  describe "#mark_completed_for_users" do
     xit "can mark itself held" do
       expect(@user1).to receive(:add_to_completed).with(@lesson1)
-      # @user1.add_to_completed(@lesson1)
-      @lesson1.mark_completed
-      expect(@lesson1.status).to eq("completed")
+      # @user1.add_to_completed(@lesson1) # This line works, so why doesn't line 158?
+      @lesson1.mark_completed_for_users
     end
   end
 

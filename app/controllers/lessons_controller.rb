@@ -1,47 +1,26 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
   before_action :login_required, except: [:index, :show]
+  before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
   before_action only: [:new, :edit, :show, :update, :create] do
-    get_tags(:all)
+    get_tags
   end
 
-  # GET /lessons
-  # GET /lessons.json
   def index
     get_tags(:active)
     @lessons = Lesson.all_by_status("open")
   end
 
-  def admin_email
-    set_lesson
-    if is_user_admin?(@lesson)
-      subject = params[:subject]
-      content = params[:content]
-      LessonAdminMailer.admin_message(@lesson, subject, content).deliver
-
-      redirect_to @lesson, notice: 'Email was sent!' 
-      # redirect_to :back
-    else
-      flash[:alert] = "Only lesson admins can send emails to the whole class"
-      redirect_to @lesson
-    end
-  end
-
-  # GET /lessons/1
-  # GET /lessons/1.json
   def show
     @registration = (current_user ? get_registration : nil)
     @comment = Comment.new
   end
 
-  # GET /lessons/new
   def new
     @role = params[:role]
     @lesson = Lesson.new
     @tag = Tag.new
   end
 
-  # GET /lessons/1/edit
   def edit
     if is_user_admin?(@lesson)
       render :edit
@@ -51,49 +30,33 @@ class LessonsController < ApplicationController
     end
   end
 
-  # POST /lessons
-  # POST /lessons.json
   def create 
-    # tags_hash = tag_hash_from_params(params)
-    # @lesson.build_tags(tags_hash)
     @lesson = Lesson.new(lesson_params)
     @lesson.build_tags(params[:lesson][:tags])
 
     respond_to do |format|
      if @lesson.save
-       @lesson.registrations.create(:user => current_user, :role => params[:role])
-       format.html { redirect_to @lesson, notice: 'Lesson was successfully created!' }
-       format.json { render action: 'show', status: :created, location: @lesson }
+      @lesson.registrations.create(:user => current_user, :role => params[:role])
+      format.html { redirect_to @lesson, notice: 'Lesson was successfully created!' }
      else
-      get_tags
       @tag = Tag.new
       format.html { render action: 'new' }
-      format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /lessons/1
-  # PATCH/PUT /lessons/1.json
   def update
-      # @lesson.lesson_tags.clear
-      # tags_hash = tag_hash_from_params(params)
-      # @lesson.build_tags(tags_hash)
-
       @lesson.tags.clear
       @lesson.build_tags(params[:lesson][:tags])
-
       params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
 
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.js {}
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.js { render action: 'edit' }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -103,27 +66,23 @@ class LessonsController < ApplicationController
     @registration = get_registration
     respond_to do |format|
       if @lesson.update(lesson_params)
-        @lesson.mark_completed if @lesson.status == "completed"
+        @lesson.mark_completed_for_users if @lesson.status == "completed"
         format.html { redirect_to @lesson, notice: "Lesson status successfully updated to '#{params[:lesson][:status]}'." }
         format.js {}
-        format.json { head :no_content }
       else
         format.html { redirect_to @lesson, alert: "Unable to change lesson status" }
         format.js { redirect_to @lesson, alert: "Unable to change lesson status" }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /lessons/1
-  # DELETE /lessons/1.json
   def destroy
     if @lesson.ok_to_delete?
       if is_user_admin?(@lesson)
         @lesson.destroy
         respond_to do |format|
           format.html { redirect_to lessons_url }
-          format.json { head :no_content }
+          # format.js {}
         end
       else
         flash[:alert] = "Can't delete unless admin!"
@@ -135,8 +94,20 @@ class LessonsController < ApplicationController
     end
   end
 
+  def admin_email
+    set_lesson
+    if is_user_admin?(@lesson)
+      subject = params[:subject]
+      content = params[:content]
+      LessonAdminMailer.admin_message(@lesson, subject, content).deliver
+      redirect_to @lesson, notice: 'Email was sent!' 
+    else
+      flash[:alert] = "Only lesson admins can send emails to the whole class"
+      redirect_to @lesson
+    end
+  end
+
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_lesson
     # if params[:id].is_a?(Integer)
       @lesson = Lesson.find(params[:id])
@@ -147,21 +118,10 @@ class LessonsController < ApplicationController
 
   def get_registration
     Registration.find_by(user: current_user, lesson: @lesson)
-    # Registration.find_by(user_id: current_user.id, lesson_id: @lesson.id)
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def lesson_params
     params.require(:lesson).permit(:title, :description, :references, :specific_location, :specific_time, :status)
   end
-
-  # def tag_hash_from_params(params)
-  #   {
-  #     :topics => params[:lesson][:topics],
-  #     :languages => params[:lesson][:languages],
-  #     :locations => params[:lesson][:locations],
-  #     :times => params[:lesson][:times]
-  #   }
-  # end
 
 end

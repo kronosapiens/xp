@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
 
   def index
-    get_tags
+    get_tags(:used)
     @tag = Tag.new
   end
 

@@ -4,7 +4,7 @@ describe LessonsController do
   let!(:user) { create(:user) }
 
   before(:each) do
-    use_user_id(user.id)
+    $rspec_user_id = user.id
   end
 
   describe "GET 'index'" do

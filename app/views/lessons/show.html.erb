@@ -41,19 +41,19 @@
       <div class="lesson">
 
         <h4>Logistics:</h4>
-        <% unless @lesson.location_tags == [] %>
+        <% unless @lesson.tags_by_category("location") == [] %>
           <p>
             Possible Locations: 
-            <% @lesson.location_tags.each do |tag| %>
+            <% @lesson.tags_by_category("location").each do |tag| %>
               <%= link_to tag.name, tag_path(tag.slug) %> 
             <% end %>
           </p>
         <% end %>
 
-        <% unless @lesson.time_tags == [] %>
+        <% unless @lesson.tags_by_category("time") == [] %>
           <p>
             Possible Times: 
-            <% @lesson.time_tags.each do |tag| %>
+            <% @lesson.tags_by_category("time").each do |tag| %>
               <%= link_to tag.name, tag_path(tag.slug) %> 
             <% end %>
           </p>

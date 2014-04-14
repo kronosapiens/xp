@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @user = User.find_by(nickname: params[:nickname])
   end 
 
-  def update 
-    @user = User.find_by(nickname: params[:nickname])
-    @user.update(:email => params[:email])
-    redirect_to root_path
-  end 
+  # def update 
+  #   @user = User.find_by(nickname: params[:nickname])
+  #   @user.update(:email => params[:email])
+  #   redirect_to root_path
+  # end 
 
 end

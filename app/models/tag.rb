@@ -7,12 +7,10 @@ class Tag < ActiveRecord::Base
   validates :name, presence: true
   validates_uniqueness_of :name, :case_sensitive => false
 
-  before_save do
-    self.slug = slugify(self.name)
-  end
+  before_save :before_save_slugify
 
-  def self.all_by_user(tag, user)
-    self.joins(:lessons => :users).where("tags.id = '#{tag.id}'").where("users.id = '#{user.id}'")
+  def self.all_by_user(user)
+    self.joins(:lessons => :users).where("users.id = '#{user.id}'")
   end
 
   def self.all_by_category(category)
@@ -33,6 +31,10 @@ class Tag < ActiveRecord::Base
 
   def completed_lessons
     lessons.where(:status => "completed")
+  end
+
+  def before_save_slugify
+    self.slug = slugify(self.name)
   end
 
   private
