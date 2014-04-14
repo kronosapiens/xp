@@ -79,7 +79,10 @@
       
       <div class="lesson">
         <h2>Experience</h2>
-        <%= render @user.experiences %>
+        <h4>Topics</h4>
+        <%= render @user.experiences.by_category("topic").order_by_level %>
+        <h4>Languages</h4>
+        <%= render @user.experiences.by_category("language").order_by_level %>
       </div>
     </div>
 

@@ -6,6 +6,14 @@ class Experience < ActiveRecord::Base
 
   before_save :update_level
 
+  def self.order_by_level
+    self.order('level DESC')
+  end
+
+  def self.by_category(category)
+    self.joins(:tag).where("tags.category = ?", category)
+  end
+
   def update_level
     self.level = calculate_level
   end

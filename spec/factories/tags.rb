@@ -1,7 +1,19 @@
-FactoryGirl.define do 
+FactoryGirl.define do
+
+  sequence :name do |n|
+    Faker::Lorem.word + n.to_s
+  end
 
   factory :tag do 
-    name { Faker::Lorem.word + rand(1000).to_s}
+    name
+
+    trait :topic do
+      category 'topic'
+    end
+
+    trait :language do
+      category 'language'
+    end
   end
 
 end

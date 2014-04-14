@@ -2,23 +2,49 @@ require 'spec_helper'
 
 describe Experience do
 
- let(:exp){ create(:experience) }
- # @exp = create(:experience)
+ let(:exp1){ create(:experience) }
+ let(:exp2){ create(:experience) }
+ let(:exp3){ create(:experience) }
+ # let(:topic_tag){ create(:tag).tap {|tag| tag.category = "topic"} }
+ # let(:language_tag){ create(:tag).tap {|tag| tag.category = "language"} }
+ let(:topic_tag) { create(:tag, :topic) }
+ let(:language_tag) { create(:tag, :language) }
 
-  describe '#by_tag_category' do
-    xit 'can return experiences only from topics' do
-      expect(Experience.by_tag_category("topic")).to include(topic_tag)
+ describe '::order_by_level' do
+  it 'returns an activerecord relation' do
+    exp1
+    exp2 # instantiating the variables
+    expect(Experience.order_by_level).to be_a(ActiveRecord::Relation)
+  end
+
+  it 'can return experiences in descending order by level' do
+    exp1
+    exp2 # instantiating the variables
+    expect(Experience.order_by_level.first.level).to be >(Experience.order_by_level.last.level)
+  end
+ end
+
+  describe '::by_category' do
+    it 'can return experiences only from topics' do
+      exp1.update(:tag_id => topic_tag.id)
+      exp2.update(:tag_id => topic_tag.id)
+      exp3.update(:tag_id => language_tag.id)
+      binding.pry
+      expect(Experience.by_category("topic")).to include(exp1)
+      expect(Experience.by_category("topic").length).to eq(2)
+      expect(Experience.by_category("topic")).to_not include(exp3)
     end
   end
 
   describe '#calculate_level' do
-    it 'can return its current level' do
-      binding.pry
-      expect(exp.calculate_level).to be_a(Integer)
+    xit 'can return its current level' do # Private method now
+      expect(exp1.calculate_level).to be_a(Integer)
     end
+  end
 
+  describe '#percent_to_next_level' do
     it 'can return percent progress to next level' do
-      expect(exp.percent_to_next_level).to be <(100)
+      expect(exp1.percent_to_next_level).to be <(100)
     end
   end
 

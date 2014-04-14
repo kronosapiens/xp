@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   def update_xp(languages_array) #coming in as an array of hashes
     languages_array.each do |languages_hash_for_repo|
       languages_hash_for_repo.each do |language, lines_of_code|
-        tag = Tag.find_or_create_by(:name => language.to_s)
+        tag = Tag.find_or_create_by(:name => language.to_s, :category => "language")
         experience = self.experiences.find_or_create_by(:tag => tag)
         prior_gh_stat = experience.gh_stat
         experience.update(:gh_stat => prior_gh_stat + lines_of_code)
