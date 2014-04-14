@@ -1,5 +1,9 @@
-<h3><%= experience.tag.name %> <small>(Level X)</small></h3>
+<h3><%= experience.tag.name %> <small>(Level <%= experience.calculate_level %>)</small></h3>
   <p>Taken: <%= experience.taken %> | 
   Taught: <%= experience.taught %> | 
   Github Score: <%= experience.gh_stat %></p>
-  <p>% To Next Level: ...........</p>
+  <div class="progress progress-striped">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= experience.percent_to_next_level %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= experience.percent_to_next_level %>%">
+      <span><%= experience.percent_to_next_level %>% to next level</span>
+    </div>
+  </div>

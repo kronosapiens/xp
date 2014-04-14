@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Experience do
 
- let(:exp){ create(:experience).tap{}}
+ let(:exp){ create(:experience) }
+ # @exp = create(:experience)
 
   describe '#by_tag_category' do
     xit 'can return experiences only from topics' do
@@ -12,6 +13,7 @@ describe Experience do
 
   describe '#calculate_level' do
     it 'can return its current level' do
+      binding.pry
       expect(exp.calculate_level).to be_a(Integer)
     end
 

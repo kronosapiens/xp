@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :login_required, only: [:create]
 
   def index
     get_tags(:used)
@@ -10,7 +11,6 @@ class TagsController < ApplicationController
   end
 
   def create
-    login_required
     @tag = Tag.new(tag_params)
 
     if @tag.save
