@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
+  before_save :set_name_if_nil
+
 # Class Methods
   def self.find_or_create_by_oauth(auth_hash)
     provider = auth_hash["provider"]
@@ -88,6 +90,10 @@ class User < ActiveRecord::Base
       u.token = auth_hash["credentials"]["token"]
       u.save
     end
+  end
+
+  def set_name_if_nil
+    (self.name = self.nickname) unless self.name
   end
 
 end
