@@ -10,42 +10,53 @@
       <h4><%= @tag.lessons.length %> Lessons Total</h4>
       <h4><%= all_teachers.length %> Teachers Taught</h4>
       <h4><%= all_students.length %> Students Learned</h4>
-
-
-      <h3>Top Five Teachers</h3>
-      <ol>
-        <% top_5_teachers.each do |teacher| %>
-          <li><%= display_user(teacher) %> (<%= teacher.all_instances_of_tag(@tag).length %> lessons taught)</li>
-        <% end %>
-      </ol>
-
-
-      <h3>Top Five Students</h3>
-      <ol>
-        <% top_5_students.each do |student| %>
-          <li><%= display_user(student) %> (<%= student.all_instances_of_tag(@tag).length %> lessons taken)</li>
-        <% end %>
-    </ol>
     </div>
-  </div>
 
-  <div class="col-md-6">
     <div class="lesson" id="tag-lessons">
       <h3>Upcoming Lessons:</h3>
-        <ul>
-          <% @tag.upcoming_lessons.each do |lesson| %>
-            <li><%= link_to lesson.title, lesson %></li>
-          <% end %>
-        </ul>
+      <ul>
+        <% @tag.upcoming_lessons.each do |lesson| %>
+        <li><%= link_to lesson.title, lesson %></li>
+        <% end %>
+      </ul>
 
       <h3>Completed Lessons:</h3>
-        <ul>
-          <% @tag.completed_lessons.each do |lesson| %>
-            <li><%= link_to lesson.title, lesson %></li>
-          <% end %>
-        </ul>
+      <ul>
+        <% @tag.completed_lessons.each do |lesson| %>
+        <li><%= link_to lesson.title, lesson %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
+
+    <div class="col-md-6">
+      <div class="lesson" id="tag-top-overall">
+        <h3>Top Five Overall</h3>
+        <ol>
+          <% all_by_level.limit(5).each do |experience| %>
+          <li><%= display_user(experience.user) %> (Level <%= experience.level %>)</li>
+          <% end %>
+        </ol>
+      </div>
+
+      <div class="lesson" id="tag-top-teachers">
+        <h3>Top Five Teachers</h3>
+        <ol>
+          <% all_teachers.limit(5).each do |teacher| %>
+          <li><%= display_user(teacher) %> (<%= teacher.all_instances_of_tag(@tag).length %> lessons taught)</li>
+          <% end %>
+        </ol>
+      </div>
+
+      <div class="lesson" id="tag-top-students">
+        <h3>Top Five Students</h3>
+        <ol>
+          <% all_students.limit(5).each do |student| %>
+          <li><%= display_user(student) %> (<%= student.all_instances_of_tag(@tag).length %> lessons taken)</li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
 
 </div>
 

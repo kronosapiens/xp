@@ -5,8 +5,6 @@ describe Experience do
  let(:exp1){ create(:experience) }
  let(:exp2){ create(:experience) }
  let(:exp3){ create(:experience) }
- # let(:topic_tag){ create(:tag).tap {|tag| tag.category = "topic"} }
- # let(:language_tag){ create(:tag).tap {|tag| tag.category = "language"} }
  let(:topic_tag) { create(:tag, :topic) }
  let(:language_tag) { create(:tag, :language) }
 
@@ -29,7 +27,6 @@ describe Experience do
       exp1.update(:tag_id => topic_tag.id)
       exp2.update(:tag_id => topic_tag.id)
       exp3.update(:tag_id => language_tag.id)
-      binding.pry
       expect(Experience.by_category("topic")).to include(exp1)
       expect(Experience.by_category("topic").length).to eq(2)
       expect(Experience.by_category("topic")).to_not include(exp3)

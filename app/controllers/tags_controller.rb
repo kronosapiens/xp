@@ -3,6 +3,7 @@ class TagsController < ApplicationController
 
   def index
     get_tags(:used)
+    @language_tags = Tag.all_by_category("language") # override :used to get all language tags
     @tag = Tag.new
   end
 

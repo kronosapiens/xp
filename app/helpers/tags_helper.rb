@@ -8,12 +8,8 @@ module TagsHelper
     User.ranked_by_tag_and_role(@tag, "teacher")
   end
 
-  def top_5_teachers
-    all_teachers.limit(5)
-  end
-
-  def top_5_students
-    all_students.limit(5)
+  def all_by_level
+    @tag.experiences.order_by_level
   end
   
 end

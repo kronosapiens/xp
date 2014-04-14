@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
   end
 
 # Instance Methods
+  def role_for(lesson)
+    registration = registrations.where(:lesson => lesson).first
+    registration ? registration.role : nil
+  end
+
   def lessons_by_role(role)
     registrations.where(:role => role).map(&:lesson)
   end

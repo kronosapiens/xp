@@ -1,15 +1,17 @@
 <div class="col-md-6 lesson-wrapper" id="lesson_<%= lesson.id %>">
-  <div class="lesson" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
+  <div class="lesson <%= user_style(lesson) %>" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
     <h1><%= link_to lesson.title, lesson %></h1>
     <p class="lead"><%= short_description(lesson) %></p>
 
     <p>Location: <%= display_location(lesson) %></p>
     <p>Time: <%= display_time(lesson) %></p>
 
-    <p><%= lesson.students.length %> people have signed up to take this class. 
-      <%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-xs btn-success"} %></p>
+    <p><%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-xs btn-success"} %> <%= lesson.students.length %> people have signed up to take this class.</p>
 
-    <p><%= lesson.teachers.length %> people have signed up to teach this class.
-        <%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-xs btn-warning"} %></p>
+    <p><%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-xs btn-warning"} %> <%= lesson.teachers.length %> people have signed up to teach this class:</p>
+    <p><% lesson.teachers.each do |teacher| %>
+      <%= display_user(teacher) %>
+      <% end %>
+    </p>
   </div>
 </div>

@@ -79,9 +79,9 @@
       
       <div class="lesson">
         <h2>Experience</h2>
-        <h4>Topics</h4>
+        <h4>Topics <small>Take and Teach to level up your topics!</small></h4>
         <%= render @user.experiences.by_category("topic").order_by_level %>
-        <h4>Languages</h4>
+        <h4>Languages <small>Calculate xp from Github to level up your languages!</small></h4>
         <%= render @user.experiences.by_category("language").order_by_level %>
       </div>
     </div>

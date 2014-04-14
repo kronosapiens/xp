@@ -23,9 +23,15 @@ $screen-sm-min:               $screen-sm !default;
 $lesson-padding:              12px !default;
 $lesson-color:                inherit !default;
 $lesson-bg:                   $gray-lighter !default;
+// $lesson-bg-student:           lighten(#17FF91, 50%);
+// $lesson-bg-teacher:           lighten(#CC9527, 50%);
+$lesson-bg-student:           rgba(78, 184, 134, 0.3);
+$lesson-bg-teacher:           rgba(236, 158, 0, 0.3);
 $lesson-heading-color:        inherit !default;
 $lesson-font-size:            ceil(($font-size-base * 1)) !default;
 
+// 98  184 78  green
+// 236 158 0 orange
 .lesson {
   padding: $lesson-padding;
   margin-bottom: ($lesson-padding * 2);
@@ -64,6 +70,14 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
       font-size: ($font-size-base * 2);
     }
   }
+}
+
+.teacher-color {
+  background-color: $lesson-bg-teacher;
+}
+
+.student-color {
+  background-color: $lesson-bg-student;
 }
 
 .lesson-index {
