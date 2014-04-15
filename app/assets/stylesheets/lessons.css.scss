@@ -78,6 +78,13 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
   background-color: $lesson-bg-student;
 }
 
+.lesson-index {
+  max-height:400px;
+  min-height:400px;
+  // height:auto !important;
+  // height:400px;
+}
+
 .banner {
   text-align: center;
 }

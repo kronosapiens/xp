@@ -1,5 +1,5 @@
 <div class="col-md-6 lesson-wrapper" id="lesson_<%= lesson.id %>">
-  <div class="lesson <%= user_style(lesson) %>" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
+  <div class="lesson <%= user_style(lesson) %> lesson-index" data-students="<%= lesson.students.length %>" data-teachers="<%= lesson.teachers.length %>" data-location="remote" data-tags="<%= lesson.tag_ids_to_array %>">
     <h1><%= link_to lesson.title, lesson %></h1>
     <p class="lead"><%= short_description(lesson) %></p>
 

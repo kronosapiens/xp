@@ -19,7 +19,7 @@
 
 // });
 
-function ajaxAdminPanel(){
+function ajaxAdminEmail(){
   $("form#admin_email").hide();
   $('#hide_admin_email').hide();
 
@@ -39,4 +39,24 @@ function ajaxAdminPanel(){
   });
 };
 
-$(document).ready(ajaxAdminPanel);
+function ajaxAdminPanel(){
+  $('#admin-panel').hide();
+
+  $('#show-admin-panel').on("click", function(){
+    $("#admin-panel").slideDown(); 
+    $('#admin-panel').show();    
+  });
+
+  $('#hide-admin-panel').on("click", function(e){
+    e.preventDefault();
+    $("#admin-panel").slideUp(function(){
+      $('#admin-panel').hide();
+    });
+    
+  });
+};
+
+$(document).ready(function(){
+  ajaxAdminEmail();
+  ajaxAdminPanel();
+});

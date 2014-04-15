@@ -14,13 +14,14 @@
 
   <div class="row">
 
-    <div class="col-md-5">
-      <div class="lesson">
-        <p>
-          <strong><%= @user.name %></strong> (<%= link_to @user.nickname, "http://www.github.com/#{@user.nickname}" %>)
-        </p>
-        <%= image_tag(@user.image_url, { size: "250", alt: "#{@user.name} thumbnail", class: "img-responsive img-rounded" } ) %> 
-      </div>
+    <div class="col-md-4">
+
+        <div class="lesson prof-banner">
+          <p>
+            <strong><%= @user.name %></strong> (<%= link_to @user.nickname, "http://www.github.com/#{@user.nickname}" %>)
+          </p>
+          <%= image_tag(@user.image_url, { size: "250", alt: "#{@user.name} thumbnail", class: "img-responsive img-rounded prof-pic" } ) %> 
+        </div>
 
       <div class="lesson">
          <h4>Upcoming</h4>
@@ -71,17 +72,22 @@
       </div>
     </div>
 
-
-    <div class="col-md-7">
+    <div class="col-md-6 col-md-offset-2">
       <div class="lesson">
         <%= link_to 'Calculate xp!', update_xp_user_path(@user.nickname), { class: "btn btn-info btn-lg" } %>
       </div>
+    </div>
       
+    <div class="col-md-8">
       <div class="lesson">
-        <h2>Experience</h2>
-        <h4>Topics <small>Take and Teach to level up your topics!</small></h4>
+        <h3>Topics <small>Take and Teach to level up your topics!</small></h3>
+        <br>
         <%= render @user.experiences.by_category("topic").order_by_level %>
-        <h4>Languages <small>Calculate xp from Github to level up your languages!</small></h4>
+      </div>
+
+      <div class="lesson">
+        <h3>Languages <small>Calculate xp from Github to level up your languages!</small></h3>
+        <br>
         <%= render @user.experiences.by_category("language").order_by_level %>
       </div>
     </div>

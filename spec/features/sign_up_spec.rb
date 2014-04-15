@@ -8,7 +8,7 @@ describe "Sign Up" do
 
 it 'does allow you to take course if you are logged in' do
     $rspec_user_id = @user.id
-    visit('/')
+    visit('/lessons')
 
     within "#lesson_#{@lesson.id}" do
       click_button "Take This!"
@@ -19,7 +19,7 @@ end
 
 it 'requires that you be logged in to take course' do
 
-    visit('/')
+    visit('/lessons')
     within "#lesson_#{@lesson.id}" do
       click_button "Take This!"
     end
@@ -29,11 +29,11 @@ it 'requires that you be logged in to take course' do
 
 it 'does not allow you to take course twice' do
     $rspec_user_id = @user.id
-    visit('/')
+    visit('/lessons')
     within "#lesson_#{@lesson.id}" do
       click_button "Take This!"
     end
-    visit('/')
+    visit('/lessons')
     within "#lesson_#{@lesson.id}" do
       click_button "Take This!"
     end
