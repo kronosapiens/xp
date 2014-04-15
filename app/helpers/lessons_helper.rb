@@ -30,10 +30,6 @@ module LessonsHelper
     lesson.specific_time != nil && lesson.specific_time != ""
   end
 
-  def adjusted_time(lesson)
-    lesson.specific_time + 4.hours
-  end
-
   def display_location(lesson) 
     if lesson_has_a_specific_location?(lesson)
       lesson.specific_location
@@ -44,7 +40,7 @@ module LessonsHelper
 
   def display_time(lesson) 
     if lesson_has_a_specific_time?(lesson)
-      adjusted_time(lesson).to_formatted_s(:long_ordinal)
+      lesson.specific_time.to_formatted_s(:long_ordinal)
     else
       "TBD"
     end
@@ -52,7 +48,7 @@ module LessonsHelper
 
   def prepopulate_time(lesson)
     if lesson_has_a_specific_time?(lesson)
-      return adjusted_time(lesson).to_formatted_s(:long_ordinal)
+      return lesson.specific_time.to_formatted_s(:long_ordinal)
     else
       return ""
     end
@@ -62,8 +58,12 @@ module LessonsHelper
     if lesson_has_a_specific_time?(lesson) && lesson_has_a_specific_location?(lesson)
       event_title = lesson.title.gsub(" ", "+")
       start_date = lesson.specific_time.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
+      start_date = start_date[0..-5]
+
       end_date = (lesson.specific_time + 2.hours).to_datetime.iso8601.gsub("-", "").gsub(":", "").split("+")[0]
-      dates = "#{start_date}/#{end_date}Z"
+      end_date = end_date[0..-5]      
+
+      dates = "#{start_date}/#{end_date}"
       details = lesson.description.gsub(" ", "+")
       location = lesson.specific_location.gsub(" ", "+")
 
