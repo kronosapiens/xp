@@ -7,9 +7,9 @@
       <h1><%= @tag.name %></h1>
 
       <h3>Stats:</h3>
-      <h4><%= @tag.lessons.length %> Lessons Total</h4>
-      <h4><%= all_teachers.length %> Teachers Taught</h4>
-      <h4><%= all_students.length %> Students Learned</h4>
+      <h4><%= pluralize(@tag.lessons.length, "Lesson") %> Total</h4>
+      <h4><%= pluralize(all_teachers.length, "Teacher") %> Taught</h4>
+      <h4><%= pluralize(all_students.length, "Student") %> Learned</h4>
     </div>
 
     <div class="lesson" id="tag-lessons">
@@ -43,7 +43,7 @@
         <h3>Top Five Teachers</h3>
         <ol>
           <% all_teachers.limit(5).each do |teacher| %>
-          <li><%= display_user(teacher) %> (<%= teacher.all_instances_of_tag(@tag).length %> lessons taught)</li>
+          <li><%= display_user(teacher) %> (<%= pluralize(teacher.all_instances_of_tag(@tag).length, "lesson") %> taught)</li>
           <% end %>
         </ol>
       </div>
@@ -52,7 +52,7 @@
         <h3>Top Five Students</h3>
         <ol>
           <% all_students.limit(5).each do |student| %>
-          <li><%= display_user(student) %> (<%= student.all_instances_of_tag(@tag).length %> lessons taken)</li>
+          <li><%= display_user(student) %> (<%= pluralize(student.all_instances_of_tag(@tag).length, "lesson") %> taken)</li>
           <% end %>
         </ol>
       </div>

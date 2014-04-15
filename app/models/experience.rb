@@ -30,6 +30,6 @@ class Experience < ActiveRecord::Base
   end
 
   def get_raw_xp
-    (taken * 2) + (taught * 3) + (sqrt(gh_stat) / 20)
+    (taken * 2) + (taught * 4) + (sqrt(gh_stat) / 20)
   end
 end

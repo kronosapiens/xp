@@ -6,9 +6,9 @@
     <p>Location: <%= display_location(lesson) %></p>
     <p>Time: <%= display_time(lesson) %></p>
 
-    <p><%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-xs btn-success"} %> <%= lesson.students.length %> people have signed up to take this class.</p>
+    <p><%= button_to "Take This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "student"}, {:class => "btn btn-xs btn-success"} %> <%= pluralize(lesson.students.length, "person") %> signed up to take this class.</p>
 
-    <p><%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-xs btn-warning"} %> <%= lesson.teachers.length %> people have signed up to teach this class:</p>
+    <p><%= button_to "Teach This!", {:controller => "registrations", :action => "create", :lesson_id => lesson.id, :'registration[role]' => "teacher"}, {:class => "btn btn-xs btn-warning"} %> <%= pluralize(lesson.teachers.length, "person") %> signed up to teach this class:</p>
     <p><% lesson.teachers.each do |teacher| %>
       <%= display_user(teacher) %>
       <% end %>

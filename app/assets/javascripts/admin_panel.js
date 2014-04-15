@@ -41,8 +41,11 @@ function ajaxAdminEmail(){
 
 function ajaxAdminPanel(){
   $('#admin-panel').hide();
+  $('#hide-admin-panel').hide();
 
   $('#show-admin-panel').on("click", function(){
+    $('#show-admin-panel').hide();
+    $('#hide-admin-panel').show();
     $("#admin-panel").slideDown(); 
     $('#admin-panel').show();    
   });
@@ -52,7 +55,9 @@ function ajaxAdminPanel(){
     $("#admin-panel").slideUp(function(){
       $('#admin-panel').hide();
     });
-    
+    $('#hide-admin-panel').hide();
+    $('#show-admin-panel').show();
+
   });
 };
 

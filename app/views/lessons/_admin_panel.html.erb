@@ -1,4 +1,5 @@
   <button class="btn" id="show-admin-panel">Show Admin Panel</button>
+  <button class="btn" id="hide-admin-panel">Hide Admin Panel</button>
   <br><br>
 
   <div id="admin-panel">
@@ -23,7 +24,7 @@
 
     <br><br>
 
-    <button class="btn btn-success" id="show_admin_email">Email Teachers and Students</button>
+    <button class="btn btn-info" id="show_admin_email">Email Teachers and Students</button>
 
     <form role="form" action="/lessons/<%= @lesson.id %>/admin_email" method="POST" id="admin_email">
       <%= token_tag %>
@@ -43,10 +44,6 @@
     <br><br>
 
     <%= button_to "Relinquish Administration!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, 'registration[admin]' => "false"}, {method: :patch, class: "btn btn-primary"} %>
-
-    <br><br>
-
-    <button class="btn" id="hide-admin-panel">Hide Admin Panel</button>
 
     <br><br>
   </div>
