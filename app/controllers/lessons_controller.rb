@@ -30,9 +30,10 @@ class LessonsController < ApplicationController
     end
   end
 
-  def create 
+  def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.build_tags(params[:lesson][:tags])
+    tags = params[:lesson][:tags]
+    @lesson.build_tags(tags) if tags
 
     respond_to do |format|
      if @lesson.save
@@ -40,6 +41,7 @@ class LessonsController < ApplicationController
       format.html { redirect_to @lesson, notice: 'Lesson was successfully created!' }
      else
       @tag = Tag.new
+      @role = params[:role]
       format.html { render action: 'new' }
       end
     end

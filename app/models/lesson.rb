@@ -8,7 +8,7 @@ class Lesson < ActiveRecord::Base
 
   has_many :comments
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 50, too_long: " cannot be more than 50 characters" }
   validates :description, presence: true
   validates :references, presence: true
   validate :has_tags

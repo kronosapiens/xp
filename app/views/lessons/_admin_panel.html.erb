@@ -1,47 +1,52 @@
-  <h4>Admin Actions:</h4>
-
-  <% if @lesson.status == "open" %>
-    <%= button_to "Close Registration!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "closed"}, {method: :patch, class: "btn btn-warning", remote: true } %>
-  <% elsif @lesson.status == "closed" %>
-    <%= button_to "Open Registration!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "open"}, {method: :patch, class: "btn btn-primary", remote: true } %>
-  <% end %>
-
-  <% unless @lesson.status == "completed" %>
-    <%= button_to "Mark Completed", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "completed"}, {method: :patch, class: "btn btn-success", data: { confirm: 'This will permamently archive the lesson. Are you sure?'} } %>
-
-      <br>
-      <br>
-  <% end %>
-
-  <%= link_to 'Edit Lesson', edit_lesson_path(@lesson), { class: "btn btn-info" } %>
-
-  <% if one_user?(@lesson) %>
-    <%= link_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } } %>
-  <% end %>
-
-  <br>
-  <br>
-
-  <%= button_to "Relinquish Administration!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, 'registration[admin]' => "false"}, {method: :patch, class: "btn btn-warning"} %>
-
+  <button class="btn" id="show-admin-panel">Show Admin Panel</button>
   <br><br>
 
-  <button class="btn" id="show_admin_email">Email Teachers and Students</button>
+  <div id="admin-panel">
+    <% if @lesson.status == "open" %>
+      <%= button_to "Close Registration!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "closed"}, {method: :patch, class: "btn btn-primary", remote: true } %>
+    <% elsif @lesson.status == "closed" %>
+      <%= button_to "Open Registration!", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "open"}, {method: :patch, class: "btn btn-primary", remote: true } %>
+    <% end %>
 
-  <form role="form" action="/lessons/<%= @lesson.id %>/admin_email" method="POST" id="admin_email">
-    <%= token_tag %>
-    <h4>Send an Email to All Teachers and Students</h4>
-    <div class="form-group">
-      <strong>Subject:</strong><br>
-      <input type="text" name="subject" style="width: 75%">
-    </div>
-    <div class="form-group">
-      <strong>Body:</strong><br>
-      <textarea name="content" style="width: 75%"></textarea>
-    </div>
-    <input type="submit" name="submit" value="Send Email" class="btn btn-success">
-    <a href='#' class="btn btn-default" id="hide_admin_email">Cancel</a>
-  </form>
+    <% unless @lesson.status == "completed" %>
+      <%= button_to "Mark Completed", {controller: "lessons", action: "update_status", id: @lesson.id, :'lesson[status]' => "completed"}, {method: :patch, class: "btn btn-success", data: { confirm: 'This will permamently archive the lesson. Are you sure?'} } %>
 
-  <br><br>
+        <br>
+        <br>
+    <% end %>
 
+    <%= button_to 'Edit Lesson!', edit_lesson_path(@lesson), { method: :get, class: "btn btn-primary" } %>
+
+    <% if one_user?(@lesson) %>
+      <%= button_to 'Delete Lesson!', @lesson, { method: :delete, method: :get, class: "btn btn-warning", data: { confirm: 'Are you sure?' } } %>
+    <% end %>
+
+    <br><br>
+
+    <button class="btn btn-success" id="show_admin_email">Email Teachers and Students</button>
+
+    <form role="form" action="/lessons/<%= @lesson.id %>/admin_email" method="POST" id="admin_email">
+      <%= token_tag %>
+      <h4>Send an Email to All Teachers and Students</h4>
+      <div class="form-group">
+        <strong>Subject:</strong><br>
+        <input type="text" name="subject" style="width: 75%">
+      </div>
+      <div class="form-group">
+        <strong>Body:</strong><br>
+        <textarea name="content" style="width: 75%"></textarea>
+      </div>
+      <input type="submit" name="submit" value="Send Email" class="btn btn-success">
+      <a href='#' class="btn btn-default" id="hide_admin_email">Cancel</a>
+    </form>
+
+    <br><br>
+
+    <%= button_to "Relinquish Administration!", {controller: "registrations", action: "update", lesson_id: @lesson.id, id: @registration.id, 'registration[admin]' => "false"}, {method: :patch, class: "btn btn-primary"} %>
+
+    <br><br>
+
+    <button class="btn" id="hide-admin-panel">Hide Admin Panel</button>
+
+    <br><br>
+  </div>
