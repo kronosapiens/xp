@@ -1,0 +1,52 @@
+<div class="container lesson-container">
+  <div class="floater">
+  </div>
+
+  <% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice.html_safe %></p>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-warning">
+      <p id="alert"><%= alert.html_safe %></p>
+    </div>
+  <% end %>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="lesson banner">
+        <h1>Welcome to xp<br>
+          <small>A skillshare platform for the Flatiron community<small></h1>
+        <br>
+        <%= button_to "Login with Github", login_path, {method: :get, class: "btn btn-primary btn-lg"} %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="lesson banner">
+        <%= link_to 'Teach', new_lesson_path(role: 'teacher'), {method: :get, class: "btn btn-warning btn-lg"} %>
+        <br><br>
+        <h4>Share your knowledge and level up by offering to teach lessons based on your expertise...<br><br>
+          or by stepping up and teaching the lessons that have already been requested.</h4>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="lesson banner">
+        <%= link_to 'Learn', new_lesson_path(role: 'student'), {method: :get, class: "btn btn-success btn-lg"} %>
+        <br><br>
+        <h4>Level up by attending lessons on any topic that interests you...<br><br>
+          and by requesting new lessons for things you want to learn.</h4>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="lesson banner">
+        <%= button_to 'Browse Categories', tags_path, {method: :get, class: "btn btn-lg"} %>
+      </div>
+    </div>
+
+  </div>
+
+</div>

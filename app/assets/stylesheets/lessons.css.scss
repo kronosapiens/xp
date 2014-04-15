@@ -30,8 +30,6 @@ $lesson-bg-teacher:           rgba(236, 158, 0, 0.3);
 $lesson-heading-color:        inherit !default;
 $lesson-font-size:            ceil(($font-size-base * 1)) !default;
 
-// 98  184 78  green
-// 236 158 0 orange
 .lesson {
   padding: $lesson-padding;
   margin-bottom: ($lesson-padding * 2);
@@ -80,12 +78,8 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
   background-color: $lesson-bg-student;
 }
 
-.lesson-index {
-
-}
-
-.lesson-show {
-  
+.banner {
+  text-align: center;
 }
 
 .lesson-container {
