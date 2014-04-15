@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
       create_by_oauth(auth_hash)
     else
       user.update(:token => auth_token)
+      user.save
       user
     end
   end
