@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if flatiron_student?
       user = User.find_or_create_by_oauth(request.env["omniauth.auth"])
       login(user)
-      redirect_to :back, notice: "Successfully logged in. Welcome to xp!"
+      redirect_to lessons_path, notice: "Successfully logged in. Welcome to xp!"
     else
       redirect_to root_path, alert: "Must be a Flatiron student to use xp... (for now)."
     end

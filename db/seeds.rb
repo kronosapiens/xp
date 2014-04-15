@@ -10,6 +10,7 @@
 @rubygems = Tag.create(:name => "Ruby Gems", :category => "topic")
 @deployment = Tag.create(:name => "Deployment", :category => "topic")
 @console = Tag.create(:name => "Console", :category => "topic")
+@soft_skills = Tag.create(:name => "Soft Skills", :category => "topic")
 
 @ruby = Tag.create(:name => "Ruby", :category => "language")
 @javascript = Tag.create(:name => "JavaScript", :category => "language")

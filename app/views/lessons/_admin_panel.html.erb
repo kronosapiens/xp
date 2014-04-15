@@ -18,7 +18,7 @@
     <%= button_to 'Edit Lesson!', edit_lesson_path(@lesson), { method: :get, class: "btn btn-primary" } %>
 
     <% if one_user?(@lesson) %>
-      <%= button_to 'Delete Lesson!', @lesson, { method: :delete, method: :get, class: "btn btn-warning", data: { confirm: 'Are you sure?' } } %>
+      <%= button_to 'Delete Lesson!', @lesson, { method: :delete, class: "btn btn-warning", data: { confirm: 'Are you sure?' } } %>
     <% end %>
 
     <br><br>

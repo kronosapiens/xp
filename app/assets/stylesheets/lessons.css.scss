@@ -81,8 +81,8 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
 .lesson-index {
   max-height:400px;
   min-height:400px;
-  height:auto !important;
-  height:400px;
+  // height:auto !important;
+  // height:400px;
 }
 
 .banner {
