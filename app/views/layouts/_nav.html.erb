@@ -13,7 +13,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Teach Lesson', new_lesson_path(role: 'teacher') %></li>
         <li><%= link_to 'Request Lesson', new_lesson_path(role: 'student') %></li>
-        <li><%= link_to "Browse All Tags", tags_path %></li>
+        <li><%= link_to "All Lessons", lessons_path %></li>
+        <li><%= link_to "All Tags", tags_path %></li>
         <% if logged_in? %>
           <li><%= link_to "(Logout)", logout_path %></li>
           <li><%= link_to current_user.name, user_path(current_user.nickname) %></li>
