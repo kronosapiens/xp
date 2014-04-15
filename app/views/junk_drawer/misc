@@ -3,3 +3,9 @@
 <form class="navbar-form navbar-right">
   <input type="text" class="form-control" placeholder="Search...">
 </form>
+
+New tags form
+
+<div class="lesson">
+  <%= render 'tags/form' %>
+</div>
