@@ -77,6 +77,16 @@ describe "User" do
     end
   end
 
+  describe '#role_for' do
+    it 'knows its role for a lesson' do
+      expect(@user1.role_for(@lesson1)).to eq("teacher")
+    end
+
+    it 'returns nil if it is not registered for the lesson' do
+      expect(@user1.role_for(@lesson4)).to eq(nil)
+    end
+  end
+
   describe '#lessons_by_role' do
     it 'knows when it is a student' do
       expect(@user2.lessons_by_role("student").first).to eq(@lesson1) 

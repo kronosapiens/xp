@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "lessons#index"
+  root "application#show"
 
   resources :lessons do
     resources :comments, only: [:create, :destroy]

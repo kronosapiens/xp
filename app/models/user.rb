@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
+  before_save :set_name_if_nil
+
 # Class Methods
   def self.find_or_create_by_oauth(auth_hash)
     provider = auth_hash["provider"]
@@ -26,6 +28,11 @@ class User < ActiveRecord::Base
   end
 
 # Instance Methods
+  def role_for(lesson)
+    registration = registrations.where(:lesson => lesson).first
+    registration ? registration.role : nil
+  end
+
   def lessons_by_role(role)
     registrations.where(:role => role).map(&:lesson)
   end
@@ -62,7 +69,7 @@ class User < ActiveRecord::Base
   def update_xp(languages_array) #coming in as an array of hashes
     languages_array.each do |languages_hash_for_repo|
       languages_hash_for_repo.each do |language, lines_of_code|
-        tag = Tag.find_or_create_by(:name => language.to_s)
+        tag = Tag.find_or_create_by(:name => language.to_s, :category => "language")
         experience = self.experiences.find_or_create_by(:tag => tag)
         prior_gh_stat = experience.gh_stat
         experience.update(:gh_stat => prior_gh_stat + lines_of_code)
@@ -88,6 +95,10 @@ class User < ActiveRecord::Base
       u.token = auth_hash["credentials"]["token"]
       u.save
     end
+  end
+
+  def set_name_if_nil
+    (self.name = self.nickname) unless self.name
   end
 
 end

@@ -109,11 +109,11 @@ class LessonsController < ApplicationController
 
   private
   def set_lesson
-    # if params[:id].is_a?(Integer)
+    if params[:id].to_i > 0
       @lesson = Lesson.find(params[:id])
-    # else
-    #   @lesson = Lesson.find_by(:slug => params[:id])
-    # end
+    else
+      @lesson = Lesson.find_by(:slug => params[:id])
+    end
   end
 
   def get_registration

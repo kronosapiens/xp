@@ -23,6 +23,10 @@ $screen-sm-min:               $screen-sm !default;
 $lesson-padding:              12px !default;
 $lesson-color:                inherit !default;
 $lesson-bg:                   $gray-lighter !default;
+// $lesson-bg-student:           lighten(#17FF91, 50%);
+// $lesson-bg-teacher:           lighten(#CC9527, 50%);
+$lesson-bg-student:           rgba(78, 184, 134, 0.3);
+$lesson-bg-teacher:           rgba(236, 158, 0, 0.3);
 $lesson-heading-color:        inherit !default;
 $lesson-font-size:            ceil(($font-size-base * 1)) !default;
 
@@ -66,12 +70,16 @@ $lesson-font-size:            ceil(($font-size-base * 1)) !default;
   }
 }
 
-.lesson-index {
-
+.teacher-color {
+  background-color: $lesson-bg-teacher;
 }
 
-.lesson-show {
-  
+.student-color {
+  background-color: $lesson-bg-student;
+}
+
+.banner {
+  text-align: center;
 }
 
 .lesson-container {

@@ -1,7 +1,9 @@
 class TagsController < ApplicationController
+  before_action :login_required, only: [:create]
 
   def index
     get_tags(:used)
+    @language_tags = Tag.all_by_category("language") # override :used to get all language tags
     @tag = Tag.new
   end
 
@@ -10,7 +12,6 @@ class TagsController < ApplicationController
   end
 
   def create
-    login_required
     @tag = Tag.new(tag_params)
 
     if @tag.save

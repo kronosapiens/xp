@@ -1,5 +1,11 @@
 module LessonsHelper
 
+  def user_style(lesson)
+    if current_user && current_user.role_for(lesson)
+      "#{current_user.role_for(lesson)}-color"
+    end
+  end
+
   def one_user?(lesson)
     lesson.registrations.length == 1
   end
@@ -32,7 +38,7 @@ module LessonsHelper
     if lesson_has_a_specific_location?(lesson)
       lesson.specific_location
     else
-      "TDB"
+      "TBD"
     end
   end
 
@@ -40,7 +46,7 @@ module LessonsHelper
     if lesson_has_a_specific_time?(lesson)
       adjusted_time(lesson).to_formatted_s(:long_ordinal)
     else
-      "TDB"
+      "TBD"
     end
   end
 
