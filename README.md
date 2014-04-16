@@ -5,7 +5,7 @@
 XP: A skillshare platform for Flatiron students
 
 
-![Landing Page](/images/01_root.png "Landing Page")
+![Landing Page](/public/images/01_root.png "Landing Page")
 
 ## Background
 
@@ -38,11 +38,11 @@ Daniel Kronovet: @kronosapiens
 
 ## Screenshots
 
-![Lessons Show](/images/02_lessons_show.png "Lessons Show")
-![Lessons Index](/images/03_lessons_index.png "Lessons Index")
-![User Show](/images/04_user_show.png "User Show")
-![Lessons New](/images/05_lessons_new.png "Lessons New")
-![Tags Show](/images/06_tags_show.png "Tags Show")
+![Lessons Show](/public/images/02_lessons_show.png "Lessons Show")
+![Lessons Index](/public/images/03_lessons_index.png "Lessons Index")
+![User Show](/public/images/04_user_show.png "User Show")
+![Lessons New](/public/images/05_lessons_new.png "Lessons New")
+![Tags Show](/public/images/06_tags_show.png "Tags Show")
 
 ## License
 
