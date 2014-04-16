@@ -23,7 +23,8 @@
           <%= image_tag(@user.image_url, { size: "250", alt: "#{@user.name} thumbnail", class: "img-responsive img-rounded prof-pic" } ) %> 
           <br>
           <% if @user.bio %>
-            <p><%= @user.bio %></p>
+            <span id="bio-text"><p><%= @user.bio %></p></span>
+            <span id="bio-form"><%= button_to 'Update Bio', {controller: :users, action: :edit, nickname: @user.nickname}, {method: :get, remote: :true, class: "btn btn-primary btn-xs"} %></span>
           <% else %>
             <span id="bio-form"><%= render "users/bio_form" %></span>
             <span id="bio-text"></span>

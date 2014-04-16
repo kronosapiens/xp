@@ -8,6 +8,10 @@ $(document).ready(function(){
 });
 
 function addBioToPage(bio_text){
-  $("#bio-form").remove();
+  $("#bio-form").html("");
   $("#bio-text").html(bio_text);
+};
+
+function addBioFormToPage(bio_form){
+  $("#bio-form").html(bio_form);
 };

@@ -25,10 +25,11 @@
           <h4><%= "Hi #{@user.name}" %></h4>
           <br>
             <% if @user.bio %>
-              <p><%= @user.bio %></p>
+              <span id="bio-text"><p><%= @user.bio %></p></span>
+              <span id="bio-form"></span>
             <% else %>
-              <span id="bio-form"><%= render "users/bio_form" %></span>
               <span id="bio-text"></span>
+              <span id="bio-form"><%= render "users/bio_form" %></span>
             <% end %>
        <% end %>
       </div>

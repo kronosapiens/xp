@@ -1,6 +1,6 @@
 class UsersController < ApplicationController  
   include Math
-  before_action :set_user, only: [:show, :update_xp]
+  before_action :set_user, only: [:show, :update, :edit, :update_xp]
 
   def show 
   end
@@ -27,12 +27,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
+  end
 
   def update 
-    @user = User.find_by(nickname: params[:nickname])
-
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to "/users/#{@user.nickname}", notice: 'Information updated!' }
