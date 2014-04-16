@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
         experience = self.experiences.find_or_create_by(:tag => tag)
         prior_gh_stat = experience.gh_stat
         experience.update(:gh_stat => prior_gh_stat + lines_of_code)
+        experience.save
       end
     end
   end
