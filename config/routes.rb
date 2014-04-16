@@ -20,8 +20,9 @@ Rails.application.routes.draw do
   get "/logout" => "sessions#destroy", as: :logout
 
 # Routes for user interactions
-  get "/users/:nickname" => "users#show", as: :user
   get "/users/:nickname/edit" => "users#edit", as: :edit_user
+  get "/users/:nickname" => "users#show", as: :user
+  post "/users/:nickname" => "users#update"
   get "/users/:nickname/update_xp" => "users#update_xp", as: :update_xp_user
   
 end

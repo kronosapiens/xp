@@ -1,4 +1,5 @@
 class UsersController < ApplicationController  
+  include Math
   before_action :set_user, only: [:show, :update_xp]
 
   def show 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
     @user.update_xp(languages_source_repos)
 
     respond_to do |format|
-      format.html { redirect_to "/users/#{@user.nickname}", notice: 'Experience successfully calculated' }
+      format.html { redirect_to "/users/#{@user.nickname}", notice: 'Experience successfully calculated!' }
       format.js {}
     end
   end
@@ -29,13 +30,25 @@ class UsersController < ApplicationController
   # def edit
   # end
 
-  # def update 
-  #   @user = User.find_by(nickname: params[:nickname])
-  #   @user.update(:email => params[:email])
-  #   redirect_to root_path
-  # end
+  def update 
+    @user = User.find_by(nickname: params[:nickname])
+
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to "/users/#{@user.nickname}", notice: 'Information updated!' }
+        format.js {}
+      else
+        format.html { redirect_to :back, alert: 'Update failed...' }
+        format.js { redirect_to :back, alert: 'Update failed...' }
+      end
+    end
+  end
 
   private
+  def user_params
+    params.require(:user).permit(:bio)
+  end
+
   def set_user
     @user = User.find_by(nickname: params[:nickname])
   end
@@ -47,7 +60,7 @@ class UsersController < ApplicationController
   def reduce_line_counts(languages_array)
     languages_array.reject! {|language_hash| language_hash == {}}
     languages_array.each do |language_hash|
-      language_hash.each {|language, line_count| language_hash[language] = line_count / 2}
+      language_hash.each {|language, line_count| language_hash[language] = sqrt(line_count)}
     end
   end
 

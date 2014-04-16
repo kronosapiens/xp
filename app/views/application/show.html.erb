@@ -19,10 +19,17 @@
         <h1>Welcome to xp<br>
           <small>A skillshare platform for the Flatiron community</small></h1>
         <br>
-        <% if !current_user %>
+        <% if !@user %>
          <%= button_to "Login with Github", login_path, {method: :get, class: "btn btn-primary btn-lg"} %>
-       <% else %>
-          <h4><%= "Hi #{current_user.name}" %></h4>
+        <% else %>
+          <h4><%= "Hi #{@user.name}" %></h4>
+          <br>
+            <% if @user.bio %>
+              <p><%= @user.bio %></p>
+            <% else %>
+              <span id="bio-form"><%= render "users/bio_form" %></span>
+              <span id="bio-text"></span>
+            <% end %>
        <% end %>
       </div>
     </div>

@@ -6,3 +6,8 @@ $(document).ready(function(){
   });
 
 });
+
+function addBioToPage(bio_text){
+  $("#bio-form").remove();
+  $("#bio-text").html(bio_text);
+};

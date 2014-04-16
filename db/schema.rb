@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414142838) do
+ActiveRecord::Schema.define(version: 20140416175442) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20140414142838) do
   create_table "experiences", force: true do |t|
     t.integer  "user_id"
     t.integer  "tag_id"
-    t.integer  "taken"
-    t.integer  "taught"
-    t.integer  "gh_stat"
+    t.integer  "taken",      default: 0
+    t.integer  "taught",     default: 0
+    t.integer  "gh_stat",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "level"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20140414142838) do
     t.string   "email"
     t.string   "image_url",  default: "http://i265.photobucket.com/albums/ii220/ivnovitch/pokeball.png"
     t.string   "token"
+    t.string   "bio"
   end
 
 end
