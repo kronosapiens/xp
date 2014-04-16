@@ -38,8 +38,8 @@ Daniel Kronovet: @kronosapiens
 
 ## Screenshots
 
-![Lessons Show](/public/images/02_lessons_show.png "Lessons Show")
-![Lessons Index](/public/images/03_lessons_index.png "Lessons Index")
+![Lessons Index](/public/images/02_lessons_index.png "Lessons Index")
+![Lessons Show](/public/images/03_lessons_show.png "Lessons Show")
 ![User Show](/public/images/04_user_show.png "User Show")
 ![Lessons New](/public/images/05_lessons_new.png "Lessons New")
 ![Tags Show](/public/images/06_tags_show.png "Tags Show")
