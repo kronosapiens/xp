@@ -4,9 +4,8 @@
 
 XP: A skillshare platform for Flatiron students
 
-## Screenshots
 
-Add some spiffy screenshots of your app here.
+![Landing Page](/images/01_root.jpg "Landing Page")
 
 ## Background
 
@@ -36,6 +35,14 @@ A reputation/gamification system to help encourage continual participation once 
 Sam Schlinkert: @sts10
 
 Daniel Kronovet: @kronosapiens
+
+## Screenshots
+
+![Lessons Show](/images/02_lessons_show.jpg "Lessons Show")
+![Lessons Index](/images/03_lessons_index.jpg "Lessons Index")
+![User Show](/images/04_user_show.jpg "User Show")
+![Lessons New](/images/05_lessons_new.jpg "Lessons New")
+![Tags Show](/images/06_tags_show.jpg "Tags Show")
 
 ## License
 
