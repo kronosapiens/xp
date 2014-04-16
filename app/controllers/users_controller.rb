@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   def update 
     respond_to do |format|
       if @user.update(user_params)
+        @user.save
         format.html { redirect_to "/users/#{@user.nickname}", notice: 'Information updated!' }
         format.js {}
       else
