@@ -34,18 +34,18 @@
     </div>
 
     <div class="col-md-4 col-md-offset-2">
-      <div class="lesson banner">
-        <%= link_to 'Teach', new_lesson_path(role: 'teacher'), {method: :get, class: "btn btn-warning btn-lg"} %>
-        <br><br>
+      <div class="lesson">
+        <%= link_to 'Teach', new_lesson_path(role: 'teacher'), {method: :get, class: "btn btn-warning btn-lg btn-block"} %>
+        <br>
         <h4>Share your skills and level up by offering what you know...<br><br>
           or by stepping up and teaching lessons that have been requested.</h4>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="lesson banner">
-        <%= link_to 'Learn', new_lesson_path(role: 'student'), {method: :get, class: "btn btn-success btn-lg"} %>
-        <br><br>
+      <div class="lesson">
+        <%= link_to 'Learn', new_lesson_path(role: 'student'), {method: :get, class: "btn btn-success btn-lg btn-block"} %>
+        <br>
         <h4>Level up by attending lessons on any topic that interests you...<br><br>
           and by requesting new lessons for things you want to learn.</h4>
       </div>
