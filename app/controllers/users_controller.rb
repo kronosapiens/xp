@@ -18,8 +18,10 @@ class UsersController < ApplicationController
     reduce_line_counts(languages_non_source_repos)
 
     @user.clear_gh_stats
+    @user.reload
     @user.update_xp(languages_non_source_repos)
     @user.update_xp(languages_source_repos)
+    @user.reload
 
     respond_to do |format|
       format.html { redirect_to "/users/#{@user.nickname}", notice: 'Experience successfully calculated!' }

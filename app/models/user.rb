@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     registrations.where(:role => role).map(&:lesson)
   end
 
-  def lessons_by_role_and_status(role, status)
+  def lessons_by_role_and_status(role, status)  
     my_registrations = self.registrations.where(:role => role).select do |registration|
       registration.lesson.status == status
     end
@@ -68,8 +68,8 @@ class User < ActiveRecord::Base
   end
 
   def update_xp(languages_array) #coming in as an array of hashes
-    languages_array.each do |languages_hash_for_repo|
-      languages_hash_for_repo.each do |language, lines_of_code|
+    languages_array.each do |languages_hash_by_repo|
+      languages_hash_by_repo.each do |language, lines_of_code|
         tag = Tag.find_or_create_by(:name => language.to_s, :category => "language")
         experience = self.experiences.find_or_create_by(:tag => tag)
         prior_gh_stat = experience.gh_stat
@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
   def clear_gh_stats
     experiences.each do |experience|
       experience.update(:gh_stat => 0)
+      experience.save
     end
   end
 

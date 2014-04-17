@@ -1,4 +1,4 @@
-<h4><%= experience.tag.name %> <small>(Level <%= experience.level %>)</small></h4>
+<h4><%= link_to experience.tag.name, tag_path(experience.tag.slug) %> <small>(Level <%= experience.level %>)</small></h4>
   <p>Taken: <%= experience.taken %> | 
   Taught: <%= experience.taught %> | 
   Github Score: <%= experience.gh_stat %></p>
