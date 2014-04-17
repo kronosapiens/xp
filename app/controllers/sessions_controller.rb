@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to lessons_path
+    redirect_to root_path
   end
 
   def flatiron_student?
