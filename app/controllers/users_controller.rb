@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def update 
+  def update
     respond_to do |format|
       if @user.update(user_params)
         @user.save
