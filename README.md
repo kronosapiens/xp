@@ -36,6 +36,14 @@ Sam Schlinkert: [@sts10](https://github.com/sts10)
 
 Daniel Kronovet: [@kronosapiens](https://github.com/kronosapiens)
 
+## Relevant Blog Posts
+
+[Using Chosen with Rails](http://sts10.github.io/blog/2014/04/02/chosen/)
+
+[A Dynamic and Generally Efficient Front-End Filtering Algorithm, with Rails and jQuery](http://kr0nos4piens.wordpress.com/2014/03/31/a-dynamic-and-relatively-efficient-front-end-filtering-algorithm-with-rails-and-javascript/)
+
+[How We Used the Data-Remote=True Pattern for AJAXing New Comments in XP](http://sts10.github.io/blog/2014/04/12/data-remote-true/)
+
 ## Screenshots
 
 ![Lessons Index](/public/images/02_lessons_index.png "Lessons Index")
