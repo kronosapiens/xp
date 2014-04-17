@@ -30,11 +30,11 @@ Scheduling features! Once students and teachers have been connected, how can we 
 
 A reputation/gamification system to help encourage continual participation once students graduate and become alumni. Drawing on github repos to calculate "expertise" based on the kinds of languages coded in.
 
-## Author
+## Authors
 
-Sam Schlinkert: @sts10
+Sam Schlinkert: [@sts10](https://github.com/sts10)
 
-Daniel Kronovet: @kronosapiens
+Daniel Kronovet: [@kronosapiens](https://github.com/kronosapiens)
 
 ## Screenshots
 

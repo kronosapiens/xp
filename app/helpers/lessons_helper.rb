@@ -38,6 +38,10 @@ module LessonsHelper
     end
   end
 
+  def adjusted_time(lesson)
+    lesson.specific_time + 4.hours
+  end
+
   def display_time(lesson) 
     if lesson_has_a_specific_time?(lesson)
       lesson.specific_time.to_formatted_s(:long_ordinal)

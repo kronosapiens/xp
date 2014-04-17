@@ -50,7 +50,7 @@ class LessonsController < ApplicationController
   def update
       @lesson.tags.clear
       @lesson.build_tags(params[:lesson][:tags])
-      params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time])
+      params[:lesson][:specific_time] = Chronic.parse(params[:lesson][:specific_time]) + 4.hours
 
     respond_to do |format|
       if @lesson.update(lesson_params)
