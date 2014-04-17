@@ -37,15 +37,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        @user.save
-        format.html { redirect_to "/users/#{@user.nickname}", notice: 'Information updated!' }
-        format.js {}
-      else
-        format.html { redirect_to :back, alert: 'Update failed...' }
-        format.js { redirect_to :back, alert: 'Update failed...' }
+    if action_on_self?
+      respond_to do |format|
+        if @user.update(user_params)
+          @user.save
+          format.html { redirect_to "/users/#{@user.nickname}", notice: 'Information updated!' }
+          format.js {}
+        else
+          format.html { redirect_to :back, alert: 'Update failed...' }
+          format.js { redirect_to :back, alert: 'Update failed...' }
+        end
       end
+    else
+      redirect_to :back, alert: "Can't edit someone else's profile!"
     end
   end
 
@@ -67,6 +71,10 @@ class UsersController < ApplicationController
     languages_array.each do |language_hash|
       language_hash.each {|language, line_count| language_hash[language] = sqrt(line_count)}
     end
+  end
+
+  def action_on_self?
+    current_user && current_user == @user
   end
 
 end

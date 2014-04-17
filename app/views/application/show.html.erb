@@ -27,7 +27,7 @@
             <% if @user.bio %>
               <span id="bio-text"><p><%= @user.bio %></p></span>
               <span id="bio-form"></span>
-            <% else %>
+            <% elsif @user == current_user %>
               <span id="bio-text"></span>
               <span id="bio-form"><%= render "users/bio_form" %></span>
             <% end %>
