@@ -1,9 +1,10 @@
+[![Code Climate](https://codeclimate.com/github/kronosapiens/xp.png)](https://codeclimate.com/github/kronosapiens/xp)
+
 # xp
 
 ## Description
 
 XP: A skillshare platform for Flatiron students
-
 
 ![Landing Page](/public/images/01_root.png "Landing Page")
 
