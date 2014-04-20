@@ -32,8 +32,8 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    tags = params[:tags]
-    @lesson.build_tags(tags) if tags
+    # tags = params[:tags]
+    @lesson.build_tags(params[:tags]) if params[:tags]
 
     respond_to do |format|
      if @lesson.save
