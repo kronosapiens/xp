@@ -1,5 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/kronosapiens/xp.png)](https://codeclimate.com/github/kronosapiens/xp)
-
+[![Build Status](https://travis-ci.org/kronosapiens/xp.svg?branch=master)](https://travis-ci.org/kronosapiens/xp)
 # xp
 
 ## Description
@@ -33,11 +33,19 @@ Scheduling features! Once students and teachers have been connected, how can we 
 
 A reputation/gamification system to help encourage continual participation once students graduate and become alumni. Drawing on github repos to calculate "expertise" based on the kinds of languages coded in.
 
-## Author
+## Authors
 
-Sam Schlinkert: @sts10
+Sam Schlinkert: [@sts10](https://github.com/sts10)
 
-Daniel Kronovet: @kronosapiens
+Daniel Kronovet: [@kronosapiens](https://github.com/kronosapiens)
+
+## Relevant Blog Posts
+
+[Using Chosen with Rails](http://sts10.github.io/blog/2014/04/02/chosen/)
+
+[A Dynamic and Generally Efficient Front-End Filtering Algorithm, with Rails and jQuery](http://kr0nos4piens.wordpress.com/2014/03/31/a-dynamic-and-relatively-efficient-front-end-filtering-algorithm-with-rails-and-javascript/)
+
+[How We Used the Data-Remote=True Pattern for AJAXing New Comments in XP](http://sts10.github.io/blog/2014/04/12/data-remote-true/)
 
 ## Screenshots
 
