@@ -71,9 +71,8 @@ class LessonsController < ApplicationController
         format.html { redirect_to @lesson, notice: "Lesson status successfully updated to '#{params[:lesson][:status]}'." }
         format.js {}
       else
-        failure_alert = 'Unable to change lesson status'
-        format.html { redirect_to @lesson, alert: failure_alert }
-        format.js { redirect_to @lesson, alert: failure_alert }
+        format.html { redirect_to @lesson, alert: "Unable to change lesson status" }
+        format.js { redirect_to @lesson, alert: "Unable to change lesson status" }
       end
     end
   end
