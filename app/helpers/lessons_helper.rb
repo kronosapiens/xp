@@ -61,10 +61,10 @@ module LessonsHelper
   def display_google_calendar_link(lesson)
     if lesson_has_a_specific_time?(lesson) && lesson_has_a_specific_location?(lesson)
       event_title = lesson.title.gsub(" ", "+")
-      start_date = lesson.specific_time.iso8601.gsub("-", "").gsub(":", "")[0..-5] #.split("+")[0]
+      start_date = lesson.specific_time.iso8601.gsub(/[-:]/, "")[0..-5] #.split("+")[0]
       # start_date = start_date[0..-5]
 
-      end_date = (lesson.specific_time + 2.hours).to_datetime.iso8601.gsub("-", "").gsub(":", "")[0..-5] #.split("+")[0]
+      end_date = (lesson.specific_time + 2.hours).to_datetime.iso8601.gsub(/[-:]/, "")[0..-5] #.split("+")[0]
       # end_date = end_date[0..-5]      
 
       dates = "#{start_date}/#{end_date}"
