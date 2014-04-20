@@ -82,6 +82,10 @@ class Lesson < ActiveRecord::Base
     self.slug = slugify(self.title)
   end
 
+  def specific_time=(time)
+    write_attribute(:specific_time, parse_time(time))
+  end
+
   private
   # def teachers_collection
   #   registrations.where(:role => "teacher")
@@ -89,6 +93,14 @@ class Lesson < ActiveRecord::Base
 
   def slugify(string)
     string.downcase.gsub(" ", "-")
+  end
+
+  def parse_time(time)
+    if time.class == String
+      Chronic.parse(time)
+    else
+      time
+    end
   end
 
 end

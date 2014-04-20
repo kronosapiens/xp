@@ -6,6 +6,8 @@
 
 XP: A skillshare platform for Flatiron students
 
+http://prezi.com/qaaqtitg3dfr/?utm_campaign=share&utm_medium=copy&rc=ex0share
+
 ![Landing Page](/public/images/01_root.png "Landing Page")
 
 ## Background

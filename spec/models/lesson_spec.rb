@@ -161,5 +161,21 @@ describe "Lesson" do
     end
   end
 
+  describe "#specific_time=" do
+    it "can parse a string using chronic" do
+      time = "monday at noon"
+      @lesson1.specific_time = time
+      expect(@lesson1.specific_time).to eq(Chronic.parse("monday at noon"))
+      expect(@lesson1.specific_time.class).to eq(ActiveSupport::TimeWithZone)
+    end
+
+    it "can accept an ActiveRecord datetime" do
+      time = Time.now
+      @lesson1.specific_time = time
+      expect(@lesson1.specific_time).to eq(time)
+      expect(@lesson1.specific_time.class).to eq(ActiveSupport::TimeWithZone)
+    end
+  end
+
 
 end
