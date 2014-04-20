@@ -28,7 +28,7 @@
   <div class="form-group" id="select-topics" style="max-width:700px;">
     <label>Select Topic Tags</label>
     <small>What topics describe your lesson? What programming language(s) will you use?</small>
-    <select data-placeholder="Select some topic tags that describe you lesson" style="width:100%;" multiple class="chosen-select tag-select form-control" name="lesson[tags][]">
+    <select data-placeholder="Select some topic tags that describe you lesson" style="width:100%;" multiple class="chosen-select tag-select form-control" name="tags[]">
       <% @topic_tags.each do |tag| %>
         <option id="<%= tag.id %>" <%= prepopulate_tags(@lesson, tag) %> value="<%= tag.id %>"><%= tag.name %></option>
       <% end %>

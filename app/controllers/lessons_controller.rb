@@ -32,7 +32,7 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    tags = params[:lesson][:tags]
+    tags = params[:tags]
     @lesson.build_tags(tags) if tags
 
     respond_to do |format|
@@ -49,7 +49,7 @@ class LessonsController < ApplicationController
 
   def update
       @lesson.tags.clear
-      @lesson.build_tags(params[:lesson][:tags])
+      @lesson.build_tags(params[:tags])
 
     respond_to do |format|
       if @lesson.update(lesson_params)
