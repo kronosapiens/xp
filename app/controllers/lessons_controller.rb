@@ -32,12 +32,11 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    # tags = params[:tags]
     @lesson.build_tags(params[:tags]) if params[:tags]
 
     respond_to do |format|
      if @lesson.save
-      @lesson.registrations.create(:user => current_user, :role => params[:role])
+      @lesson.registrations.create(:user => current_user, :role => params[:role], :admin => true)
       format.html { redirect_to @lesson, notice: 'Lesson was successfully created!' }
      else
       @tag = Tag.new
@@ -49,7 +48,7 @@ class LessonsController < ApplicationController
 
   def update
       @lesson.tags.clear
-      @lesson.build_tags(params[:tags])
+      @lesson.build_tags(params[:tags]) if params[:tags]
 
     respond_to do |format|
       if @lesson.update(lesson_params)
