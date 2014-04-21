@@ -56,38 +56,38 @@ describe LessonsController do
   end
 
   describe "PATCH 'update'" do
-    xit "returns http success" do
+    it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
-      patch :update, id: lesson.id
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      patch :update, id: lesson.id, lesson: { title: "Updated Test Lesson", description: "Updated Test Description", references: "Updated Test References", specific_location: "11 Broadway, NY, NY" }, :tags => ["1"]
+      expect(response).to be_redirect
+      expect(response.status).to eq(302)
     end
   end
 
   describe "PATCH 'update_status'" do
-    xit "returns http success" do
+    it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
-      patch :update_status, id: lesson.id
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      patch :update, id: lesson.id, lesson: { title: "Updated Test Lesson", status: "completed", description: "Updated Test Description", references: "Updated Test References" }, :tags => ["1"]
+      expect(response).to be_redirect
+      expect(response.status).to eq(302)
     end
   end
 
-  describe "DELETE 'delete'" do
-    xit "returns http success" do
+  describe "DELETE 'destroy'" do
+    it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
-      delete :delete, id: lesson.id
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      delete :destroy, id: lesson.id
+      expect(response).to be_redirect
+      expect(response.status).to eq(302)
     end
   end
 
   describe "POST 'admin_email'" do
-    xit "returns http success" do
+    it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
-      post :admin_email, id: lesson.id
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      post :admin_email, id: lesson.id, subject: "Email subject", content: "Email content"
+      expect(response).to be_redirect
+      expect(response.status).to eq(302)
     end
   end
 
