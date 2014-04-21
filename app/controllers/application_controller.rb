@@ -52,5 +52,9 @@ class ApplicationController < ActionController::Base
       session[:user_id] = $rspec_user_id if $rspec_user_id
     end
   end
+
+  def to_lesson_with_alert(alert)
+    redirect_to @lesson, alert: alert
+  end
   
 end

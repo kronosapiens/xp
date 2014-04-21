@@ -14,7 +14,8 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Sign up successful!' }
         format.js {}
       else
-        redirect_to @lesson, alert: 'Sign up failed... are you already signed up?'
+        format.html { to_lesson_with_alert('Sign up failed... are you already signed up?') }
+        format.js { to_lesson_with_alert('Sign up failed... are you already signed up?') }
       end
     end
   end
@@ -25,7 +26,8 @@ class RegistrationsController < ApplicationController
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }
         format.js {}
       else
-        redirect_to @lesson, alert: 'Update registration failed...'
+        format.html { to_lesson_with_alert('Update registration failed...') }
+        format.js { to_lesson_with_alert('Update registration failed...') }
       end
     end
   end
