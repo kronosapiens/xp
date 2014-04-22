@@ -7,7 +7,7 @@
 
 A skillshare-like platform for the Flatiron community
 
-http://prezi.com/qaaqtitg3dfr/?utm_campaign=share&utm_medium=copy&rc=ex0share
+['Flatiron School Presents' Meetup Presentation, April 17, 2014](http://prezi.com/qaaqtitg3dfr/introducing-xp/#)
 
 ![Landing Page](/public/images/01_root.png "Landing Page")
 
