@@ -1,10 +1,11 @@
+# xp
+
 [![Code Climate](https://codeclimate.com/github/kronosapiens/xp.png)](https://codeclimate.com/github/kronosapiens/xp)
 [![Build Status](https://travis-ci.org/kronosapiens/xp.svg?branch=master)](https://travis-ci.org/kronosapiens/xp)
-# xp
 
 ## Description
 
-XP: A skillshare platform for Flatiron students
+A skillshare-like platform for the Flatiron community
 
 http://prezi.com/qaaqtitg3dfr/?utm_campaign=share&utm_medium=copy&rc=ex0share
 
