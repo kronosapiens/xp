@@ -18,9 +18,6 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,18 +31,8 @@ gem 'spring',        group: :development
 # Using Figaro for handling secrets
 gem 'figaro', git: "https://github.com/laserlemon/figaro.git"
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+#Using Coveralls for test coverage reporting
+gem 'coveralls', require: false
 
 group :test, :development do
   gem "rspec-rails"
@@ -60,7 +47,6 @@ group :test, :development do
   gem "database_cleaner"
   gem "sqlite3"
   gem "pry"
-  # gem "jasmine", git: "some github url"
 end
 
 group :production do
