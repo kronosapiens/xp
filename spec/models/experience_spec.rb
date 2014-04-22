@@ -17,7 +17,8 @@ describe Experience do
 
   it 'can return experiences in descending order by level' do
     exp1
-    exp2 # instantiating the variables
+    exp2
+    exp3 # instantiating the variables
     expect(Experience.order_by_level.first.level).to be >(Experience.order_by_level.last.level)
   end
  end
@@ -30,12 +31,6 @@ describe Experience do
       expect(Experience.by_category("topic")).to include(exp1)
       expect(Experience.by_category("topic").length).to eq(2)
       expect(Experience.by_category("topic")).to_not include(exp3)
-    end
-  end
-
-  describe '#calculate_level' do
-    xit 'can return its current level' do # Private method now
-      expect(exp1.calculate_level).to be_a(Integer)
     end
   end
 

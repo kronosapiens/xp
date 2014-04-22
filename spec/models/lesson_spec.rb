@@ -72,10 +72,6 @@ describe "Lesson" do
     end
   end
 
-    # it "knows the first teacher" do
-    #   expect(@lesson1.first_teacher).to eq(@user3)
-    # end
-
   describe "#tags" do
     it "knows what tags it has" do
       expect(@lesson1.tags).to include(@topic_tag1)
@@ -98,13 +94,6 @@ describe "Lesson" do
 
     it "returns [] if it has no tags of a particular category" do
       (expect(@lesson1.tags_by_category("location")).to eq([]))
-    end
-  end
-
-  describe "#tags_to_string" do ## DEPRECATED
-    xit "can return its tags as a string" do
-      expect(@lesson2.tags_to_string).to be_a(String)
-      expect(@lesson2.tags_to_string).to include(@lesson2.tags.first.name)
     end
   end
 
