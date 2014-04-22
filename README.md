@@ -2,8 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/kronosapiens/xp.png)](https://codeclimate.com/github/kronosapiens/xp)
 [![Build Status](https://travis-ci.org/kronosapiens/xp.svg?branch=master)](https://travis-ci.org/kronosapiens/xp)
-[![Coverage Status](https://coveralls.io/repos/kronosapiens/xp/badge.png)](https://coveralls.io/r/kronosapiens/xp)
-
+[![Coverage Status](https://coveralls.io/repos/kronosapiens/xp/badge.png?branch=master)](https://coveralls.io/r/kronosapiens/xp?branch=master)
 ## Description
 
 A skillshare-like platform for the Flatiron community
