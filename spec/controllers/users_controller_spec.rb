@@ -2,10 +2,15 @@ require 'spec_helper'
 include Math
 
 describe UsersController do
+  let!(:user) { create(:user) }
+
+  before(:each) do
+    $rspec_user_id = user.id
+  end
 
   describe "GET 'show'" do
-    xit "returns http success" do
-      get 'show'
+    it "returns http success" do
+      get :show
       response.should be_success
     end
   end
