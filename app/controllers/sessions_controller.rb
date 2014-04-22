@@ -1,12 +1,9 @@
 class SessionsController < ApplicationController
-  
-  def login(user)
-    session[:user_id] = user.id
-  end
 
   def oauth
-    if flatiron_student?
-      user = User.find_or_create_by_oauth(request.env["omniauth.auth"])
+    auth = request.env["omniauth.auth"]
+    if flatiron_student?(auth["credentials"]["token"])
+      user = User.find_or_create_by_oauth(auth)
       login(user)
       redirect_to root_path, notice: "Successfully logged in. Welcome to xp!"
     else
@@ -18,9 +15,13 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path
   end
+  
+  def login(user)
+    session[:user_id] = user.id
+  end
 
-  def flatiron_student?
-    client = Octokit::Client.new(:access_token => (request.env["omniauth.auth"]["credentials"]["token"]))
+  def flatiron_student?(token)
+    client = Octokit::Client.new(:access_token => token)
     client.organizations.map(&:id).include?(6207995)
   end
   

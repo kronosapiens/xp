@@ -53,6 +53,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def reduce_line_counts(languages_array)
+    languages_array.reject! {|language_hash| language_hash == {}}
+    languages_array.each do |language_hash|
+      language_hash.each {|language, line_count| language_hash[language] = sqrt(line_count)}
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:bio)
@@ -64,13 +71,6 @@ class UsersController < ApplicationController
 
   def get_language_info(repos_array)
     repos_array.map { |repo| repo.rels[:languages].get.data.to_hash }
-  end
-
-  def reduce_line_counts(languages_array)
-    languages_array.reject! {|language_hash| language_hash == {}}
-    languages_array.each do |language_hash|
-      language_hash.each {|language, line_count| language_hash[language] = sqrt(line_count)}
-    end
   end
 
   def action_on_self?

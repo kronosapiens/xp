@@ -48,10 +48,10 @@ describe LessonsController do
 
   describe "POST 'create'" do
     it "returns http success" do
-      create(:tag)
       post :create, lesson: { title: "Test Lesson",  description: "Test Description", references: "Test References" }, :tags => ["1"]
       expect(response).to be_redirect
       expect(response.status).to eq(302)
+      expect(response.request.env["rack.session"]["flash"]["flashes"]["notice"]).to eq("Lesson was successfully created!")
     end
   end
 
@@ -67,7 +67,7 @@ describe LessonsController do
   describe "PATCH 'update_status'" do
     it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
-      patch :update, id: lesson.id, lesson: { title: "Updated Test Lesson", status: "completed", description: "Updated Test Description", references: "Updated Test References" }, :tags => ["1"]
+      patch :update_status, id: lesson.id, lesson: { title: "Updated Test Lesson", status: "completed", description: "Updated Test Description", references: "Updated Test References" }, :tags => ["1"]
       expect(response).to be_redirect
       expect(response.status).to eq(302)
     end
@@ -85,9 +85,18 @@ describe LessonsController do
   describe "POST 'admin_email'" do
     it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
-      post :admin_email, id: lesson.id, subject: "Email subject", content: "Email content"
+      post :admin_email, id: lesson.id
       expect(response).to be_redirect
       expect(response.status).to eq(302)
+      expect(response.request.env["rack.session"]["flash"]["flashes"]["notice"]).to eq("Email was sent!")
+    end
+
+    it "sends you back if not an admin" do
+      lesson.registrations.create(user: user)
+      post :admin_email, id: lesson.id
+      expect(response).to be_redirect
+      expect(response.status).to eq(302)
+      expect(response.request.env["rack.session"]["flash"]["flashes"]["alert"]).to eq("Only lesson admins can send emails to the whole class")
     end
   end
 

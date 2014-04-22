@@ -4,8 +4,6 @@ class RegistrationsController < ApplicationController
   before_action :set_lesson, only: [:update, :destroy]
 
   def create
-    # binding.pry
-
     @registration = Registration.new(registration_params)
     @registration.lesson_id = params[:lesson_id]
     @registration.user = current_user
@@ -23,7 +21,6 @@ class RegistrationsController < ApplicationController
   end
 
   def update
-    # binding.pry
     respond_to do |format|
       if @registration.update(registration_params)
         format.html { redirect_to @lesson, notice: 'Your registration was successfully updated.' }

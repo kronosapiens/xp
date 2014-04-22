@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :login_required, except: [:index, :show]
-  before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :update_status, :destroy, :admin_email]
   before_action only: [:new, :edit, :show, :update, :create] do
     get_tags
   end
@@ -95,7 +95,6 @@ class LessonsController < ApplicationController
   end
 
   def admin_email
-    set_lesson
     if is_user_admin?(@lesson)
       subject = params[:subject]
       content = params[:content]
