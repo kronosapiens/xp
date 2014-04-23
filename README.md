@@ -25,12 +25,16 @@ We specifically hope to help admitted students find guidance as they progress th
 * Ability to filter lessons based on interest and availability
 * Easy to request or offer lessons based on interest or need
 * Community-oriented design makes it easy to assess interest before committing resources to teaching
+* Integration with github to calculate 'github score' based on user's repositories
 
 ## Technology
 
-* Front-end JavaScript to filter views based on various criteria - see app/assets/javascripts.
-* Use of "role" column in registration table to enable efficient authorization and sorting - see app/models.
-* Use of Octokit and the Github API to iterate through user's repos and calculate a 'Github Score' for user based on language use - see app/controllers/user_controller
+* JavaScript & jQuery
+* Chosen
+* Octokit
+* Twitter Bootstrap
+* FactoryGirl
+* Capybara
 
 ## Usage
 
