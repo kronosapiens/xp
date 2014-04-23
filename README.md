@@ -9,18 +9,26 @@ A skillshare-like platform for the Flatiron community
 
 ['Flatiron School Presents' Meetup Presentation, April 17, 2014](http://prezi.com/qaaqtitg3dfr/introducing-xp/#)
 
+Home Page:
 ![Landing Page](/public/images/01_root.png "Landing Page")
 
 ## Background
 
 Flatiron students are an eclectic and talented bunch. Our alumni and admitted students also are, doubly so. We wanted to create a platform to help connect those with things to teach to those with a desire to learn, and help promote the flow of knowlege with the Flatiron community.
 
-We specifically hope to help admitted students find guidance as they progress through the pre-work.
+We specifically hope to help admitted students find guidance as they progress through the Flatiron pre-work, which has traditionally been done independently.
 
 ## Features
 
+* Ability to filter lessons based on interest and availability
+* Easy to request or offer lessons based on interest or need
+* Community-oriented design makes it easy to assess interest before committing resources to teaching
+
+## Technology
+
 * Front-end JavaScript to filter views based on various criteria - see app/assets/javascripts.
-* Use of "role" column in users and tags tables to enable efficient authorization and sorting - see app/models.
+* Use of "role" column in registration table to enable efficient authorization and sorting - see app/models.
+* Use of Octokit and the Github API to iterate through user's repos and calculate a 'Github Score' for user based on language use - see app/controllers/user_controller
 
 ## Usage
 
@@ -32,7 +40,8 @@ Scheduling features! Once students and teachers have been connected, how can we 
 
 ## Future
 
-A reputation/gamification system to help encourage continual participation once students graduate and become alumni. Drawing on github repos to calculate "expertise" based on the kinds of languages coded in.
+* Built-in calendar system to improve coordinating of lessons
+* Regular notifications to encourage active maintenance of lessons
 
 ## Authors
 
