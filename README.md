@@ -29,7 +29,7 @@ We specifically hope to help admitted students find guidance as they progress th
 
 ## Technology
 
-* JavaScript & jQuery
+* JavaScript, jQuery, AJAX
 * Chosen
 * Octokit
 * Twitter Bootstrap
