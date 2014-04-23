@@ -8,6 +8,7 @@
 A skillshare-like platform for the Flatiron community
 
 ['Flatiron School Presents' Meetup Presentation, April 17, 2014](http://prezi.com/qaaqtitg3dfr/introducing-xp/#)
+[Walkthrough Video](https://vimeo.com/92742438)
 
 Home Page:
 ![Landing Page](/public/images/01_root.png "Landing Page")
