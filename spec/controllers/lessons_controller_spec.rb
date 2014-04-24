@@ -59,7 +59,7 @@ describe LessonsController do
     it "returns http success" do
       lesson.registrations.create(user: user, admin: true)
       patch :update, id: lesson.id, lesson: { title: "Updated Test Lesson", description: "Updated Test Description", references: "Updated Test References", specific_location: "11 Broadway, NY, NY" }, :tags => ["1"]
-      expect(response).to be_redirect
+      expect(response).to redirect_to lesson_path(lesson)
       expect(response.status).to eq(302)
     end
   end

@@ -2,23 +2,18 @@ require 'spec_helper'
 
 describe Experience do
 
- let(:exp1){ create(:experience) }
- let(:exp2){ create(:experience) }
- let(:exp3){ create(:experience) }
+ let!(:exp1){ create(:experience) }
+ let!(:exp2){ create(:experience) }
+ let!(:exp3){ create(:experience) }
  let(:topic_tag) { create(:tag, :topic) }
  let(:language_tag) { create(:tag, :language) }
 
  describe '::order_by_level' do
   it 'returns an activerecord relation' do
-    exp1
-    exp2 # instantiating the variables
     expect(Experience.order_by_level).to be_a(ActiveRecord::Relation)
   end
 
   it 'can return experiences in descending order by level' do
-    exp1
-    exp2
-    exp3 # instantiating the variables
     expect(Experience.order_by_level.first.level).to be >(Experience.order_by_level.last.level)
   end
  end

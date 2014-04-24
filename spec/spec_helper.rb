@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'simplecov'
-require_relative 'features/homepage_spec'
+# require_relative 'features/homepage_spec'
 SimpleCov.start 'rails'
 
 require 'coveralls'

@@ -1,6 +1,6 @@
 require_relative '../feature_helper'
 
-describe "Homepage" do
+describe "Login" do
   
   it 'returns a 200' do
     visit '/'
@@ -8,7 +8,6 @@ describe "Homepage" do
   end
 
 end
-
 
 
 # module IntegrationSpecHelper

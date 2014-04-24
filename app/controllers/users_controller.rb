@@ -1,4 +1,4 @@
-class UsersController < ApplicationController  
+  class UsersController < ApplicationController  
   include Math
   before_action :set_user, only: [:show, :update, :edit, :update_xp]
 

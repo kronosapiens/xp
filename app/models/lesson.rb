@@ -49,17 +49,9 @@ class Lesson < ActiveRecord::Base
     registrations.where(:role => "teacher").map(&:user)
   end
 
-  # def tags_to_string
-  #   tags.inject(""){|tag_string, tag| tag_string << tag.name + ", "}.chop.chop
-  # end
-
   def tag_ids_to_array
     tags.inject([]){|tag_array, tag| tag_array << tag.id}
   end
-
-  # def first_teacher
-  #   teachers_collection.limit(1).first.user
-  # end
 
   def admin
     registration = registrations.where(:admin => true).first
