@@ -7,6 +7,14 @@ FactoryGirl.define do
     specific_time { DateTime.now }
     specific_location { Faker::Address.street_address }
 
+    trait :completed do
+      status 'completed'
+    end
+
+    trait :closed do
+      status 'closed'
+    end
+
     before(:create) do |lesson|
       lesson.tags << create(:tag)
     end

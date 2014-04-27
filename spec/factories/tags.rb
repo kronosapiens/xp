@@ -14,6 +14,14 @@ FactoryGirl.define do
     trait :language do
       category 'language'
     end
+
+    trait :time do
+      category 'time'
+    end
+
+    trait :location do
+      category 'location'
+    end
   end
 
 end
