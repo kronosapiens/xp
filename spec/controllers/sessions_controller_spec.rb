@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SessionsController do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
 
   before(:each) do
     $rspec_user_id = user.id

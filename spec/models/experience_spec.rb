@@ -5,7 +5,7 @@ describe Experience do
  let!(:exp1){ create(:experience) }
  let!(:exp2){ create(:experience) }
  let!(:exp3){ create(:experience) }
- let(:topic_tag) { create(:tag, :topic) }
+ let(:topic_tag) { create(:tag) }
  let(:language_tag) { create(:tag, :language) }
 
  describe '::order_by_level' do

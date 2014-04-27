@@ -2,7 +2,7 @@ require 'spec_helper'
 include Math
 
 describe UsersController do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
 
   before(:each) do
     $rspec_user_id = user.id

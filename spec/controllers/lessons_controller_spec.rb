@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe LessonsController do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
   let!(:lesson) { create(:lesson) }
 
   before(:each) do

@@ -1,23 +1,23 @@
 require 'spec_helper'
 
 describe "Lesson" do
-  let!(:lesson1){ create(:lesson) }
-  let!(:lesson2){ create(:lesson) }
-  let!(:lesson3){ create(:lesson, :closed) }
-  let!(:lesson4){ create(:lesson, :completed) }
+  let(:lesson1){ create(:lesson) }
+  let(:lesson2){ create(:lesson) }
+  let(:lesson3){ create(:lesson, :closed) }
+  let(:lesson4){ create(:lesson, :completed) }
 
-  let!(:topic_tag1){ create(:tag) }
-  let!(:topic_tag2){ create(:tag) }
-  let!(:topic_tag3){ create(:tag) }
-  let!(:location_tag1){ create(:tag, :location) }
-  let!(:location_tag2){ create(:tag, :location) }
-  let!(:time_tag1){ create(:tag, :time) }
+  let(:topic_tag1){ create(:tag) }
+  let(:topic_tag2){ create(:tag) }
+  let(:topic_tag3){ create(:tag) }
+  let(:location_tag1){ create(:tag, :location) }
+  let(:location_tag2){ create(:tag, :location) }
+  let(:time_tag1){ create(:tag, :time) }
 
-  let!(:user1){ create(:user) }
-  let!(:user2){ create(:user) }
-  let!(:user3){ create(:user) }
-  let!(:user4){ create(:user) }
-  let!(:user5){ create(:user) }
+  let(:user1){ create(:user) }
+  let(:user2){ create(:user) }
+  let(:user3){ create(:user) }
+  let(:user4){ create(:user) }
+  let(:user5){ create(:user) }
 
   before(:each) do
     lesson1.tags << topic_tag1
@@ -25,7 +25,6 @@ describe "Lesson" do
     lesson2.tags << topic_tag3
     lesson2.tags << location_tag1
     lesson4.tags << location_tag1
-
 
     lesson1.registrations.create(:user => user1, :role => "student")
     lesson1.registrations.create(:user => user2, :role => "student", :admin => true)

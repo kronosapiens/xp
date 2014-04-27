@@ -7,10 +7,6 @@ FactoryGirl.define do
   factory :tag do 
     name
 
-    trait :topic do
-      category 'topic'
-    end
-
     trait :language do
       category 'language'
     end

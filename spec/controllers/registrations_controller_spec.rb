@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe RegistrationsController do
-  let!(:user) { create(:user) }
-  let!(:lesson) { create(:lesson) }
+  let(:user) { create(:user) }
+  let(:lesson) { create(:lesson) }
 
   before(:each) do
     $rspec_user_id = user.id

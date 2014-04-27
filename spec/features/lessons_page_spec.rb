@@ -1,16 +1,14 @@
 require_relative '../feature_helper'
 
 describe "Lesson Sign Up" do
-  before(:each) do
-    @user = create(:user) 
-    @lesson = create(:lesson)
-  end
+    let(:user){ create(:user) }
+    let!(:lesson){ create(:lesson) }
 
   it 'does allow you to take course if you are logged in' do
-    $rspec_user_id = @user.id
+    $rspec_user_id = user.id
     visit(lessons_path)
 
-    within "#lesson_#{@lesson.id}" do
+    within "#lesson_#{lesson.id}" do
       click_button "Take This!"
     end
 
@@ -19,7 +17,7 @@ describe "Lesson Sign Up" do
 
   it 'requires that you be logged in to take course' do
     visit(lessons_path)
-    within "#lesson_#{@lesson.id}" do
+    within "#lesson_#{lesson.id}" do
       click_button "Take This!"
     end
 
@@ -27,15 +25,15 @@ describe "Lesson Sign Up" do
   end
 
   it 'does not allow you to take course twice' do
-    $rspec_user_id = @user.id
+    $rspec_user_id = user.id
 
     visit(lessons_path)
-    within "#lesson_#{@lesson.id}" do
+    within "#lesson_#{lesson.id}" do
       click_button "Take This!"
     end
 
     visit(lessons_path)
-    within "#lesson_#{@lesson.id}" do
+    within "#lesson_#{lesson.id}" do
       click_button "Take This!"
     end
 

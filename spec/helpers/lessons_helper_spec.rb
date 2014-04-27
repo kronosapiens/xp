@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe LessonsHelper do
+  let(:tag1){ create(:tag) }
+  let(:tag2){ create(:tag) }
+  let(:user){ create(:user) }
+  let(:lesson){ create(:lesson) }
 
-    let(:tag1){ create(:tag).tap { |tag| tag.update(:category => "topic") } }
-    let(:tag2){ create(:tag).tap { |tag| tag.update(:category => "topic") } }
-    let(:lesson){ create(:lesson).tap { |lesson| lesson.tags << tag1 } }
-    let(:user){ create(:user) }
+  before(:each) do
+    lesson.tags << tag1
+  end
 
   it "returns 'selected' if it has the tag" do
     expect(prepopulate_tags(lesson, tag1)).to eq("selected")

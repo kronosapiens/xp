@@ -32,7 +32,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
-    #FactoryGirl.lint
+    # FactoryGirl.lint
   end
 
   config.after(:each) do

@@ -1,10 +1,8 @@
 require_relative '../feature_helper'
 
 describe "Teach Lesson" do
-  before(:each) do
-    @user = create(:user) 
-    @lesson = create(:lesson)
-  end
+    let(:user){ create(:user) }
+    let(:lesson){ create(:lesson) }
 
   it 'requires login to create lesson' do
     visit(root_path)
@@ -16,7 +14,7 @@ describe "Teach Lesson" do
   end
 
   it 'serves up a create-as-teacher form' do
-    $rspec_user_id = @user.id
+    $rspec_user_id = user.id
 
     visit(root_path)
     within ".navbar" do
@@ -27,7 +25,7 @@ describe "Teach Lesson" do
   end
 
   xit 'allows you to create a lesson', js: true do
-    $rspec_user_id = @user.id
+    $rspec_user_id = user.id
 
     visit('lessons/new?role=teacher')
     within "#new_lesson" do
@@ -41,7 +39,7 @@ describe "Teach Lesson" do
   end
 
   it 'requires at least one tag to be selected' do
-    $rspec_user_id = @user.id
+    $rspec_user_id = user.id
 
     visit('lessons/new?role=teacher')
     within "#new_lesson" do
