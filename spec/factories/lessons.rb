@@ -1,7 +1,11 @@
 FactoryGirl.define do 
 
+  sequence :title do |n|
+    Faker::Name.name + n.to_s
+  end
+
   factory :lesson do 
-    title { Faker::Name.name + rand(1000).to_s }
+    title
     description { Faker::Lorem.sentence }
     references { Faker::Internet.url }
     specific_time { DateTime.now }
