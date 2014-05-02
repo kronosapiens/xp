@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/kronosapiens/xp/badge.png?branch=master)](https://coveralls.io/r/kronosapiens/xp?branch=master)
 ## Description
 
-A skillshare-like platform for the Flatiron community
+A skillshare-like learning platform for the Flatiron community
 
 ['Flatiron School Presents' Meetup Presentation, April 17, 2014](http://prezi.com/qaaqtitg3dfr/introducing-xp/#)
 
