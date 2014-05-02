@@ -3,6 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/kronosapiens/xp.png)](https://codeclimate.com/github/kronosapiens/xp)
 [![Build Status](https://travis-ci.org/kronosapiens/xp.svg?branch=master)](https://travis-ci.org/kronosapiens/xp)
 [![Coverage Status](https://coveralls.io/repos/kronosapiens/xp/badge.png?branch=master)](https://coveralls.io/r/kronosapiens/xp?branch=master)
+
 ## Description
 
 A skillshare-like learning platform for the Flatiron community
@@ -45,12 +46,12 @@ Users log on through github, and can immediately browse for available courses, r
 Scheduling features! Once students and teachers have been connected, how can we make help them find a time to meet?
 Auto-pruning: A weekly task which messages students to confirm interest, or else it automatically drops them from the lesson -- important to prevent large numbers of abandoned lessons.
 
-## Future
+## Future Features
 
 * Built-in calendar system to improve coordinating of lessons
 * Regular notifications to encourage active maintenance of lessons
 
-## Authors
+## Creators
 
 Sam Schlinkert: [@sts10](https://github.com/sts10)
 
