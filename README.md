@@ -43,6 +43,7 @@ Users log on through github, and can immediately browse for available courses, r
 ## Development/Contribution
 
 Scheduling features! Once students and teachers have been connected, how can we make help them find a time to meet?
+Auto-pruning: A weekly task which messages students to confirm interest, or else it automatically drops them from the lesson -- important to prevent large numbers of abandoned lessons.
 
 ## Future
 
