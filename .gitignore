@@ -20,3 +20,6 @@
 
 # Ignore application configuration and secret
 /config/application.yml
+
+# Not sure what this is
+/xp_development
